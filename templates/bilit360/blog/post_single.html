@@ -1,0 +1,232 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+   وبلاگ | {{ blog.title }}
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="agance__single">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                                مشاهده مجله گردشگری
+                            </span>
+                            <div class="clock__time"></div>
+
+
+                            <small>ساعت به وقت ایران</small>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <h5>
+                                    شرکت خدمات مسافرت هوائی و گردشگری زرافشان سیر
+                                </h5>
+                                <span>
+                                   {{ blog.title }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            <div class="adv__title">
+                                <span  class="mb-2">
+                                        دسته بندی موضوعات
+                                </span>
+                                {% get_article_catagories_list as cats %}
+                                {% for cat in cats %}
+                                <a href="{% url 'cms:cat' cat.id %}">
+                                        <span> {{ cat.name }}</span>
+                                        <span>{{ cat.article_set.all.count }}</span>
+                                </a>
+                                {% endfor %}
+                                <a href="{% url 'cms:blog_list'  %}">
+                                        <span> همه </span>
+                                    {% get_article_count as count %}
+                                        <span>{{ count }}</span>
+                                </a>
+                            </div>
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <h5>
+                                        {{ blog.title }}
+                                    </h5>
+                                    <!-- <a href=""></a> -->
+                                </div>
+                            </div>
+                            <div class="agance__deatails ">
+                                <div class="items">
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin: auto;">
+                                            <h1>{{ blog.title }}</h1>
+                                            <img src="{{ blog.image.url }}" alt="{{ blog.image_alt }}" style="max-width: inherit;" >
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>
+                                                {{ blog.content|safe }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+        function birthdaydatepicker() {
+            $(".datetime").persianDatepicker({
+                initialValueType: 'gregorian',
+                "inline": false,
+                "format": "l",
+                "viewMode": "day",
+                "initialValue": false,
+                "position": "auto",
+                "altFormat": "lll",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": false,
+                "calendarType": "persian",
+                "inputDelay": 800,
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": true,
+                        "leapYearMode": "algorithmic"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": true
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+
+        }
+        birthdaydatepicker();
+    </script>
+
+    <script type="text/javascript">
+        var clock = $('.clock__time').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script>
+        $(document).ready(function () {
+            $('#falseinput').click(function () {
+                $("#fileinput").click();
+            });
+        });
+        $('#fileinput').change(function () {
+            $('#selected_filename').text($('#fileinput]')[0].files[0].name);
+        });
+    </script>
+{% endblock %}

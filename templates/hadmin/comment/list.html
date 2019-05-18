@@ -1,0 +1,52 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست پیام ها
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">لیست پیام ها</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>کاربر</th>
+              <th>تاریخ درج</th>
+              <th>متن</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              {% for comment in comments %}
+              <tr class="bg-yellow bg-lighten-4">
+                  <td>{{comment.id}}</td>
+                  <td>{{comment.commenter}}</td>
+                  <td>{{comment.comment_date|to_jalali}}</td>
+                  <td>{{comment.content}}</td>
+                  <td class=" text-md-right">
+                    <a href="{% url 'delete_comment' comment.id %}"><i class="icon-ios-trash text-danger font-medium-5"></i></a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

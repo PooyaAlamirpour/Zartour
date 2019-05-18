@@ -1,0 +1,55 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+افزودن نوع خانه
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن نوع خانه</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید نوع خانه جدید برای خانه ها اضافه کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">نام نوع خانه
+                  </label>
+                  <input type="text" id="name" name="name" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام نوع خانه" data-original-title="" title="">
+                </div>
+              </div>
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary" value=" ذخیره">
+              <i class="icon-check2"></i>ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

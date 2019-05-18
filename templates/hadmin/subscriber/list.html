@@ -1,0 +1,66 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست مشترکین پیامکی
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">مشترکین پیامکی</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>نام</th>
+              <th>نام خانوادگی</th>
+              <th>موبایل</th>
+              <th>مقصد مورد علاقه</th>
+              <th>تاریخ ثبت نام</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for subscriber in subscribers %}
+                  <tr class="bg-yellow bg-lighten-4">
+                      <td><a href="#">{{subscriber.id}}</a></td>
+                      <td>{{subscriber.first_name}}</td>
+                      <td>{{subscriber.last_name}}</td>
+                      <td>{{subscriber.mobile}}</td>
+                      <td>
+                        {% if subscriber.domestic_tour == True %}
+                            داخلی
+                        {% else %}
+                            خارجی
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if subscriber.subscription_date %}
+                          {{subscriber.subscription_date | to_jalali}}
+                        {% endif %}
+                      </td>
+                  <tr/>
+              {% endfor %}
+                <tr>
+                    <td><a class="btn btn-success" href="{% url 'hadmin:subscriber_excel' %}">خروجی اکسل</a> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

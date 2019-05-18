@@ -1,0 +1,67 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست امکانات قابل انتخاب برای خانه ها
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">مطالب</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>نام</th>
+              <th>شرح</th>
+              <th>آیکون</th>
+              <th>وضعیت اعتبار</th>
+              <th> تعداد خانه های مشمول</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              {% for option in options %}
+              <tr class="bg-yellow bg-lighten-4">
+              <td><a href="{% url 'edit_option' option.id %}">{{option.id}}</a></td>
+              <td>{{option.option_name}}</td>
+              <td>{{option.option_description}}</td>
+              <td>{%  if option.image %}<img src="{{option.image.url}}">{% else %}ندارد{% endif %}</td>
+              <td>{{option.option_validity}}</td>
+              <td>{{option.rentalhome_set.all.count}}</td>
+              <td class=" text-md-right">
+                <a href="{% url 'edit_option' option.id %}"><i class="icon-eye text-info font-medium-5"></i></a>
+              </td>
+
+              </tr>
+              {% endfor %}
+          <tr>
+              <td><a class="btn btn-danger" href="{% url 'set_option' %}">افزودن امکانات</a> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

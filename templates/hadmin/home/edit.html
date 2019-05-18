@@ -1,0 +1,128 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+ویرایش خانه
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن اسلایدر</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید خانه های ثبت شده در سایت را ویرایش کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="caption"> نام خانه
+                  </label>
+                  <input type="text" id="caption" name="name" value="{{ home.name }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                </div>
+                  <div class="form-group">
+                  <label for="caption"> قیمت خانه
+                  </label>
+                  <input type="number" id="caption" name="price" value="{{ home.price }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                </div>
+                  <div class="form-group">
+                  <label for="caption">ظرفیت
+                  </label>
+                  <input type="number" id="caption" name="capacity" value="{{ home.capacity }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                </div>
+                <div class="form-group">
+                  <label for="caption">نوع خانه
+                  </label>
+                  <select id="caption" name="homeType"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                      {% for homeType in homeTypes %}
+                          <option value="{{ homeType.id }}" {% if homeType.id == home.homeType.id %}selected{% endif %}>{{ homeType.name }}</option>
+                      {% endfor %}
+                  </select>
+                                <label for="caption">وضعیت
+                  </label>
+                  <select id="status" name="status"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                      {% for status in home.STATUS_CHOICES %}
+                          <option></option>
+                          <option value="{{ status.0 }}" {% if status.0 == home.status %}selected{% endif %}>{{ status.1 }}</option>
+                      {% endfor %}
+                  </select>
+                <label for="caption">استان
+                  </label>
+                  <select id="province" name="province" value="{{ home.capacity }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                  <option></option>
+                      {% for province in provinces %}
+
+                          <option value="{{ province.id }}" {% if home.city.province.id == province.id %}selected{% endif %}>{{ province.name }}</option>
+                      {% endfor %}
+                  </select>
+                 <script>
+                                               var dropdown = document.getElementById("province");
+                                                dropdown.onchange = function(event){
+                                                    $("#city").empty()
+                                                     $.ajax({
+                                                        url: "{% url 'city_list' %}?province_id="+dropdown.value,
+                                                        type: "get", // or "get"
+                                                        //data: dropdown.value,
+                                                        success: function(data) {
+                                                          var cities = jQuery.parseJSON(JSON.stringify(data));
+                                                          var dropdown_city = $("#city");
+                                                          $.each(data, function() {
+                                                                dropdown_city.append(new Option(this.fields.name, this.pk));
+                                                            });
+                                                        }});
+
+                                                }
+                                        </script>
+									</div>
+                                    <div class="form-group">
+									  <label >شهر</label>
+									  <select class="form-control" name="city" id="city">
+                                                        {% if home.city %}
+                                                          <option value="{{ home.city.id }}" selected>{{ home.city.name }}</option>
+                                                          {% endif %}
+									  </select>
+									</div>
+                  <div class="form-group">
+                  <label for="description">شرح خانه
+                  </label>
+                  <textarea type="text" id="description" name="description"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="متن" data-original-title="" title="">
+                      {% if home.description %}
+                        {{ home.description|safe }}
+                      {% endif %}
+                  </textarea>
+                </div>
+
+
+              </div>
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary" value=" ذخیره">
+              <i class="icon-check2"></i>ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

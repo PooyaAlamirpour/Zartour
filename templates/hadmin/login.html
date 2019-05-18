@@ -1,0 +1,198 @@
+{% load staticfiles %}
+
+<html lang="en" data-textdirection="rtl" class="loading">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>ورود مدیریت سایت</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'hadmin_app_assets/images/ico/apple-icon-60.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'hadmin_app_assets/images/ico/apple-icon-76.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'hadmin_app_assets/images/ico/apple-icon-120.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'hadmin_app_assets/images/ico/apple-icon-152.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hadmin_app_assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="{% static 'hadmin_app_assets/images/ico/favicon-32.png' %}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/bootstrap.css' %}">
+    <!-- font icons-->
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/fonts/icomoon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/fonts/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/vendors/css/sliders/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/vendors/css/extensions/pace.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/vendors/css/forms/icheck/icheck.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/vendors/css/forms/icheck/custom.css' %}">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN ROBUST CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/app.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/custom-rtl.css' %}">
+    <!-- END ROBUST CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/core/menu/menu-types/horizontal-top-icon-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/core/menu/menu-types/vertical-overlay-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_app_assets/css-rtl/pages/login-register.css' %}">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_assets/css/style-rtl.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hadmin_assets/css/admin-rtl.css' %}">
+    <!-- END Custom CSS-->
+  </head>
+  <body data-open="hover" data-menu="horizontal-top-icon-menu" data-col="1-column" class="horizontal-layout horizontal-top-icon-menu 1-column bg-full-screen-image blank-page blank-page">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="app-content content container-fluid">
+      <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+{#            <section class="menu-admin-azma">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-md-12">#}
+{#                            <div class="menu-admin-logo">#}
+{#                                <img src="{% static 'hadmin_app_assets/images/logo/2.png' %}">#}
+{#                            </div>#}
+{#                            <ul class="nav-admin-azma">#}
+{#                                <li class="head-admin-azma">#}
+{#                                    <a href="http://azmasystem.com">وب سایت آزماسیستم</a>#}
+{#                                </li>#}
+{#                                <li class="address-admin-azma">#}
+{#                                     <?xml version="1.0"?>#}
+{#                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve" width="60px" height="50px" class=""><g transform="matrix(0.530906 0 0 0.530906 114.928 114.928)"><g>#}
+{#                                        <path d="M245,0C157.687,0,86.906,70.781,86.906,158.094c0,14.64,1.998,28.811,5.722,42.266c1.491,5.388,3.253,10.664,5.284,15.804   l4.794,10.894L245,490l142.481-263.316l4.321-9.818c2.149-5.363,4.011-10.871,5.57-16.506c3.725-13.454,5.723-27.626,5.723-42.266   C403.094,70.781,332.313,0,245,0z M245,235.307c-43.37,0-78.651-35.281-78.651-78.651S201.63,78.005,245,78.005   s78.651,35.281,78.651,78.651S288.37,235.307,245,235.307z" data-original="#000000" class="active-path" fill="#000000"/>#}
+{#                                        <path d="M245,95.408c-33.768,0-61.249,27.48-61.249,61.249c0,33.768,27.48,61.249,61.249,61.249s61.248-27.48,61.248-61.249   C306.249,122.888,278.768,95.408,245,95.408z" data-original="#000000" class="active-path" fill="#000000"/>#}
+{#                                    </g></g> </svg>#}
+{##}
+{#                                    <span>    آدرس: تهران بزرگراه ستاری جنوب روبروی کوروش پیامبر غربی پلاک 106/7 واحد 19  </span>#}
+{#                                </li>#}
+{#                                <li class="tel-admin-azma">#}
+{#                                    <?xml version="1.0"?>#}
+{#                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 480.56 480.56" style="enable-background:new 0 0 480.56 480.56;" xml:space="preserve" width="20px" height="35px"><g transform="matrix(0.842943 0 0 0.842943 32.7376 37.7376)"><g>#}
+{#                                        <g>#}
+{#                                        <path d="M365.354,317.9c-15.7-15.5-35.3-15.5-50.9,0c-11.9,11.8-23.8,23.6-35.5,35.6c-3.2,3.3-5.9,4-9.8,1.8    c-7.7-4.2-15.9-7.6-23.3-12.2c-34.5-21.7-63.4-49.6-89-81c-12.7-15.6-24-32.3-31.9-51.1c-1.6-3.8-1.3-6.3,1.8-9.4    c11.9-11.5,23.5-23.3,35.2-35.1c16.3-16.4,16.3-35.6-0.1-52.1c-9.3-9.4-18.6-18.6-27.9-28c-9.6-9.6-19.1-19.3-28.8-28.8    c-15.7-15.3-35.3-15.3-50.9,0.1c-12,11.8-23.5,23.9-35.7,35.5c-11.3,10.7-17,23.8-18.2,39.1c-1.9,24.9,4.2,48.4,12.8,71.3    c17.6,47.4,44.4,89.5,76.9,128.1c43.9,52.2,96.3,93.5,157.6,123.3c27.6,13.4,56.2,23.7,87.3,25.4c21.4,1.2,40-4.2,54.9-20.9    c10.2-11.4,21.7-21.8,32.5-32.7c16-16.2,16.1-35.8,0.2-51.8C403.554,355.9,384.454,336.9,365.354,317.9z" data-original="#000000" class="" fill="#000000"/>#}
+{#                                        <path d="M346.254,238.2l36.9-6.3c-5.8-33.9-21.8-64.6-46.1-89c-25.7-25.7-58.2-41.9-94-46.9l-5.2,37.1    c27.7,3.9,52.9,16.4,72.8,36.3C329.454,188.2,341.754,212,346.254,238.2z" data-original="#000000" class="" fill="#000000"/>#}
+{#                                        <path d="M403.954,77.8c-42.6-42.6-96.5-69.5-156-77.8l-5.2,37.1c51.4,7.2,98,30.5,134.8,67.2c34.9,34.9,57.8,79,66.1,127.5    l36.9-6.3C470.854,169.3,444.354,118.3,403.954,77.8z" data-original="#000000" class="" fill="#000000"/>#}
+{#                                        </g>#}
+{#                                        </g></g> </svg>#}
+{##}
+{#                                    <span>شماره پشتیبانی: 02144036609</span>#}
+{#                                </li>#}
+{#                            </ul>#}
+{##}
+{#                            <div class="col-md-6 col-md-offset-3 social-icons-admin text-center">#}
+{#                                <div class="icons-sociall">#}
+{#                                    <?xml version="1.0"?>#}
+{#                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 112.196 112.196" style="enable-background:new 0 0 112.196 112.196;" xml:space="preserve" width="35px" height="35px" class=""><g transform="matrix(0.886385 0 0 0.886385 6.37358 6.37358)"><g>#}
+{#                                            <circle style="fill:#007AB9;" cx="56.098" cy="56.097" r="56.098" data-original="#007AB9" class=""/>#}
+{#                                            <g>#}
+{#                                                <path style="fill:#F1F2F2" d="M89.616,60.611v23.128H76.207V62.161c0-5.418-1.936-9.118-6.791-9.118    c-3.705,0-5.906,2.491-6.878,4.903c-0.353,0.862-0.444,2.059-0.444,3.268v22.524H48.684c0,0,0.18-36.546,0-40.329h13.411v5.715    c-0.027,0.045-0.065,0.089-0.089,0.132h0.089v-0.132c1.782-2.742,4.96-6.662,12.085-6.662    C83.002,42.462,89.616,48.226,89.616,60.611L89.616,60.611z M34.656,23.969c-4.587,0-7.588,3.011-7.588,6.967    c0,3.872,2.914,6.97,7.412,6.97h0.087c4.677,0,7.585-3.098,7.585-6.97C42.063,26.98,39.244,23.969,34.656,23.969L34.656,23.969z     M27.865,83.739H41.27V43.409H27.865V83.739z" data-original="#F1F2F2" class="active-path"/>#}
+{#                                            </g>#}
+{#                                        </g></g> </svg>#}
+{#                                </div>#}
+{#                                <div class="icons-sociall">#}
+{#                                    <?xml version="1.0"?>#}
+{#                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="35px" height="35px" class=""><g transform="matrix(0.904382 0 0 0.904382 24.4782 24.4782)"><circle style="fill:#41B4E6;" cx="255.997" cy="256" r="255.997" data-original="#41B4E6" class=""/><path style="fill:#0091C8;" d="M512,256.003c0-6.238-0.235-12.419-0.673-18.546L405.228,131.36L106.772,248.759l114.191,114.192  l1.498,5.392l1.939-1.955l0.008,0.008l-1.947,1.947L348.778,494.66C444.298,457.5,512,364.663,512,256.003z" data-original="#0091C8"/><polygon style="fill:#FFFFFF;" points="231.138,293.3 346.829,380.647 405.228,131.36 106.771,248.759 197.588,278.84   363.331,167.664 " data-original="#FFFFFF" class=""/><polygon style="fill:#D2D2D7;" points="197.588,278.84 222.461,368.344 231.138,293.3 363.331,167.664 " data-original="#D2D2D7"/><polygon style="fill:#B9B9BE" points="268.738,321.688 222.461,368.344 231.138,293.3 " data-original="#B9B9BE" class="active-path"/></g> </svg>#}
+{#                                </div>#}
+{#                                <div class="icons-sociall">#}
+{#                                    <?xml version="1.0"?>#}
+{#                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 112.196 112.196" style="enable-background:new 0 0 112.196 112.196;" xml:space="preserve" width="35px" height="35px" class=""><g transform="matrix(0.785678 0 0 0.785678 12.023 12.023)"><g>#}
+{#                                            <g>#}
+{#                                                <circle id="XMLID_30_" style="fill:#DC4E41;" cx="56.098" cy="56.097" r="56.098" data-original="#DC4E41" class=""/>#}
+{#                                            </g>#}
+{#                                            <g>#}
+{#                                                <path style="fill:#DC4E41;" d="M19.531,58.608c-0.199,9.652,6.449,18.863,15.594,21.867c8.614,2.894,19.205,0.729,24.937-6.648    c4.185-5.169,5.136-12.06,4.683-18.498c-7.377-0.066-14.754-0.044-22.12-0.033c-0.012,2.628,0,5.246,0.011,7.874    c4.417,0.122,8.835,0.066,13.252,0.155c-1.115,3.821-3.655,7.377-7.51,8.757c-7.443,3.28-16.94-1.005-19.282-8.813    c-2.827-7.477,1.801-16.5,9.442-18.675c4.738-1.667,9.619,0.21,13.673,2.673c2.054-1.922,3.976-3.976,5.864-6.052    c-4.606-3.854-10.525-6.217-16.61-5.698C29.526,35.659,19.078,46.681,19.531,58.608z" data-original="#DC4E41" class=""/>#}
+{#                                                <path style="fill:#DC4E41;" d="M79.102,48.668c-0.022,2.198-0.045,4.407-0.056,6.604c-2.209,0.022-4.406,0.033-6.604,0.044    c0,2.198,0,4.384,0,6.582c2.198,0.011,4.407,0.022,6.604,0.045c0.022,2.198,0.022,4.395,0.044,6.604c2.187,0,4.385-0.011,6.582,0    c0.012-2.209,0.022-4.406,0.045-6.615c2.197-0.011,4.406-0.022,6.604-0.033c0-2.198,0-4.384,0-6.582    c-2.197-0.011-4.406-0.022-6.604-0.044c-0.012-2.198-0.033-4.407-0.045-6.604C83.475,48.668,81.288,48.668,79.102,48.668z" data-original="#DC4E41" class=""/>#}
+{#                                                <g>#}
+{#                                                    <path style="fill:#FFFFFF;" d="M19.531,58.608c-0.453-11.927,9.994-22.949,21.933-23.092c6.085-0.519,12.005,1.844,16.61,5.698     c-1.889,2.077-3.811,4.13-5.864,6.052c-4.054-2.463-8.935-4.34-13.673-2.673c-7.642,2.176-12.27,11.199-9.442,18.675     c2.342,7.808,11.839,12.093,19.282,8.813c3.854-1.38,6.395-4.936,7.51-8.757c-4.417-0.088-8.835-0.033-13.252-0.155     c-0.011-2.628-0.022-5.246-0.011-7.874c7.366-0.011,14.743-0.033,22.12,0.033c0.453,6.439-0.497,13.33-4.683,18.498     c-5.732,7.377-16.322,9.542-24.937,6.648C25.981,77.471,19.332,68.26,19.531,58.608z" data-original="#FFFFFF" class=""/>#}
+{#                                                    <path style="fill:#FFFFFF;" d="M79.102,48.668c2.187,0,4.373,0,6.57,0c0.012,2.198,0.033,4.407,0.045,6.604     c2.197,0.022,4.406,0.033,6.604,0.044c0,2.198,0,4.384,0,6.582c-2.197,0.011-4.406,0.022-6.604,0.033     c-0.022,2.209-0.033,4.406-0.045,6.615c-2.197-0.011-4.396,0-6.582,0c-0.021-2.209-0.021-4.406-0.044-6.604     c-2.197-0.023-4.406-0.033-6.604-0.045c0-2.198,0-4.384,0-6.582c2.198-0.011,4.396-0.022,6.604-0.044     C79.057,53.075,79.079,50.866,79.102,48.668z" data-original="#FFFFFF" class=""/>#}
+{#                                                </g>#}
+{#                                            </g>#}
+{#                                        </g></g> </svg>#}
+{#                                </div>#}
+{#                        </div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </section>#}
+            <section class="flexbox-container">
+            <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
+        <div class=" border-grey border-lighten-3 px-1 py-1 m-0">
+            <div class="card-header no-border">
+                <div class="card-title text-xs-center">
+                    <img src="{% static 'hadmin_app_assets/images/logo/logo.png' %}" alt="branding logo" style="width: 150px;">
+                </div>
+                <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>ورود</span></h6>
+            </div>
+            <div class="card-body collapse in">
+                <div class="card-block">
+                    <form class="form-horizontal" action="" method="POST" novalidate>
+                      {% csrf_token %}
+                        <fieldset class="form-group position-relative has-icon-left">
+                            <input type="text" class="form-control" id="user-name" name="username" placeholder="شماره همراه " required>
+                            <div class="form-control-position">
+                                <i class="icon-head"></i>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group position-relative has-icon-left">
+                            <input type="password" class="form-control input-prepend" id="user-password" name="password" placeholder="کلمه عبور" required>
+                            <div class="form-control-position">
+                                <i class="icon-key3"></i>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group row">
+                            <div class="col-md-6 col-xs-12 text-xs-center">
+                                <fieldset>
+                                    <input type="checkbox" id="remember-me" class="chk-remember">
+                                    <label for="remember-me"> مرا به خاطر بسپار</label>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="recover-password.html" class="card-link a-forget">فراموشی رمز عبور</a></div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-outline-danger btn-block"><i class="icon-unlock2"></i> ورود</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+            </div>
+         </section>
+        </div>
+      </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+    <!-- BEGIN VENDOR JS-->
+    <script src="{% static 'hadmin_app_assets/js/core/libraries/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/tether.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/js/core/libraries/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/perfect-scrollbar.jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/unison.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/blockUI.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/jquery.matchHeight-min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/jquery-sliding-menu.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/sliders/slick/slick.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/ui/screenfull.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/extensions/pace.min.js' %}" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="{% static 'hadmin_app_assets/vendors/js/ui/jquery.sticky.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hadmin_app_assets/vendors/js/charts/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/forms/validation/jqBootstrapValidation.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/vendors/js/forms/icheck/icheck.min.js' %}" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN ROBUST JS-->
+    <script src="{% static 'hadmin_app_assets/js/core/app-menu.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/js/core/app.js' %}" type="text/javascript"></script>
+    <script src="{% static 'hadmin_app_assets/js/scripts/ui/fullscreenSearch.js' %}" type="text/javascript"></script>
+    <!-- END ROBUST JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script type="text/javascript" src="{% static 'hadmin_app_assets/js/scripts/ui/breadcrumbs-with-stats.js' %}"></script>
+    <script src="{% static 'hadmin_app_assets/js/scripts/forms/form-login-register.js' %}" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
+  </body>
+</html>

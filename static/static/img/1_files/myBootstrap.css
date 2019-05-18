@@ -1,0 +1,57 @@
+body{
+	font-family: 'dirooz';
+	overflow-x: hidden;
+	direction: rtl;
+	text-align: right;
+	font-size: 13px;
+}
+button{
+	background-color: #eee;
+	border: 1px solid #838383;
+	cursor: pointer;
+	padding: 10px 35px;
+	font-size: 15px;
+	color: white;
+	border-radius: 25px;
+	transition: all 0.2s;
+	margin: 10px;
+}
+button:focus{
+	outline: none;
+}
+button:active{
+	box-shadow: 0 0 3px #969696 inset;
+}
+input{
+	width: 100%;
+	height: 30px;
+	margin: 5px 0;
+	padding: 5px 10px;
+	font-size: 12px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+}
+textarea{
+	width: 100%;
+	height: 100px;
+	margin: 5px 0;
+	padding: 5px 10px;
+	font-size: 12px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+}
+ul{
+	list-style-type: none;
+}
+a{
+	color: unset;
+}
+a:hover{
+	text-decoration: none;
+	color: unset;
+}
+@media(min-width: 992px){
+	button:hover{
+		background-color: #dfdfdf;
+	}
+}

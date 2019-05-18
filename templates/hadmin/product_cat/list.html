@@ -1,0 +1,141 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست دسته بندی ها
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">دسته بندی ها</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>عنوان</th>
+              <th>لینک</th>
+              <th>تصویر</th>
+              <th>آیکون</th>
+              <th>پیشنهادات مرتبط</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              {% for cat in cats %}
+              <tr class="bg-yellow bg-lighten-4">
+              <td>{{cat.id}}</td>
+              <td>{{cat.name}}</td>
+              <td>{{cat.slug}}</td>
+              <td><img src="{{ cat.image.url }}" height="100px"></td>
+              <td><img src="{{ cat.icon.url }}"></td>
+              <td>{{cat.product_set.all.count}}</td>
+              <td class=" text-md-right">
+                <button class="btn btn-danger    mb-1 ladda-button" data-style="slide-right" data-toggle="modal" data-target="#myModalLabel{{cat.id}}"><span class="ladda-label"><i class="icon-ios-trash text-danger font-medium-5" style="color: white !important;vertical-align:middle;" ></i>
+حذف</span><span class="ladda-spinner"></span><span class="ladda-spinner"></span></button>
+                  <div class="modal fade text-xs-left" id="myModalLabel{{cat.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{cat.id}}" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header bg-blue-grey white">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											  <span aria-hidden="true">×</span>
+											</button>
+											<h4 class="modal-title" id="cat{{cat.id}}">حذف {{cat.name}} </h4>
+										  </div>
+										  <div class="modal-body">
+											<p>از حذف دسته مورد نظر اطمینان دارید</p>
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal" aria-hidden="true">خیر</button>
+											<a  class="btn btn-outline-blue-grey" href="{% url 'delete_cat' cat.id %}">حذف</a>
+
+										  </div>
+										</div>
+									  </div>
+									</div>
+
+              </td>
+
+                          </tr>
+              {% endfor %}
+
+
+
+          </tbody>
+        </table>
+      </div>
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن دسته بندی</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید دسته بندی جدید برای وبلاگ اضافه کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">عنوان دسته
+                  </label>
+                  <input type="text" id="text" name="name" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام امکانات" data-original-title="" title="">
+                </div>
+              </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">آیکون دسته
+                  </label>
+                  <input type="file" id="text" name="icon" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام امکانات" data-original-title="" title="">
+                </div>
+              </div> <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">تصویر دسته
+                  </label>
+                  <input type="file" id="text" name="image" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام امکانات" data-original-title="" title="">
+                </div>
+              </div>
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary" value=" ذخیره">
+              <i class="icon-check2"></i>ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</form>
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+$(function(){
+	$('.menu-button').click(function(){
+		if($(this).hasClass('show')){
+			$('.menu>ul').css("right","-300px");
+		}
+		else{
+			$('.menu>ul').css("right","0");
+		}
+		$(this).toggleClass('show');
+	});
+});

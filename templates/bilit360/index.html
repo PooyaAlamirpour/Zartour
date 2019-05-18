@@ -1,0 +1,721 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+    خانه
+{% endblock %}
+{% block search_tab %}
+    <div class="tab__search">
+      <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+            aria-selected="true">
+            <img src="{% static 'bilit360/img/azadi.svg' %}" alt="">
+            پرواز داخلی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-profile"
+            aria-selected="false">
+            <img src="{% static 'bilit360/img/eiffel-tower.svg' %}" alt="">
+            پرواز خارجی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-hotel-tab" data-toggle="pill" href="#pills-hotel" role="tab" aria-controls="pills-contact"
+            aria-selected="false">
+            <img src="{% static 'bilit360/img/hotel.svg' %}" alt="">
+            هتل</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-tour-tab" data-toggle="pill" href="#pills-tour" role="tab" aria-controls="pills-contact"
+            aria-selected="false">
+            <img src="{% static 'bilit360/img/sunbed.svg' %}" alt="">
+            تور مسافرتی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+            aria-selected="false">
+            <img src="{% static 'bilit360/img/insurance.svg' %}" alt="">
+            بیمه</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+            aria-selected="false">
+            <img src="{% static 'bilit360/img/train-front.svg' %}" alt="">
+            قطار</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+          <form action="{% url 'tickets:req' %}" method="GET">
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+              </span>
+              <select class="first__input" name="origin">
+                <option>مبدا</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+              </span>
+              <select name="destination">
+                <option >مقصد</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/calendar.svg' %}"  alt="">
+              </span>
+              <input type="text" id="arrived__time" value="تاریخ رفت" name="">
+              <input type="hidden" id="arrival_date" value="" name="departure">
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/calendar.svg' %}" alt="">
+              </span>
+              <input type="text" id="return__time" value="تاریخ برگشت" name="">
+              <input type="hidden" id="return_date" value="" name="return">
+            </div>
+            <div class="form__input" id="passenger_count_select_div"  >
+              <select id="passenger_count_select" name="madult">
+                <option value="1">۱ مسافر</option>
+                <option value="2">۲ مسافر</option>
+                <option value="3">۳ مسافر</option>
+                <option value="4">۴ مسافر</option>
+                <option value="5">۵ مسافر</option>
+                <option value="6">۶ مسافر</option>
+                <option value="7">بیشتر از ۶ مسافر</option>
+              </select>
+            </div>
+          <input type="hidden" name="mchildren" value="0">
+          <input type="hidden" name="minfant" value="0">
+{#              <div class="form__input" id="passenger_count_number_div"  >#}
+{#                   <input id="passenger_count_number" type="number">#}
+{#              </div>#}
+            <div class="form__input order__2">
+              <button type="submit">جستجو
+                <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+              </button>
+            </div>
+            <div class="checklist order__1">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1" onclick="twoWay(this);" checked="checked">
+                <label class="form-check-label" for="defaultCheck1">
+                  یکطرفه
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWay(this);">
+                <label class="form-check-label" for="back">
+                  رفت و برگشت
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">مطلب پرواز
+          خارجی</div>
+        <div class="tab-pane fade" id="pills-hotel" role="tabpanel" aria-labelledby="pills-hotel-tab">
+          <form action="{% url 'hotels:hotels' %}" method="GET">
+            <div class="form__input">
+              <span class="title">
+              </span>
+              <select class="first__input" id="hotel_country" name="country">
+                <option>کشور</option>
+                {% for country in countries %}
+                    <option value="{{ country.id }}">{{ country.CountryName }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+              </span>
+              <select id="hotel_city" name="city">
+                <option >شهر</option>
+              </select>
+            </div>
+          <input type="hidden" name="mchildren" value="0">
+          <input type="hidden" name="minfant" value="0">
+{#              <div class="form__input" id="passenger_count_number_div"  >#}
+{#                   <input id="passenger_count_number" type="number">#}
+{#              </div>#}
+            <div class="form__input order__2">
+              <button>جستجو
+                <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="pills-tour" role="tabpanel" aria-labelledby="pills-tour-tab">
+             <form action="{% url 'tours:tours' %}" method="GET" onsubmit="subForm();">
+            <div class="form__input">
+              <span class="title">
+              </span>
+              <select class="first__input" name="country" id="tour_country">
+                <option>کشور</option>
+                {% for country in countries %}
+                    <option value="{{ country.id }}">{{ country.CountryName }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+              </span>
+              <select name="city" id="tour_city">
+                <option >شهر</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          <input type="hidden" name="mchildren" value="0">
+          <input type="hidden" name="minfant" value="0">
+{#              <div class="form__input" id="passenger_count_number_div"  >#}
+{#                   <input id="passenger_count_number" type="number">#}
+{#              </div>#}
+            <div class="form__input order__2">
+              <button>جستجو
+                <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+              </button>
+            </div>
+
+          </form>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">در دست ساخت </div>
+      </div>
+    </div>
+{% endblock %}
+{% block main %}
+    <section class="slider__price">
+        <div class="ticket__price">
+          <div class="title">
+            <h5>
+              ارزانترین نرخ قیمت بلیط های امرزو از تهران
+            </h5>
+            <span>
+              تومان
+            </span>
+
+          </div>
+          <ul>
+            <li>
+              <a href="#">
+                <h6>
+                  بلیط هواپیما تهران به مشهد
+                </h6>
+                <span>
+                  ۶:۴۵
+                </span>
+                <span>
+                  ۱۴۷/۰۰۰
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <h6>
+                  بلیط هواپیما تهران به مشهد
+                </h6>
+                <span>
+                  ۶:۴۵
+                </span>
+                <span>
+                  ۱۴۷/۰۰۰
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <h6>
+                  بلیط هواپیما تهران به مشهد
+                </h6>
+                <span>
+                  ۶:۴۵
+                </span>
+                <span>
+                  ۱۴۷/۰۰۰
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <h6>
+                  بلیط هواپیما تهران به مشهد
+                </h6>
+                <span>
+                  ۶:۴۵
+                </span>
+                <span>
+                  ۱۴۷/۰۰۰
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <h6>
+                  بلیط هواپیما تهران به مشهد
+                </h6>
+                <span>
+                  ۶:۴۵
+                </span>
+                <span>
+                  ۱۴۷/۰۰۰
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="main__slider">
+          <div class="slider" style="direction: ltr">
+            <div class="slide">
+              <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+            </div>
+            <div class="slide">
+              <img src="{% static 'bilit360/img/9-11.jpg' %}" alt="">
+            </div>
+            <div class="slide">
+              <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+            </div>
+            <div class="slide">
+              <img src="{% static 'bilit360/img/9-11.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="title__slider">
+            <span class="title no-border">
+              عنوان اولی
+            </span>
+            <span class="title">
+              عنوان دومی
+            </span>
+            <span class="title">
+              عنوان سومی
+            </span>
+            <span class="title ">
+              عنوان چهارم
+            </span>
+          </div>
+        </div>
+    </section>
+    {% if domestic_tours %}
+        <section class="leatest__inner__tour">
+    <div class="title">
+      <h5>
+        <img src="{% static 'bilit360/img/sunbed.svg' %}" alt="">
+        <span>
+          تور های داخلی
+        </span>
+      </h5>
+      <div class="divider"></div>
+      <a href="{% url 'tours:tours' %}">
+        <img src="{% static 'bilit360/img/table-grid.svg' %}" alt=""> نمایش همه تور ها
+
+      </a>
+    </div>
+    <div class="items">
+        {% for tour in domestic_tours %}
+            <div class="item">
+            <div class="image__holder">
+                {% if tour.image %}
+                      <img src="{{ tour.image.url }}" alt="{{ tour.title }}" style="cursor: pointer;" onclick=" window.location = '{% url 'tours:details' tour.id %}';">
+                {% endif %}
+              <span class="state" id="state_{{ tour.id }}">
+                در حال اجرا
+              </span>
+              <span class="vip">
+                <img src="{% static 'bilit360/img/star.svg' %}" alt="">
+                ویژه
+              </span>
+              <span class="airline">
+                <img src="{% static 'bilit360/img/airplane-shape.svg' %}" alt="">
+                {{ tour.airline.name_fa }}
+              </span>
+            </div>
+            <h3><a href="{% url 'tours:details' tour.id %}">{{ tour.title }}</a></h3>
+            <hr>
+            <ul>
+              <li>
+                 {{ tour.stay_nights }}
+                            شب و
+                  {{ tour.stay_nights|add:1 }}
+                  روز
+              </li>
+              <li>
+                شروع قیمت از :
+                <br>
+
+                <span class="green">
+                  {{ tour.min_price|to_price }} تومان
+                </span>
+
+              </li>
+              <li>
+                تاریخ حرکت : {{ tour.outband_date|to_jalali }}
+              </li>
+            </ul>
+            <div class="detail">
+              <span class="see">
+                <img src="{% static 'bilit360/img/visibility-button.svg' %}" alt="">
+                {{ tour.views|to_price }}
+              </span>
+              <span class="more">
+                <a href="{% url 'tours:details' tour.id %}">مشاهده جزپیات تور</a>
+              </span>
+              <span class="code">
+                {{ tour.code }}
+              </span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+    {% endif %}
+    {% if nondomestic_tours %}
+        <section class="leatest__inner__tour">
+    <div class="title">
+      <h5>
+        <img src="{% static 'bilit360/img/sunbed.svg' %}" alt="">
+        <span>
+          تور های خارحی
+        </span>
+      </h5>
+      <div class="divider"></div>
+        <a href="{% url 'tours:tours' %}">
+        <img src="{% static 'bilit360/img/table-grid.svg' %}" alt=""> نمایش همه تور ها
+
+      </a>
+    </div>
+    <div class="items">
+
+       {% for tour in nondomestic_tours %}
+            <div class="item">
+            <div class="image__holder">
+                {% if tour.image %}
+                    <img src="{{ tour.image.url }}" alt="{{ tour.title }}" style="cursor: pointer;" onclick=" window.location = '{% url 'tours:details' tour.id %}';">
+                {% endif %}
+              <span class="state">
+                در حال اجرا
+              </span>
+              <span class="vip">
+                <img src="{% static 'bilit360/img/star.svg' %}" alt="">
+                ویژه
+              </span>
+              <span class="airline">
+                <img src="{% static 'bilit360/img/airplane-shape.svg' %}" alt="">
+                  {{ tour.airline.name_fa }}
+              </span>
+            </div>
+            <h3><a href="{% url 'tours:details' tour.id %}">{{ tour.title }}</a></h3>
+            <hr>
+            <ul>
+              <li>
+                                    {{ tour.stay_nights }}
+                            شب و
+                  {{ tour.stay_nights|add:1 }}
+                  روز
+              </li>              <li>
+                شروع قیمت از :
+                <br>
+
+                <span class="green">
+                  {{ tour.min_price|to_price }} تومان
+                </span>
+
+              </li>
+              <li>
+                تاریخ حرکت : {{ tour.outband_date|to_jalali }}
+              </li>
+            </ul>
+            <div class="detail">
+              <span class="see">
+                <img src="{% static 'bilit360/img/visibility-button.svg' %}" alt="">
+                    {{ tour.views|to_price }}
+              </span>
+              <span class="more">
+                <a href="{% url 'tours:details' tour.id %}">مشاهده جزپیات تور</a>
+              </span>
+              <span class="code">
+                {{ tour.code }}
+              </span>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    </section>
+    {% endif %}
+    <div class="leatest__hotel">
+    <div class="title">
+      <h5>
+        <img src="{% static 'bilit360/img/hotel.svg' %}" alt="">
+        <span>
+          معرفی هتل ها
+        </span>
+      </h5>
+      <div class="divider"></div>
+      <a href="{% url 'hotels:hotels' %}">
+        <img src="{% static 'bilit360/img/table-grid.svg' %}" alt=""> نمایش همه هتل ها
+
+      </a>
+    </div>
+    <div class="items">
+        {% for hotel in hotels %}
+            <div class="item">
+            <a href="{% url 'hotels:details' hotel.id %}">
+                {% if hotel.image %}
+                    <img src="{{ hotel.image.url }}" alt="{{ hotel.HotelEnName }}">
+                {% endif %}
+              <span class="point">
+{#                <img src="{% static 'bilit360/img/tripadvisor-icon.png' %}" alt="">#}
+                {% if hotel.HotelStar == 0 %}
+                    هتل آپارتمان
+                  {% else %}
+                    {{ hotel.HotelStar|to_price }}
+                  {% endif %}
+              </span>
+              <span class="stars">
+                {% if hotel.HotelStar == 0 %}
+                    هتل آپارتمان
+                {% elif hotel.HotelStar == 1 %}
+                    <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                {% elif hotel.HotelStar == 2 %}
+                  <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                {% elif hotel.HotelStar == 3 %}
+                    <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                {% elif hotel.HotelStar == 4 %}
+                    <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                {% elif hotel.HotelStar == 5 %}
+                    <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                {% endif %}
+              </span>
+              <h3>
+                {{ hotel.HotelName }}
+              </h3>
+              <div class="detail">
+                <span>
+                  کشور : {{ hotel.country.CountryName }}
+                </span>
+                <span>
+                  شهر :‌{{ hotel.city.CityName }}
+                </span>
+              </div>
+        </a>
+      </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
+{% block news_section %}
+      <section class="news">
+    <div class="title">
+        <h4>
+        ویدئو بین
+        </h4>
+    </div>
+
+    <div id="videos" class="videos">
+
+    </div>
+
+    <div class="news_list">
+        {% for post in posts %}
+        <div class="item">
+          <a href="{% url 'cms:blog_item' post.id %}">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            {% endif %}
+            <div class="content">
+              <h4>{{ post.title }}</h4>
+              <p>{{ post.title|striptags|truncatewords:10 }}</p>
+              <div class="detail">
+                  {% if post.author.first_name or post.author.last_name %}
+                    <span>
+                        نویسنده : {{ post.author.first_name }} {{ post.author.last_name }}
+                    </span>
+                  {% else %}
+                    <span>
+                        نویسنده : ادمین
+                    </span>
+                  {% endif %}
+
+                <span>
+                  {{ post.publish_date|to_jalali_with_month_name }}
+                </span>
+              </div>
+            </div>
+        </a>
+      </div>
+        {% endfor %}
+    </div>
+  </section>
+{% endblock %}
+{% block scripts %}
+    <script>
+    /*
+    function subForm(){
+        var arrived__time = document.getElementById('arrived__time').value;
+        var d = t2j(arrived__time);
+        arrived__time.setValue(d.d+"-"+d.m+"-"+d.y);
+        alert(d.y); alert(d.m); alert(d.d);
+
+        var return__time = document.getElementById('return__time').value;
+        var d = t2j(return__time);
+        return__time.setValue(d.d+"-"+d.m+"-"+d.y);
+        alert(d.y); alert(d.m); alert(d.d);
+    }
+    */
+    </script>
+    <script>
+        var currentValue = 0;
+        function twoWay(myRadio) {
+            currentValue = myRadio.value;
+            return_time = document.getElementById('return__time');
+            if (currentValue == 0){
+                return_time.disabled = true;
+                return_time.style.opacity = "0.6";
+                return_time.style.filter  = 'alpha(opacity=60)'; // IE fallbac
+            } else {
+                return_time.disabled = false;
+                return_time.style.opacity = "1";
+                return_time.style.filter  = 'alpha(opacity=100)'; // IE fallbac
+            }
+        }
+        if (currentValue == 0){
+            return_time = document.getElementById('return__time');
+            return_time.disabled = true;
+            return_time.style.opacity = "0.6";
+            return_time.style.filter  = 'alpha(opacity=60)'; // IE fallbac
+        }
+
+        var passengerCount = 0;
+        function morePassengers(myRadio) {
+            var passenger_count_select = document.getElementById("passenger_count_select");
+            var passenger_count_value = passenger_count_select.options[passenger_count_select.selectedIndex].value;
+            if (passenger_count_value == 7) {
+                passengerCount = myRadio.value;
+                passenger_count_select_div = document.getElementById('passenger_count_select_div');
+                passenger_count_number_div = document.getElementById('passenger_count_number_div');
+                if (passengerCount == 0) {
+                    passenger_count_select_div.style.visibility = "visible";
+                    passenger_count_number_div.style.visibility = "hidden";
+                } else {
+                    passenger_count_select_div.style.visibility = "hidden";
+                    passenger_count_number_div.style.visibility = "visible";
+                }
+            }
+        }
+        if (passengerCount == 0){
+            passenger_count_select_div = document.getElementById('passenger_count_select_div');
+            passenger_count_number_div = document.getElementById('passenger_count_number_div');
+            passenger_count_select_div.style.visibility = "visible";
+            passenger_count_number_div.style.visibility = "hidden";
+        }
+    </script>
+    <script>
+        $.ajax({
+            url: "/posts/videos/",
+            type: "get",
+            data: '',
+            success: function(data){
+                var vids = data.videobyuser;
+                $.each(vids, function(i, item) {
+                    $('#videos').append('        <div class="item">\n' +
+                            '          <a href="/posts/videos/details?link='+item.frame+'">\n' +
+                            '              <div class="image__holder">\n' +
+                            '                  <img src='+item.small_poster+'>\n' +
+                            '                  <span class="play">\n' +
+                            '                    <frame src="'+item.frame+'" alt="" />\n' +
+                            '                  </span>\n' +
+                            '                  <h3>' + item.title + '</h3>\n' +
+                            '              </div>\n' +
+                            '              <div class="content">\n' +
+                            '                  <h4>'+item.sdate+'</h4>\n' +
+                            '                  <p>+' + item.sender_name + '</p>\n' +
+                            '              </div>\n' +
+                            '          </a>\n' +
+                            '        </div>');
+                });
+            }
+        });
+
+    </script>
+     <script>
+    $("#hotel_country").change(function(){
+        $('#hotel_city').empty().append('<option value="" class="option__title" selected>..................</option>');
+        $.ajax({
+            url: "/master/cities/"+$('#hotel_country').val(),
+            type: "get",
+            data: '',
+            success: function(data){
+                $('#hotel_city').empty().append('<option value="0" class="option__title" selected>همه شهرها</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    $('#hotel_city').append( $('<option class="option__title"></option>').val(item.id).html(item.CityName) );
+                });
+            }
+        });
+    });
+    </script>
+
+    <script>
+    $("#tour_country").change(function(){
+        $('#tour_city').empty().append('<option value="" class="option__title" selected>..................</option>');
+        $.ajax({
+            url: "/master/cities/"+$('#tour_country').val(),
+            type: "get",
+            data: '',
+            success: function(data){
+                $('#tour_city').empty().append('<option value="0" class="option__title" selected>همه شهرها</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    $('#tour_city').append( $('<option class="option__title"></option>').val(item.id).html(item.CityName) );
+                });
+            }
+        });
+    });
+    </script>
+    {% for tour in domestic_tours %}
+            <script type="text/javascript">
+                var date = new Date({{ tour.expire_date.year }}, {{ tour.expire_date.month|add:-1 }}, {{ tour.expire_date.day }});
+                var now = new Date();
+                var diff = (date - now)/1000;
+                if (diff>0) {
+                    /*
+                    var clock = $('#timer_{{ tour.id }}').FlipClock(diff,{
+                        clockFace: 'DailyCounter',
+                        countdown: true
+                    });
+                    */
+                }else{
+                    var state = document.getElementById('state_{{ tour.id }}');
+                    state.style.backgroundColor="red";
+                    state.innerText="منقضی شده"
+                }
+            </script>
+    {% endfor %}
+    {% for tour in nondomestic_tours %}
+            <script type="text/javascript">
+                var date = new Date({{ tour.expire_date.year }}, {{ tour.expire_date.month|add:-1 }}, {{ tour.expire_date.day }});
+                var now = new Date();
+                var diff = (date - now)/1000;
+                if (diff>0) {
+                    /*
+                    var clock = $('#timer_{{ tour.id }}').FlipClock(diff,{
+                        clockFace: 'DailyCounter',
+                        countdown: true
+                    });
+                    */
+                }else{
+                    var state = document.getElementById('state_{{ tour.id }}');
+                    state.style.backgroundColor="red";
+                    state.innerText="منقضی شده"
+                }
+            </script>
+    {% endfor %}
+{% endblock %}

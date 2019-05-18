@@ -1,0 +1,96 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست پروازها
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">پروازها</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره خرید </th>
+              <th>نام مسافر</th>
+              <th>مبدا</th>
+              <th>مقصد</th>
+              <th>شماره پرواز</th>
+              <th>تاریخ پرواز</th>
+              <th>ساعت پرواز</th>
+              <th>رفرنس</th>
+              <th>ایرلاین</th>
+              <th>زمان ورود</th>
+              <th>قیمت</th>
+              <th>ایمیل</th>
+              <th>نوع بلیط</th>
+              <th>خریدار</th>
+              <th>کلاس پرواز</th>
+              <th>موبایل</th>
+              <th>دریافت بلیط</th>
+              <th>نوع فروش</th>
+              <th>نام خریدار</th>
+              <th>شماره خریدار</th>
+              <th>نوع مسیر</th>
+              <th>منبع</th>
+              <th>کد مشتری</th>
+              <th>تاریخ صدور بلیط</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for ticket in object_list %}
+                  <tr class="bg-yellow bg-lighten-4">
+                      <td><a href="">{{ticket.id}}</a></td>
+                          <td>{{ticket.ticket.passenger_set.first.persian_given_name }} {{ticket.ticket.passenger_set.first.persian_surname }}</td>
+                      <td>{{ticket.ticket.departure.location_code}} - {{ticket.ticket.departure.airport_name_fa}}</td>
+                      <td>{{ticket.ticket.arrival.location_code}} - {{ticket.ticket.arrival.airport_name_fa}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_number}}</td>
+                      <td>{{ticket.ticket.departure.date|to_jalali}}</td>
+                      <td>{{ticket.ticket.departure.time}}</td>
+                      <td>{{ticket.refrence_id}}</td>
+                      <td>{{ticket.ticket.flight_details.airline_name_fa}}</td>
+                      <td>{{ticket.ticket.arrival.time}}</td>
+                      <td>{{ticket.payment_total|to_price}} ریال </td>
+                      <td>{{ticket.ticket.passenger_set.first.email }}</td>
+                      <td>نوع بلیط </td>
+                      <td>kharidqr</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.passenger_set.first.telephone }}</td>
+                      <td>{{ticket.ticket.passenger_set.first.mobile }}</td>
+                      <td>نوع</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td>{{ticket.ticket.flight_details.flight_class}}</td>
+                      <td class=" text-md-right">
+                        <a href=""><i class="icon-eye text-info font-medium-5"></i></a>
+                        <a href=""><i class="icon-trash text-info font-medium-5"></i></a>
+                      </td>
+                  </tr>
+              {% endfor %}
+              <tr>
+                  <td><a class="btn btn-success" href="{% url 'hadmin:flight_excel' %}">خروجی اکسل</a> </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

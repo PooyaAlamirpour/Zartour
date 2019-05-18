@@ -1,0 +1,541 @@
+{% extends "hadmin/form.html" %}
+{% load navbar_tags %}
+{% load staticfiles %}
+{% block title %}
+ویرایش پکیج تور {{tour.title}}
+{% endblock %}
+{% block form %}
+<!-- form -->
+<div class="card-body collapse in">
+    <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+      <thead class="bg-grey bg-lighten-4">
+        <tr>
+          <th>شماره </th>
+          <th>نام هتل</th>
+          <th>درجه هتل</th>
+          <th> خدمات</th>
+          <th> دو تخته</th>
+          <th>یک تخته</th>
+          <th> بچه با تخت </th>
+          <th> بچه بی تخت </th>
+          <th> نوزاد   </th>
+          <th> لینک   </th>
+          <th>عملیات</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for hotel in tour.tourhotel_set.all %}
+          <tr class="bg-yellow bg-lighten-4">
+              <td><a href="#">{{hotel.id}}</a></td>
+              <td>{{hotel.hotelName}}</td>
+              <td>{% if hotel.hotelStar == 0 %}هتل آپارتمان{% else %}{{hotel.hotelStar}}{% endif %}</td>
+              <td>{% if hotel.service %}{{hotel.service.name}}{% endif %}</td>
+              <td>{{hotel.doublePrice}}</td>
+              <td>{{hotel.singlePrice}}</td>
+              <td>{{hotel.childPrice}}</td>
+              <td>{{hotel.childWOBedPrice}}</td>
+              <td>{{hotel.infPrice}}</td>
+              <td>{{hotel.hotelLink}}</td>
+              <td class=" text-md-right">
+                    <button class="btn btn-danger    mb-1 ladda-button" data-style="slide-right" data-toggle="modal" data-target="#myModalLabel{{hotel.id}}">
+                     <span class="ladda-label">
+                         <i class="icon-ios-trash text-danger font-medium-5" style="color: white !important;vertical-align:middle;" ></i>
+                     </span>
+                     <span class="ladda-spinner"></span>
+                     <span class="ladda-spinner"></span>
+                 </button>
+                    <div class="modal fade text-xs-left" id="myModalLabel{{hotel.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{hotel.id}}" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header bg-blue-grey white">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="tour{{hotel.id}}">حذف {{hotel.hotelName}} </h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>از حذف هتل <span style="color: red;">{{ hotel.hotelName }}</span> از تور <span style="color: red;">{{ tour.title }}</span>   اطمینان دارید؟</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal" aria-hidden="true">خیر</button>
+                            <a  class="btn btn-outline-blue-grey" href="{% url 'hadmin:delete_hotel_tour' tour.id hotel.id %}">حذف</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button class="btn btn-success    mb-1 ladda-button" data-style="slide-right" data-toggle="modal" data-target="#hotelEdit{{hotel.id}}">
+                     <span class="ladda-label">
+                         <i class="icon-ios-eye text-danger font-medium-5" style="color: white !important;vertical-align:middle;" ></i>
+                     </span>
+                     <span class="ladda-spinner"></span>
+                     <span class="ladda-spinner"></span>
+                 </button>
+                    <div class="modal fade text-xs-left" id="hotelEdit{{hotel.id}}" tabindex="-1" role="dialog" aria-labelledby="hotelEdit{{hotel.id}}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-blue-grey white">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                    </button>
+                                    <h4 class="modal-title" id="tour">ویرایش هتل {{ hotel.hotelName }}</h4>
+                                  </div>
+                                <form method="POST" action="{% url 'hadmin:edit_hotel_tour' tour.id hotel.id  %}">
+                                    {% csrf_token %}
+                                  <div class="modal-body">
+                                      <div id="hotels">
+                                        <div id="hotel_tour_item1" >
+                                            <div class="form-actions" style="direction: ltr;">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="issueinput3"> نام هتل </label>
+                                                        <input type="text" id="article_image_alt" name="hotelName" class="form-control" placeholder="نام هتل" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام هتل " data-original-title="" title="" value="{{hotel.hotelName}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="HotelStar"> درجه هتل </label>
+                                                        <select class="form-control" name="hotelStar" id="HotelStar">
+                                                            <option value="0" {% if hotel.hotelStar == 0 %}selected{% endif %}>هتل آپارتمان </option>
+                                                            <option value="1" {% if hotel.hotelStar == 1 %}selected{% endif %}>۱ ستاره</option>
+                                                            <option value="2" {% if hotel.hotelStar == 2 %}selected{% endif %}>۲ ستاره </option>
+                                                            <option value="3" {% if hotel.hotelStar == 3 %}selected{% endif %}>۳ ستاره </option>
+                                                            <option value="4" {% if hotel.hotelStar == 4 %}selected{% endif %}>۴ ستاره </option>
+                                                            <option value="5" {% if hotel.hotelStar == 5 %}selected{% endif %}>۵ ستاره </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="issueinput3">  لینک هتل </label>
+                                                        <input type="text" id="article_image_alt" name="hotelLink" class="form-control" placeholder="  لینک هتل "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="  لینک هتل" data-original-title="" title="" value="{{hotel.hotelLink}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="HotelStar">  خدمات </label>
+                                                        <select class="form-control" name="service" id="HotelStar">
+                                                            {% for service in services %}
+                                                                <option value="{{ service.id }}" {% if hotel.service %}{% if hotel.service.id == service.id %}selected{% endif %}{% endif %}>{{ service.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="issueinput3">  اتاق دو تخته</label>
+                                                        <input type="number"  id="article_image_alt" name="doublePrice" class="form-control" placeholder="اتاق دو تخته "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="اتاق دو تخته" data-original-title="" title="" value="{{hotel.doublePrice}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="issueinput3">  اتاق یک تخته </label>
+                                                        <input type="number"  id="article_image_alt" name="singlePrice" class="form-control" placeholder=" اتاق یک تخته " data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" اتاق یک تخته  " data-original-title="" title="" value="{{hotel.singlePrice}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                    <label for="issueinput3">  بچه با تخت </label>
+                                                    <input  type="number"  id="article_image_alt" name="childPrice" class="form-control" placeholder=" بچه با تخت "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" بچه با تخت" data-original-title="" title="" value="{{hotel.childPrice}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                    <label for="issueinput3">  بچه بی تخت </label>
+                                                    <input  type="number"  id="article_image_alt" name="childWOBedPrice" class="form-control" placeholder=" بچه بی تخت "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" بچه بی تخت" data-original-title="" title="" value="{{hotel.childWOBedPrice}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                    <label for="issueinput3">  نوزاد </label>
+                                                    <input  type="number"  id="article_image_alt" name="infPrice" class="form-control" placeholder="نوزاد"  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نوزاد" data-original-title="" title="" value="{{hotel.infPrice}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="submit" class="btn btn-outline-blue-grey" >ویرایش</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+    </div>
+</div>
+<div class="row">
+    <div class="form-actions">
+        <button type="button" class="btn btn-primary    mb-1 ladda-button" data-style="slide-right" data-toggle="modal" data-target="#myModalLabelAddHotel">
+             <span class="ladda-label">
+                 <i class="icon-plus3"></i>&nbsp;  افزودن هتل
+             </span>
+             <span class="ladda-spinner"></span>
+             <span class="ladda-spinner"></span>
+         </button>
+        <div class="modal fade text-xs-left" id="myModalLabelAddHotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddHotel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-blue-grey white">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="tour">افزودن هتل </h4>
+                      </div>
+                    <form method="POST" action="{% url 'hadmin:set_hotel_tour' tour.id  %}">
+                        {% csrf_token %}
+                      <div class="modal-body">
+                          <div id="hotels">
+                            <div id="hotel_tour_item1" >
+                                <div class="form-actions" style="direction: ltr;">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="issueinput3"> نام هتل </label>
+                                            <input type="text" id="article_image_alt" name="hotelName" class="form-control" placeholder="نام هتل" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام هتل " data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="HotelStar"> درجه هتل </label>
+                                            <select class="form-control" name="hotelStar" id="HotelStar">
+                                                <option value="0">هتل آپارتمان </option>
+                                                <option value="1">۱ ستاره</option>
+                                                <option value="2">۲ ستاره </option>
+                                                <option value="3">۳ ستاره </option>
+                                                <option value="4">۴ ستاره </option>
+                                                <option value="5">۵ ستاره </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="issueinput3">  لینک هتل </label>
+                                            <input type="text" id="article_image_alt" name="hotelLink" class="form-control" placeholder="  لینک هتل "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="  لینک هتل" data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="HotelStar">  خدمات </label>
+                                            <select class="form-control" name="service" id="HotelStar">
+                                                {% for service in services %}
+                                                    <option value="{{ service.id }}">{{ service.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="issueinput3">  اتاق دو تخته </label>
+                                            <input type="number" value="0" id="article_image_alt" name="doublePrice" class="form-control" placeholder="اتاق دو تخته "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="اتاق دو تخته" data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="issueinput3">  اتاق یک تخته </label>
+                                            <input type="number" value="0" id="article_image_alt" name="singlePrice" class="form-control" placeholder=" اتاق یک تخته " data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" اتاق یک تخته  " data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                        <label for="issueinput3">  بچه با تخت </label>
+                                        <input  type="number" value="0" id="article_image_alt" name="childPrice" class="form-control" placeholder=" بچه با تخت "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" بچه با تخت" data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                        <label for="issueinput3">  بچه بی تخت </label>
+                                        <input  type="number" value="0" id="article_image_alt" name="childWOBedPrice" class="form-control" placeholder=" بچه بی تخت "  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" بچه بی تخت" data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                        <label for="issueinput3">  نوزاد </label>
+                                        <input  type="number" value="0" id="article_image_alt" name="infPrice" class="form-control" placeholder="نوزاد"  data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نوزاد" data-original-title="" title="" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-outline-blue-grey" >ایجاد</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">ویرایش پکیج تور</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+        <div class="card-text">
+          <p> در این قسمت می‌توانید پکیج تور را ویرایش کنید</p>
+        </div>
+          <div class="form-body">
+            <div class="form-group">
+              <label for="issueinput1">عنوان پکیج تور</label>
+              <input type="text" id="issueinput1" class="form-control" placeholder="عنوان" name="title" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان پکیج تور را در این فیلد وارد کنید" data-original-title="" title="" value="{{tour.title}}">
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="issueinput3">تاریخ حرکت</label>
+                  <input  id="jalali-date2"  class="form-control jalali-date" name="outband_date" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="تاریخ حرکت تور" data-original-title="" title="" value="{% if tour.outband_date %}{{tour.outband_date|to_jalali}}{% endif %}">
+                </div>
+              </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <label for="issueinput3"> ایرلاین </label>
+                    <select class="form-control" name="airline">
+                        <option value="0">انتخاب کنید</option>
+                        {% for airline in airlines %}
+                            <option value="{{ airline.id }}" {% if tour.airline.id == airline.id %}selected{% endif %}>{{ airline.name_fa }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="image_alt"> تعداد شب های اقامت </label>
+                  <input type="number" id="article_image_alt" class="form-control" placeholder="تعداد شب  " name="stay_nights" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="تعداد شب " data-original-title="" title="" value="{{tour.stay_nights}}">
+                </div>
+              </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="image_alt">ظرفیت</label>
+                      <input type="number" id="article_image_alt" class="form-control" placeholder=" ظرفیت " name="capacity" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" ظرفیت " data-original-title="" title="" value="{{tour.capacity}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="issueinput3">  ساعت رفت</label>
+                  <input type="time"  id=""  class="form-control " name="outband_time" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" ساعت رفت" data-original-title="" title="" value="{{tour.outband_time|time:"H:i" }}">
+                </div>
+              </div>
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label for="issueinput3">  ساعت برگشت</label>
+                  <input type="time"  id=""  class="form-control " name="return_time" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title=" ساعت برگشت" data-original-title="" title="" value="{{tour.return_time|time:"H:i" }}">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="image_alt"> نوع تور </label>
+                        <select class="form-control" name="is_domestic">
+                            <option value="1" {% if tour.type_id == 1 %}selected{% endif %}>داخلی</option>
+                            <option value="2" {% if tour.type_id == 2 %}selected{% endif %}>خارجی</option>
+                        </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="issueinput3"> شروع قیمت</label>
+                  <input type="number"  id=""  class="form-control " name="min_price" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="  شروع قیمت" data-original-title="" title="" value="{{tour.min_price}}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="issueinput3">تاریخ انقضا</label>
+                  <input  id="jalali-date3"  class="form-control jalali-date" name="expire_date" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="تاریخ انقضا تور" data-original-title="" title="" value="{% if tour.expire_date %}{{tour.expire_date|to_jalali}}{% endif %}">
+                </div>
+              </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="issueinput3">شهر مبدا </label>
+                        <select class="form-control" name="city">
+                            <option value="0">انتخاب کنید</option>
+                            {% for city in cities %}
+                                <option value="{{ city.id }}" {% if tour.origin.id == city.id %}selected{% endif %}>{{ city.CityName }}</option>
+                            {% endfor %}
+                        </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="image">تصویر شاخص پکیج تور</label>
+                  <fieldset class="form-group" id="article_image">
+                    <label class="custom-file center-block block">
+                      <input type="file" id="image" name="image" class="custom-file-input">
+                      <span class="custom-file-control"></span>
+                    </label>
+                  </fieldset>
+                <div class="form-group">
+                    {% if tour.image %}
+                         <img src="{{ tour.image.url }}" width="100%">
+                    {% endif %}
+                </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="image_alt"> کد پکیج</label>
+                  <input type="text" id="article_image_alt" class="form-control" placeholder="کد پکیج " name="code" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="کد پکیج" data-original-title="" title="" value="{{tour.code}}">
+                </div>
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="issueinput3"> مدارک </label>
+                                <textarea name="documents" class="form-control ckeditor" rows="9">
+                                    {{ tour.documents|safe }}
+                                </textarea>
+                      </div>
+                  </div>
+            </div>
+
+
+            <!-- Basic CKEditor start -->
+              <div class="form-group">
+                <label for="multilingual"> توضیحات </label>
+                <section id="multilingual">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <textarea name="description" id="ckeditor" cols="30" rows="15" class="ckeditor">
+                                {{tour.description|safe}}
+                      </textarea>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            <!-- Basic CKEditor end -->
+            <div class="row">
+              <div class="skin skin-square font-small-3 col-md-6">
+                <label >مقصد ها </label>
+                    {% for dest in tour.destinations.all %}
+                        <fieldset>
+                            <input type="checkbox" name="dest{{ dest.id }}" id="dest{{ dest.id }}" checked>
+                            <label for="dest{{ dest.id }}" >{{ dest.city.country.CountryName }} / {{ dest.city.CityName }} </label>
+                        </fieldset>
+                    {% endfor %}
+              </div>
+              <div class="skin skin-square font-small-3 col-md-6">
+                <label >تصاویر </label>
+                    {% for image in tour.tourimage_set.all %}
+                        <fieldset>
+                            <input type="checkbox" name="hotelimage{{ image.id }}" id="hotelimage{{ image.id }}" checked>
+                            <label for="hotelimage{{ image.id }}" > <img src="{{ image.image.url }}" style="width: 70px;"/> </label>
+                        </fieldset>
+                    {% endfor %}
+              </div>
+          </div>
+            <div class="row">
+                <div class="col-md-6 repeater">
+                    <div class="form-actions">
+                   <div data-repeater-list="category-group">
+                    <div data-repeater-item>
+                    <div class="form-group">
+                      <label for="image">مقصد تور</label>
+                      <fieldset class="form-group" id="article_image">
+                            <select id="country" name="country" class="country custom-select">
+                                <option value="">کشور</option>
+                              {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country.CountryName }}</option>
+                              {% endfor %}
+                            </select>
+                            <select id="city" name="city" class="custom-select">
+
+                            </select>
+                      </fieldset>
+                    </div>
+                    </div>
+                   </div>
+                   <button data-repeater-create type="button" class="btn btn-success mr-1" >
+                       <i class="icon-plus3"></i> افزودن مقصد تور
+                   </button>
+              </div>
+                </div>
+                <div class="col-md-6 repeater">
+                    <div class="form-actions">
+                   <div data-repeater-list="category-group">
+                    <div data-repeater-item>
+                    <div class="form-group">
+                      <label for="image">تصویر تور</label>
+                      <fieldset class="form-group" id="article_image">
+                        <label class="custom-file center-block block">
+                          <input type="file" id="image" name="image" class="custom-file-input">
+                          <span class="custom-file-control"></span>
+                        </label>
+                      </fieldset>
+                    </div>
+                    </div>
+                   </div>
+                   <button data-repeater-create type="button" class="btn btn-success mr-1" >
+                       <i class="icon-plus3"></i> افزودن تصویر تور
+                   </button>
+              </div>
+
+                </div>
+            </div>
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="icon-check2"></i> ذخیره
+            </button>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'hadmin_app_assets/videos/repeater.js' %}"></script>
+    <script>
+    $(document).on('change', '.country', function(){
+        var city = $(this).next();
+        $(this).next().empty().append('<option value="" class="option__title" selected>..................</option>');
+        $.ajax({
+            url: "/master/cities/"+$(this).val(),
+            type: "get",
+            data: '',
+            success: function(data){
+                $(city).empty().append('<option value="0" class="option__title" selected>همه شهرها</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    $(city).append( $('<option class="option__title"></option>').val(item.id).html(item.CityName) );
+                });
+            }
+        });
+    });
+    </script>
+{% endblock %}

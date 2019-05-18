@@ -1,0 +1,80 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست هتل
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+              <h4 class="card-title" id="heading-buttons1">هتل</h4>
+              <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+              <div class="heading-elements">
+              </div>
+            </div>
+            <div class="card-body collapse in">
+              <div class="table-responsive ">
+                <table class="table font-small-3 table-striped">
+                  <thead class="bg-grey bg-lighten-4">
+                    <tr>
+                      <th>شماره </th>
+                      <th>نام</th>
+                      <th>نام انگلیسی</th>
+                      <th>کشور</th>
+                      <th>شهر </th>
+                      <th>درجه </th>
+                      <th>تعداد تصاویر </th>
+                      <th>عملیات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for hotel in hotels %}
+                      <tr class="bg-yellow bg-lighten-4">
+                          <td><a href="{% url 'hadmin:edit_hotel' hotel.id %}">{{hotel.id}}</a></td>
+                          <td>{{hotel.HotelName}}</td>
+                          <td>{{hotel.HotelEnName}}</td>
+                          <td>{{hotel.country.CountryName}}</td>
+                          <td>{{hotel.city.CityName}}</td>
+                          <td>{{hotel.HotelStar}}</td>
+                          <td>{{hotel.hotelimage_set.all.count}}</td>
+                          <td class=" text-md-right">
+                             <button class="btn btn-danger    mb-1 ladda-button" data-style="slide-right" data-toggle="modal" data-target="#myModalLabel{{hotel.id}}">
+                                 <span class="ladda-label">
+                                     <i class="icon-ios-trash text-danger font-medium-5" style="color: white !important;vertical-align:middle;" ></i>
+                                          حذف
+                                 </span>
+                                 <span class="ladda-spinner"></span>
+                                 <span class="ladda-spinner"></span>
+                             </button>
+                              <div class="modal fade text-xs-left" id="myModalLabel{{hotel.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{hotel.id}}" aria-hidden="true">
+                                                  <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header bg-blue-grey white">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="hotel{{hotel.id}}">حذف {{hotel.title}} </h4>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        <p>از حذف هتل مورد نظر اطمینان دارید</p>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal" aria-hidden="true">خیر</button>
+                                                        <a  class="btn btn-outline-blue-grey" href="{% url 'hadmin:delete_hotel' hotel.id %}">حذف</a>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                    <button class="btn btn-success    mb-1 ladda-button" data-style="expand-left"><span class="ladda-label"><a href="{% url 'hadmin:edit_hotel' hotel.id %}" style="color:white !important;"><i class="icon-eye font-medium-5" style="vertical-align:middle;padding-left:5px;" ></i>ویرایش</a></span></button>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

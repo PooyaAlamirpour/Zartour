@@ -1,0 +1,362 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}
+    پروفایل  {{ profile.first_name }} {{ profile.last_name }}
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="page__12">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                                مشاهده مجله گردشگری
+                            </span>
+                            <div class="clock__time"></div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <h5>
+                                    شرکت خدمات مسافرت هوائی و گردشگری زرافشان سیر
+                                </h5>
+                                <span>
+                                    {{ profile.first_name }} {{ profile.last_name }} عزیز خوش آمدید
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <h5>
+                                        پروفایل کاربری
+                                    </h5>
+                                    <div class="filtering__items">
+                                        <a href="">اعتبار شما : ۰</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Register__agancy__top">
+                                <h5>
+                                    اطلاعات شخصی
+                                </h5>
+{#                                <h6>جدول جایزه ها</h6>#}
+                            </div>
+                            <div class="Register__as__a__agancy">
+                                <div class="Register__agancy__content">
+                                    <img src="{% static 'bilit360/img/folder.svg' %}" alt="">
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="first_name" class="input__text" placeholder="نام " {% if profile.first_name %} value="{{ profile.first_name }}"{% endif %}>
+                                        <input type="text" name="last_name" class="input__text" placeholder="نام خانوادگی" {% if profile.last_name %} value="{{ profile.last_name }}"{% endif %}>
+                                        <input type="text" name="phone" class="input__text" placeholder="تلفن " {% if profile.phone %} value="{{ profile.phone }}" {% endif %}>
+                                        <input type="text" name="postal_code" class="input__text" placeholder="کد پستی " {% if profile.postal_code %} value="{{ profile.postal_code }}" {% endif %}>
+                                        <input type="text" name="code_meli" class="input__text" placeholder="کد ملی " {% if profile.code_meli %} value="{{ profile.code_meli }}" {% endif %}>
+                                        <input type="text" name="email" class="input__text" placeholder="ایمیل  " {% if profile.email %} value="{{ profile.email }}" {% endif %}>
+                                        <p>جهت ارائه خدمات بهتر از جانب ما لطفا اطلاعات پروفایل خود را تکمیل نمائید</p>
+                                        <div class="uplouder">
+                                            <div class="file__upload">
+                                                <input class="d-none" id="fileinput" type="file" name="uploadfile"
+                                                    value="Browse" placeholder="sfs">
+                                                <button id="falseinput" type="button">
+                                                    <img src="{% static 'bilit360/img/upload copy 4.png' %}" alt="">
+                                                </button>
+                                                <span>آپلود مدرک </span>
+                                            </div>
+                                        </div>
+                                        <div class="btn">
+                                            <button>
+                                                ویرایش اطلاعات کاربری
+                                            </button>
+                                            <button type="submit">
+                                                ذخیره
+                                                <img src="{% static 'bilit360/img/icon upload.svg' %}" alt="">
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="shopping__bag">
+                                <div class="shopping__bag__top">
+                                    <h5>سبد خرید</h5>
+                                    <div class="shopping__bag__top__content">
+                                        <form action="">
+                                            <div class="date">
+                                                <span>از تاریخ</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="date">
+                                                <span>از تاریخ</span>
+                                                <input type="text">
+                                            </div>
+                                            <button type="submit">
+                                                فیلتر
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="">
+                                            <tr>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">ردیف</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                                <td>ایتم</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+{#                            <div class="comment">#}
+{#                                <h5>#}
+{#                                    اعلانات . پیام ها#}
+{#                                </h5>#}
+{#                                <div class="comment__content">#}
+{#                                    <div class="user__comment no__border">#}
+{#                                        <h6> محمدحسین :</h6>#}
+{#                                        <p>من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام</p>#}
+{#                                    </div>#}
+{#                                    <div class="user__comment no__border">#}
+{#                                        <img src="{% static 'bilit360/img/Shape 42.png' %}" alt="">#}
+{#                                        <h6 class="admin"> اپراتور زرافشان سیر :</h6>#}
+{#                                        <p class="admin__comment"> باعث افتخار ما بود که در قالب این تور در خدمت شما#}
+{#                                            بودیم </p>#}
+{#                                    </div>#}
+{#                                    <div class="user__comment">#}
+{#                                        <h6> محمدحسین :</h6>#}
+{#                                        <p>من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام</p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="comment__input">#}
+{#                                <form action="">#}
+{#                                    <textarea placeholder="من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام"#}
+{#                                        name="" id="" cols="30" rows="5">#}
+{#                                    </textarea>#}
+{#                                        <button type="submit">#}
+{#                                        ثبت و ارسال پیغام#}
+{#                                    </button>#}
+{#                                </form>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+        function birthdaydatepicker() {
+            $(".datetime").persianDatepicker({
+                initialValueType: 'gregorian',
+                "inline": false,
+                "format": "l",
+                "viewMode": "day",
+                "initialValue": false,
+                "position": "auto",
+                "altFormat": "lll",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": false,
+                "calendarType": "persian",
+                "inputDelay": 800,
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": true,
+                        "leapYearMode": "algorithmic"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": true
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+
+        }
+        birthdaydatepicker();
+    </script>
+    <script type="text/javascript">
+        var clock = $('.clock__time').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script>
+        // ---------------------------------------
+
+        $(document).ready(function () {
+            $('#falseinput').click(function () {
+                $("#fileinput").click();
+            });
+        });
+        $('#fileinput').change(function () {
+            $('#selected_filename').text($('#fileinput]')[0].files[0].name);
+        });
+        // ---------------------------------------
+        $(document).ready(function () {
+            $('#falseinput2').click(function () {
+                $("#fileinput2").click();
+            });
+        });
+        $('#fileinput2').change(function () {
+            $('#selected_filename').text($('#fileinput2]')[0].files[0].name);
+        });
+        // ---------------------------------------
+        $(document).ready(function () {
+            $('#falseinput3').click(function () {
+                $("#fileinput3").click();
+            });
+        });
+        $('#fileinput3').change(function () {
+            $('#selected_filename').text($('#fileinput3]')[0].files[0].name);
+        });
+
+        // // ---------------------------------------
+
+        $(document).ready(function () {
+            $('#falseinput4').click(function () {
+                $("#fileinput4").click();
+            });
+        });
+        $('#fileinput4').change(function () {
+            $('#selected_filename').text($('#fileinput4]')[0].files[0].name);
+        });
+
+        // // ---------------------------------------
+
+        $(document).ready(function () {
+            $('#falseinput5').click(function () {
+                $("#fileinput5").click();
+            });
+        });
+        $('#fileinput5').change(function () {
+            $('#selected_filename').text($('#fileinput5]')[0].files[0].name);
+        });
+    </script>
+{% endblock %}

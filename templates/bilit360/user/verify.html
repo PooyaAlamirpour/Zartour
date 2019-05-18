@@ -1,0 +1,495 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}
+    ورود / عضویت
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+
+{% block main %}
+       <div class="page__13">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                                مشاهده مجله گردشگری
+                            </span>
+                            <div class="clock__time"></div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <h5>
+                                    شرکت خدمات مسافرت هوائی و گردشگری زرافشان سیر
+                                </h5>
+                            </div>
+                            <button>برو به نقشه</button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+
+                        </div>
+                    </div>
+
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <h5>
+                                        ترتیب بر اساس تاریخ انتشار
+                                    </h5>
+                                    <!-- <a href=""></a> -->
+
+
+                                </div>
+                            </div>
+
+                           <div class="login__register">
+                               <div class="login" style="margin: auto;">
+                                   <div class="login__content">
+                                       <span>وارد شوید</span>
+                                       <img src="{% static 'bilit360/img/verification.svg' %}" alt="">
+                                       <p>کد ارسال شده از طریق پیامک را وارد کنید</p>
+
+                                       <form action="{% url 'users:verify' %}" method="POST" >
+                                           {% csrf_token %}
+                                           <input type="text" placeholder="شماره همراه خود را وارد نمائید"  name="username" id="" value="{{ mobile }}">
+                                           <input type="text" placeholder="کد ارسالی به تلفن همراه شما"  name="password" id="">
+                                           <input type="submit" value="تایید">
+                                           <a href="{% url 'users:verify_using_call' mobile %}">دریافت کد با تماس</a>
+                                       </form>
+
+                                   </div>
+                               </div>
+
+
+                           </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="quick__access__item">
+                    <div class="quick__access">
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block news_section %}
+      <section class="news">
+    <div class="title">
+        <h4>
+        ویدئو بین
+        </h4>
+    </div>
+
+    <div class="videos">
+        <div class="item">
+        <a href="#">
+            <div class="image__holder">
+                <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                <span class="play">
+                  <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                </span>
+                <h3>آرامگاه بوعلی</h3>
+            </div>
+            <div class="content">
+                <h4>ایران / همدان</h4>
+                <p>تهیه و تدوین : سید علی حسینی پرند</p>
+            </div>
+
+        </a>
+
+
+      </div>
+        <div class="item">
+          <a href="#">
+              <div class="image__holder">
+                  <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                  <span class="play">
+                    <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                  </span>
+                  <h3>آرامگاه بوعلی</h3>
+              </div>
+              <div class="content">
+                  <h4>ایران / همدان</h4>
+                  <p>تهیه و تدوین : سید علی حسینی پرند</p>
+              </div>
+
+          </a>
+
+
+        </div>
+        <div class="item">
+            <a href="#">
+                <div class="image__holder">
+                    <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                    <span class="play">
+                      <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                    </span>
+                    <h3>آرامگاه بوعلی</h3>
+                </div>
+                <div class="content">
+                    <h4>ایران / همدان</h4>
+                    <p>تهیه و تدوین : سید علی حسینی پرند</p>
+                </div>
+
+            </a>
+
+
+          </div>
+        <div class="item">
+              <a href="#">
+                  <div class="image__holder">
+                      <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                      <span class="play">
+                        <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                      </span>
+                      <h3>آرامگاه بوعلی</h3>
+                  </div>
+                  <div class="content">
+                      <h4>ایران / همدان</h4>
+                      <p>تهیه و تدوین : سید علی حسینی پرند</p>
+                  </div>
+
+              </a>
+
+
+            </div>
+    </div>
+
+    <div class="news_list">
+        <div class="item">
+          <a href="">
+            <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+            <div class="content">
+              <h4>بهترین اماکن دیدنی در دنیا</h4>
+              <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+              <div class="detail">
+                <span>
+                    نویسنده : محمد ترابی
+                </span>
+                <span>
+                  ۹۷/۱۱/۱۲
+                </span>
+              </div>
+            </div>
+        </a>
+
+      </div>
+        <div class="item">
+          <a href="">
+              <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+              <div class="content">
+                <h4>بهترین اماکن دیدنی در دنیا</h4>
+                <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                <div class="detail">
+                  <span>
+                      نویسنده : محمد ترابی
+                  </span>
+                  <span>
+                    ۹۷/۱۱/۱۲
+                  </span>
+                </div>
+              </div>
+          </a>
+
+        </div>
+        <div class="item">
+            <a href="">
+                <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                <div class="content">
+                  <h4>بهترین اماکن دیدنی در دنیا</h4>
+                  <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                  <div class="detail">
+                    <span>
+                        نویسنده : محمد ترابی
+                    </span>
+                    <span>
+                      ۹۷/۱۱/۱۲
+                    </span>
+                  </div>
+                </div>
+            </a>
+
+          </div>
+        <div class="item">
+              <a href="">
+                  <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                  <div class="content">
+                    <h4>بهترین اماکن دیدنی در دنیا</h4>
+                    <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                    <div class="detail">
+                      <span>
+                          نویسنده : محمد ترابی
+                      </span>
+                      <span>
+                        ۹۷/۱۱/۱۲
+                      </span>
+                    </div>
+                  </div>
+              </a>
+
+            </div>
+        <div class="item">
+                <a href="">
+                    <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                    <div class="content">
+                      <h4>بهترین اماکن دیدنی در دنیا</h4>
+                      <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                      <div class="detail">
+                        <span>
+                            نویسنده : محمد ترابی
+                        </span>
+                        <span>
+                          ۹۷/۱۱/۱۲
+                        </span>
+                      </div>
+                    </div>
+                </a>
+
+              </div>
+        <div class="item">
+                  <a href="">
+                      <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                      <div class="content">
+                        <h4>بهترین اماکن دیدنی در دنیا</h4>
+                        <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                        <div class="detail">
+                          <span>
+                              نویسنده : محمد ترابی
+                          </span>
+                          <span>
+                            ۹۷/۱۱/۱۲
+                          </span>
+                        </div>
+                      </div>
+                  </a>
+
+                </div>
+        <div class="item">
+                    <a href="">
+                        <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                        <div class="content">
+                          <h4>بهترین اماکن دیدنی در دنیا</h4>
+                          <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                          <div class="detail">
+                            <span>
+                                نویسنده : محمد ترابی
+                            </span>
+                            <span>
+                              ۹۷/۱۱/۱۲
+                            </span>
+                          </div>
+                        </div>
+                    </a>
+
+                  </div>
+        <div class="item">
+                      <a href="">
+                          <img src="{% static 'bilit360/img/iran.jpg' %}" alt="">
+                          <div class="content">
+                            <h4>بهترین اماکن دیدنی در دنیا</h4>
+                            <p>امروز میخوایم بریم گشتی بزنیم و دیدنی های ایران رو باهاش آشنا بشیم</p>
+                            <div class="detail">
+                              <span>
+                                  نویسنده : محمد ترابی
+                              </span>
+                              <span>
+                                ۹۷/۱۱/۱۲
+                              </span>
+                            </div>
+                          </div>
+                      </a>
+
+                    </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+        function birthdaydatepicker() {
+            $(".datetime").persianDatepicker({
+                initialValueType: 'gregorian',
+                "inline": false,
+                "format": "l",
+                "viewMode": "day",
+                "initialValue": false,
+                "position": "auto",
+                "altFormat": "lll",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": false,
+                "calendarType": "persian",
+                "inputDelay": 800,
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": true,
+                        "leapYearMode": "algorithmic"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": true
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+
+        }
+        birthdaydatepicker();
+    </script>
+
+    <script type="text/javascript">
+        var clock = $('.clock__time').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#falseinput6').click(function () {
+                $("#fileinput6").click();
+            });
+        });
+        $('#fileinput6').change(function () {
+            $('#selected_filename').text($('#fileinput6]')[0].files[0].name);
+        });
+
+
+
+        $(document).ready(function () {
+            $('#falseinput7').click(function () {
+                $("#fileinput7").click();
+            });
+        });
+        $('#fileinput7').change(function () {
+            $('#selected_filename').text($('#fileinput7]')[0].files[0].name);
+        });
+    </script>
+{% endblock %}

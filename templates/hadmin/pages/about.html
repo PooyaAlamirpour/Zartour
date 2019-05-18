@@ -1,0 +1,75 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+ویرایش درباره ما
+{% endblock %}
+{% block list %}
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+      <form class="form" ng-app="myApp" ng-controller="myCtrl" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-body" >
+
+                  <div class="row match-height">
+                    <div class="col-md-12">
+                      <div class="card box-shadow-0" >
+                        <div class="card-header card-head-inverse bg-danger">
+                          <h6 class="card-title">
+                            <span class="breadcrumb-item active white">
+                        مختصری در باره ما</span>
+                          </h6>
+                          <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                              <li><i class="icon-note font-medium-5"></i></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card-body collapse in">
+                          <div class="card-block">
+
+                            <div class="card-text">
+                              <p>
+                                در این قسمت می‌توانید توضیحات صفحه درباره ما را ویرایش کنید
+                              </p>
+                            </div>
+
+
+                              <div class="form-body">
+                                <!-- Basic CKEditor start -->
+                                <section id="multilingual">
+                                  <div class="row">
+                                    <div class="col-xs-12">
+                                      <textarea name="content" id="ckeditor" cols="30" rows="15" class="ckeditor">
+                                    {{settings.long_descriptioon}}
+
+                                      </textarea>
+                                    </div>
+                                  </div>
+                                </section>
+                                <!-- Basic CKEditor end -->
+
+
+
+
+
+                                <div class="form-actions">
+                                <button type="button" class="btn btn-danger mr-1">
+                                  <i class="icon-cross2"></i> انصراف
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                  <i class="icon-check2"></i> ذخیره
+                                </button>
+                              </div>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                          </div>
+
+                </div>
+              </form>
+  </div>
+</div>
+{% endblock %}

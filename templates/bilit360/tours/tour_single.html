@@ -1,0 +1,643 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+      {{ tour.title }}
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+        <link rel="stylesheet" href="{% static 'bilit360/lib/FlipClock-master/compiled/flipclock.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="hotel__single tour__package">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title" style="margin-top: -63px;">
+                            <h5>معرفی پکیج تور </h5>
+                            <a href="{% url 'tours:tours' %}">بازگشت به جستجوی تور ها</a>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="hotel__img">
+                                {% if tour.image %}
+                                    <img src="{{ tour.image.url }}" alt="{{ tour.title }}">
+                                {% endif %}
+                            </div>
+                            <div class="hotel__details">
+                                <div class="hotel__name">
+                                    <h5>
+                                        بسته سفر :{{ tour.title }}
+                                    </h5>
+                                    <h6>
+                                        Package Code :
+                                        <span style="color:white;">{{ tour.code }}</span>
+                                    </h6>
+                                </div>
+                                <div class="hotel__specific">
+                                    <span class="date">
+                                        تاریخ اعتبار این تور
+                                        {% if tour.expire_date %}
+                                            {{ tour.expire_date|to_jalali }}
+                                        {% endif %}
+                                    </span>
+                                    <span class="state" id="state">
+                                        تور در حال اجرا می باشد
+                                    </span>
+                                    <div class="clock" id="clock" style="zoom: 0.4; width: fit-content;">
+                                        <div class="pkclock">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="hotel__single__content">
+                            <div class="intro">
+                                <div class="slider__info">
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-12">
+                                            <div class="package__info">
+                                                <h5>
+                                                 مشخصات پکیج  {{ tour.title }}
+                                                </h5>
+                                                <ul>
+                                                    <li>
+                                                        <div class="title">
+                                                            نوع تور
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{ tour.type.type_name }}
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">
+                                                            ایرلاین
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{ tour.airline.name_fa }}
+                                                            <img src="{{ tour.airline.logo.url }}" >
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">
+                                                            مبدا
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{ tour.origin.country.CountryName }} / {{ tour.origin.CityName }}
+                                                        </div>
+                                                    </li>
+                                                    {% for dest in tour.destinations.all %}
+                                                        <li>
+                                                            <div class="title">
+                                                                {% if forloop.counter != 1 %}
+                                                                  مقصد  {{ forloop.counter }}
+                                                                {% else %}
+                                                                    مقصد
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="desc">
+                                                                {{ dest.city.country.CountryName }} / {{ dest.city.CityName }}
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                    <li>
+                                                        <div class="title">
+                                                           تاریخ رفت
+                                                        </div>
+                                                        <div class="desc">
+                                                            {% if tour.outband_date %}
+                                                                {{tour.outband_date|to_jalali_with_month_name}}
+                                                            {% endif %}
+                                                        </div>
+                                                    </li>
+{#                                                    <li>#}
+{#                                                        <div class="title">#}
+{#                                                            ساعت رفت#}
+{#                                                        </div>#}
+{#                                                        <div class="desc">#}
+{#                                                            {{ tour.outband_time }}#}
+{#                                                        </div>#}
+{#                                                    </li>#}
+                                                    <li>
+                                                        <div class="title">
+                                                            مدت اقامت
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{tour.stay_nights|to_price}} شب
+                                                            و {{ tour.stay_nights|add:1|to_price }} روز
+                                                        </div>
+                                                    </li>
+{#                                                    <li>#}
+{#                                                        <div class="title">#}
+{#                                                            ساعت برگشت#}
+{#                                                        </div>#}
+{#                                                        <div class="desc">#}
+{#                                                            {{ tour.return_time }}#}
+{#                                                        </div>#}
+{#                                                    </li>#}
+                                                    <li>
+                                                        <div class="title">
+                                                             شروع قیمت
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{ tour.min_price|to_price }}تومان
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">
+                                                             شماره پکیج
+                                                        </div>
+                                                        <div class="desc">
+                                                            {{ tour.code }}
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="title">
+                                                             دانلود پکیج
+                                                        </div>
+                                                        <div class="desc">
+                                                            <img src="{% static 'bilit360/img/pdf.png' %}" alt="">
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7 col-md-12">
+                                            <div class="slide">
+                                                {% for image in tour.tourimage_set.all %}
+                                                <div class="hotel__img" id="">
+                                                    <img src="{{ image.image.url }}" alt="{{ image.image_alt }}">
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="arrow__right">
+                                                < </span> <span class="arrow__left">
+                                                    >
+                                            </span>
+                                            <div class="thumb__img">
+                                                <div class="thumb__item">
+                                                    {% for image in tour.tourimage_set.all %}
+                                                    <div class="thumb">
+                                                        <img src="{{ image.image.url }}"
+                                                            alt="{{ image.image_alt }}">
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hotel__info">
+                                    </div>
+                                </div>
+                                <div class="desc">
+                                    <div class="top__item">
+                                        <div class="item">
+                                            <img src="{% static 'bilit360/img/to-do-list.svg' %}" alt="">
+                                            <h3>
+                                                لیست هتل های موجود در پکیج
+                                            </h3>
+                                        </div>
+                                        <span class="result__count">
+                                            تعداد هتل ها {{ tour.tourhotel_set.count|to_price }} عدد
+                                        </span>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">
+                                                        <div class="table__items">
+                                                          نام هتل
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col">خدمات</th>
+                                                    <th scope="col">قیمت دو تخته</th>
+                                                    <th scope="col">قیمت یک تخته</th>
+                                                    <th scope="col">قیمت کودک با تخت</th>
+                                                    <th scope="col">قیمت کودک بدون تخت</th>
+                                                    <th scope="col">قیمت نوزاد</th>
+                                                    <th scope="col">لینک سایت هتل</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for hotel in tour.tourhotel_set.all %}
+                                                <tr>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            <span class="title__black">{{ hotel.hotelName }}</span>
+                                                            <div class="img__rating">
+                                                                <div class="rating">
+                                                                    {% if hotel.hotelStar == 0 %}
+                                                                        <small>
+                                                                            (هتل آپارتمان)
+                                                                        </small>
+                                                                    {% elif hotel.hotelStar == 1 %}
+                                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}">
+                                                                    {% elif hotel.hotelStar == 2 %}
+                                                                      <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}">
+                                                                    {% elif hotel.hotelStar == 3 %}
+                                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar}}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}">
+                                                                    {% elif hotel.hotelStar == 4 %}
+                                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}">
+                                                                    {% elif hotel.hotelStar == 5 %}
+                                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.hotelStar }}">
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.service %}
+                                                                <span>{{ hotel.service.name }} </span>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.doublePrice != 0 %}
+                                                                <span>{{ hotel.doublePrice|to_price }} </span>
+                                                            {% else %}
+                                                                <span>NA</span>
+                                                            {% endif %}
+
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.singlePrice != 0 %}
+                                                                <span>{{ hotel.singlePrice|to_price }} </span>
+                                                            {% else %}
+                                                                <span>NA</span>
+                                                            {% endif %}
+
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.childPrice != 0 %}
+                                                                <span>{{ hotel.childPrice|to_price }} </span>
+                                                            {% else %}
+                                                                <span>NA</span>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.childWOBedPrice != 0 %}
+                                                                <span>{{ hotel.childWOBedPrice|to_price }} </span>
+                                                            {% else %}
+                                                                <span>NA</span>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.infPrice != 0 %}
+                                                                <span>{{ hotel.infPrice|to_price }} </span>
+                                                            {% else %}
+                                                                <span>NA</span>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table__items">
+                                                            {% if hotel.hotelLink %}
+                                                                <span><a href="//{{ hotel.hotelLink }}">لینک هتل</a></span>
+                                                            {% endif %}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h6>
+                                        توجه : قیمت های فوق امکان تغییر دارند
+                                    </h6>
+                                    <div class="top__item2">
+                                        <div class="item">
+                                            <img src="{% static 'bilit360/img/passport.svg' %}" alt="">
+                                            <h3>
+                                                خدمات و مدارک مورد نیاز برای ثبت نام این تور
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="form">
+                                        <form action="">
+                                        <p>
+                                            {{ tour.documents|safe }}
+                                        </p>
+                                            <div class="btns">
+                                                <a href="">  <img src="{% static 'bilit360/img/pdf.png' %}"  style="height: 30px;" alt=""> دانلود مدارک مورد نیاز</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="top__item2">
+                                        <div class="item">
+                                            <img src="{% static 'bilit360/img/information.svg' %}" alt="">
+                                            <h3>
+                                                توضیحات مربوط به این تور
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="form">
+                                        <form action="">
+                                            <p>
+                                                {{ tour.description|safe }}
+                                            </p>
+                                            <div class="btns">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="divider">
+                                    </div>
+                                </div>
+{#                                <div class="comment__items">#}
+{#                                    <div class="user__name no__border__top d-flex">#}
+{#                                        <span>محمدحسین :</span>#}
+{#                                        <p>#}
+{#                                            من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                    <div class="admin__comment d-flex">#}
+{#                                        <img src="{% static 'bilit360/img/Shape 42.png' %}" alt="">#}
+{#                                            <span>محمدحسین :</span>#}
+{#                                            <p>#}
+{#                                                من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام#}
+{#                                            </p>#}
+{#                                        </div>#}
+{#                                        <div class="user__name   d-flex">#}
+{#                                                <span class="before__none" >محمدحسین :</span>#}
+{#                                                <p>#}
+{#                                                    من با این تور مسافرت رفتم و از امکانات این پکیج خیلی راضی ام#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                </div>#}
+{##}
+{#                                <div class="comment__input">#}
+{#                                    <form action="">#}
+{#                                        <div class="user__info">#}
+{#                                            <input type="text" placeholder="نام و نام خانوادگی">#}
+{#                                            <input type="text" placeholder=" موبایل   ">#}
+{#                                            <input type="text" placeholder=" ایمیل   ">#}
+{##}
+{#                                            <textarea class="w-100" name="" id="" cols="30" rows="10" placeholder="تجربه شما "></textarea>#}
+{#                                        </div>#}
+{#                                        <button type="submit">ثبت نظر</button>#}
+{#                                    </form>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'bilit360/lib/jquery-3.3.1/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/slick-1.8.1/slick/slick.js' %}"></script>
+    <script src="{% static 'bilit360/lib/bootstrap-4.1.3/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/FlipClock-master/compiled/flipclock.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/persian-date/dist/persian-date.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/persian-datepicker/dist/js/persian-datepicker.min.js' %}"></script>
+    <script src="{% static 'bilit360/js/custom.js' %}"></script>
+    <script type="text/javascript">
+        var date = new Date({{ tour.expire_date.year }}, {{ tour.expire_date.month|add:-1 }}, {{ tour.expire_date.day }});
+        var now = new Date();
+        var diff = (date - now)/1000;
+        if (diff>0) {
+            var clock = $('.clock').FlipClock(diff, {
+                clockFace: 'DailyCounter',
+                countdown: true
+            });
+        }else{
+            var state = document.getElementById('state');
+            var clock = document.getElementById('clock');
+            state.style.backgroundColor="red";
+            state.innerText="منقضی شده"
+            clock.style.display='none';
+        }
+    </script>
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+            function birthdaydatepicker(){
+              $(".datetime").persianDatepicker({
+    initialValueType: 'gregorian',
+      "inline": false,
+      "format": "l",
+      "viewMode": "day",
+      "initialValue": false,    
+      "position": "auto",
+      "altFormat": "lll",
+      "altField": "#altfieldExample",
+      "onlyTimePicker": false,
+      "onlySelectOnDate": false,
+      "calendarType": "persian",
+      "inputDelay": 800,
+      "observer": false,
+      "calendar": {
+        "persian": {
+          "locale": "fa",
+          "showHint": true,
+          "leapYearMode": "algorithmic"
+        },
+        "gregorian": {
+          "locale": "en",
+          "showHint": false
+        }
+      },
+      "navigator": {
+        "enabled": true,
+        "scroll": {
+          "enabled": true
+        },
+        "text": {
+          "btnNextText": "<",
+          "btnPrevText": ">"
+        }
+      },
+      "toolbox": {
+        "enabled": true,
+        "calendarSwitch": {
+          "enabled": false,
+          "format": "MMMM"
+        },
+        "todayButton": {
+          "enabled": true,
+          "text": {
+            "fa": "امروز",
+            "en": "Today"
+          }
+        },
+        "submitButton": {
+          "enabled": true,
+          "text": {
+            "fa": "تایید",
+            "en": "Submit"
+          }
+        },
+        "text": {
+          "btnToday": "امروز"
+        }
+      },
+      "timePicker": {
+        "enabled": false,
+        "step": 1,
+        "hour": {
+          "enabled": false,
+          "step": null
+        },
+        "minute": {
+          "enabled": false,
+          "step": null
+        },
+        "second": {
+          "enabled": false,
+          "step": null
+        },
+        "meridian": {
+          "enabled": true
+        }
+      },
+      "dayPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY MMMM"
+      },
+      "monthPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "yearPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "responsive": true
+    });
+          }
+          birthdaydatepicker();
+    </script>
+        <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .slide').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            asNavFor: '.tour__package .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item'
+        });
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .arrow__left').click(function () {
+            $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick(
+                'slickPrev');
+        });
+
+        $(' .tour__package .content .search__list__content .hotel__single__content .intro .arrow__right').click(
+            function () {
+                $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick(
+                    'slickNext');
+            });
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.hotel__single .content .search__list__content .hotel__single__content .intro .slide',
+            // dots: true,
+            centerMode: true,
+            focusOnSelect: true,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 6,
+
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 5,
+
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4,
+
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+
+                    }
+                },
+                {
+                    breakpoint: 425,
+                    settings: {
+                        slidesToShow: 2,
+
+                    }
+                },
+                {
+                    breakpoint: 375,
+                    settings: {
+                        slidesToShow: 1,
+
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+        $('.hotel__single  .comment__review__slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            rtl: true
+        });
+
+        $('.hotel__single .content .search__list__content .comment__review .arrow__left').click(function () {
+            $('.hotel__single  .comment__review__slider').slick('slickPrev');
+        });
+
+        $(' .hotel__single .content .search__list__content .comment__review .arrow__right').click(function () {
+            $('.hotel__single  .comment__review__slider').slick('slickNext');
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp= {
+              center:new google.maps.LatLng(51.508742,-0.120850),
+              zoom:5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+{% endblock %}

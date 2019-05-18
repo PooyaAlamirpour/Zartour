@@ -1,0 +1,1069 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+    نتایج جست و جو
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{%  static 'bilit360/lib/FlipClock-master/compiled/flipclock.css' %}">
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    .rezerv {
+        background-color: #ff313d;
+        padding: .0625rem 1.875rem;
+        color: white;
+        width: 100%;
+        border-radius: .3125rem;
+        text-align: center;
+        margin-top: 10px;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="search__result">
+        <div class="container-fluid">
+            <div class="content">
+                <div class="col-11  order-1 order-xl-1  ">
+                    <div class="search__result__header">
+                        <ul>
+                            <li class='active'> <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">انتخاب پرواز </li>
+                            <li> <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">تکمیل اطلاعات مسافرین </li>
+                            <li> <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">تایید اطلاعات و پرداخت</li>
+                            <li> <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">صدور بلیط </li>
+                        </ul>
+
+                        <div class="line">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-11 col-xl-2 order-3  order-xl-2">
+                    <div class="countdown__timer">
+                        <span>مدت زمان شما برای انتخاب پرواز</span>
+                        <div class="timer"></div>
+                    </div>
+                    <div class="search__filter">
+                        <form action="" method="GET">
+                        <input type="hidden" name="ticket_request" value="{{ ticketRequest.id }}">
+                            <div class="items">
+                                <div class="item">
+                                    <div class="ticket__type">
+                                        <h5> <img src="{% static 'bilit360/img/filter-tool-black-shape@2x.png' %}" alt=""> فیلترکردن جستجو </h5>
+                                        <div class="inputs">
+                                            {% for operator in flight_operators %}
+                                                <div class="input">
+                                                    <input type="checkbox" name="operator" value="{{ operator.operator }}"  checked>
+                                                    <label class="{% if operator.operator == 'Charter' %}charteri{% else %}systemi{% endif %}" for="">
+                                                        {% if operator.operator == 'Charter' %}چارتری{% else %}سیستمی{% endif %}
+                                                    </label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="chipest__ticket">
+                                        <h5> انتخاب ایرلاین  </h5>
+                                        <div class="inputs">
+                                            {% for airline in airlines %}
+                                            <div class="input">
+                                                <label for="">
+                                                    <input type="checkbox" name="airline" value="{{ airline.airline }}" checked>{{ airline.airline_name }}
+                                                </label>
+                                                <img src="http://safarbooking.com/assets/images/airlines/{{airline.airline}}.png" alt="">
+{#                                                <span>۲۳۲/۰۰۰</span>#}
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="ticket__type">
+                                        <h5>
+                                            کلاس پروازی
+                                        </h5>
+                                        <div class="inputs">
+                                            {% for flight_class_name in flight_classes_names %}
+                                                <div class="input">
+                                                    <input type="checkbox" name="flight_class" value="{{ flight_class_name.name }}" checked> <label class="{{ flight_class_name.name }}" for="charter">{{ flight_class_name.name_fa }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button class="" type="submit">
+                                    انجام فیلتر
+
+                                </button>
+
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="col-11 col-xl-9 order-2  order-xl-3">
+                    <div class="flight__time">
+                        <ul>
+                            <li>
+                                <span>سه شنبه - 16 بهمن</span>
+                                <span>زاگرس-سیستمی</span>
+                                <span class="price">345/000 ریال</span>
+                            </li>
+                            <li>
+                                <span>سه شنبه - 16 بهمن</span>
+                                <span>زاگرس-سیستمی</span>
+                                <span class="price">345/000 ریال</span>
+                            </li>
+                            <li>
+                                <span>سه شنبه - 16 بهمن</span>
+                                <span>زاگرس-سیستمی</span>
+                                <span class="price">345/000 ریال</span>
+                            </li>
+                            <li class="active">
+                                <span>سه شنبه - 16 بهمن</span>
+                                <span>زاگرس-سیستمی</span>
+                                <span class="price">345/000 ریال</span>
+
+                                <small>
+                                    <div class="circle"></div>کمترین قیمت
+                                </small>
+                            </li>
+                        </ul>
+                        <h5>
+                            <div class="circle"></div>پروازهای موجود برای 4 روز بعد از تاریخ انتخابی شما
+                        </h5>
+                    </div>
+                    <div class="result__header">
+                        {% if ticketRequest.return_course %}
+                            <h5>
+                                <div class="circle"></div>تعداد<span class="number"> </span> {{ tickets.count|to_price }}پرواز رفت و {{ return_tickets.count|to_price }} پرواز برگشت از  {{ ticketRequest.outband_course.departure.name }} به {{ ticketRequest.return_course.departure.name }}
+                                در تاریخ <span>{{ ticketRequest.outband_course.date|to_jalali }}</span>
+                                موجود میباشد
+                            </h5>
+                        {% else %}
+                            <h5>
+                                <div class="circle"></div>تعداد<span class="number"> {{ tickets.count|to_price }}</span> پرواز از  {{ ticketRequest.outband_course.departure.name }} به {{ ticketRequest.outband_course.arrival.name }}
+                                در تاریخ <span>{{ ticketRequest.outband_course.date|to_jalali }}</span>
+                                موجود میباشد
+                            </h5>
+                        {% endif %}
+                        <a href=""> مرتب سازی قیمت <img src="{% static 'bilit360/img/sort-by-attributes-interface-button-option copy@2x.png' %}"
+                                alt=""> </a>
+                        {% if ticketRequest.return_course %}
+                            <h5> {{ ticketRequest.outband_course.date|to_jalali_with_month_name }} به {{ ticketRequest.return_course.date|to_jalali_with_month_name }}</h5>
+                        {% else %}
+                            <h5> {{ ticketRequest.outband_course.date|to_jalali_with_month_name }}</h5>
+                        {% endif %}
+                        <a href=""> مرتب سازی زمان <img src="{% static 'bilit360/img/sort-by-attributes-interface-button-option copy@2x.png' %}" alt=""> </a>
+                    </div>
+                {% if not return_tickets %}
+                    {% for ticket in tickets %}
+                        <div class="search__result__items {% if ticket.flight_details.operator == 'Charter' %}chartei__bilit{% else %}systemi__bilit{% endif %} ">
+                            {% if ticket.flight_details.operator == 'Charter' %}
+                                <small class="charter">چارتری</small>
+                            {% else %}
+                                <small class="systemi">سیستمی</small>
+                            {% endif %}
+                            <a  class="more__info {% if ticket.flight_details.operator == 'Charter' %}more__info__charteri {% else %} more__info__systemi{% endif %}"> جزئیات بیشتر ></a>
+                            <!-- <div class="contact"> -->
+                            <div class="item">
+                                <div class="logo">
+                                    <div class="logo__img">
+                                        <img src="http://safarbooking.com/assets/images/airlines/{{ticket.flight_details.airline}}.png" alt="">
+                                    </div>
+                                    <h4>{{ ticket.flight_details.airline_name_fa }}</h4>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="flight__number">
+                                    <span>شماره پرواز:{{ ticket.flight_details.flight_number }}</span>
+                                    <span>نوع هواپیما : {{ ticket.flight_details.airplane }}</span>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="flight__number">
+                                    {% if ticket.flight_details.flight_class in 'L,l,X,x,Y,y,V,v,W,w,S,s,B,b,H,h,K,k,M,m,N,n,Q,q,T,t,W,w,E,e,U,u,O,o,R,r' %}
+                                        <span class="pr-3 pl-3"> اکونومی </span>
+                                    {% elif ticket.flight_details.flight_class in 'C,c,J,j,D,d,Z,z,I,i' %}
+                                        <span class="pr-3 pl-3"> بیزینس </span>
+                                    {% elif ticket.flight_details.flight_class in 'A,a,F,f,P,p' %}
+                                        <span class="pr-3 pl-3"> فرست کلاس </span>
+                                    {% else %}
+                                        <span class="pr-3 pl-3">{{ ticket.flight_details.flight_class }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="remaining__chair">
+                                    <span class=""> <small class="">{{ ticket.capacity|to_price }}</small> صندلی باقی مانده</span>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="origin__destination">
+                                    <div class="detail">
+                                        <h6>
+                                            {{ ticket.departure.city_name_fa }}
+                                        </h6>
+                                        <span>
+                                            {{ ticket.departure.time|time:"H:i" }}
+                                        </span>
+                                    </div>
+                                    <div class="detail pr-2 pl-2">
+                                        <h5>
+                                          {{ ticket.departure.date|to_jalali_with_month_name }}
+                                        </h5>
+                                        <img src="{% static 'bilit360/img/airplanet.svg' %}" alt="">
+                                    </div>
+                                    <div class="detail">
+                                        <h6>
+                                          {{ ticket.arrival.city_name_fa }}
+                                        </h6>
+                                        <span>
+                                            {{ ticket.arrival.time|time:"H:i" }}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="item">
+                                <div class="price">
+                                    <h5>
+                                        {{ ticket.price|to_price }}ریال
+                                    </h5>
+                                    <form action="{% url 'tickets:book_form' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{ ticket.ref_number }}" name="ref_number">
+                                            <input type="hidden" value="{{ ticket.id }}" name="ticket_id">
+                                        <input type="submit" class="a" data-setting_id="500" id="bookbtn" class="btn-charter" value="رزرو">   &nbsp;
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!-- </div> -->
+                        </div>
+                        <div class="tab__option {% if ticket.flight_details.operator == 'Charter' %}tab__option__charteri{% else %}tab__option__systemi{% endif %}">
+                            <div class="tab__content">
+                                <!-- <div class="row"> -->
+                                <div class="tab__header">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                            role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                            <h6>قوانین و مقرارت کنسلی</h6>
+                                        </a>
+                                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                                            role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                            <h6>قوانین و مقرارت کنسلی</h6>
+                                        </a>
+                                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                                            role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                            <h6>قوانین و مقرارت کنسلی</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="tab__body">
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                            aria-labelledby="v-pills-home-tab">
+                                            <div class="tab__pane__content">
+                                                <div class="item">
+                                                    <p>
+                                                        {{ ticket.flight_details.refund }}
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                           <h5>قوانین کنسلی این پرواز </h5>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                            <div class="tab__pane__content">
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <h5>قوانین کنسلی این پرواز </h5>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                            <div class="tab__pane__content">
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+                                                <div class="item">
+                                                    <p>
+                                                        تا 4 ساعت قبل از پرواز
+                                                    </p>
+                                                    <span>
+                                                        70درصد
+                                                    </span>
+
+                                                </div>
+
+                                            </div>
+                                            <h5>قوانین کنسلی این پرواز </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- </div> -->
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for ticket in tickets %}
+                        {% for return in return_tickets %}
+                            <div class="search__result__items__blite  {% if ticket.flight_details.operator == 'Charter' %}chartei__bilit{% else %}systemi__bilit{% endif %}">
+                                <div class="charter">
+                                        <small class="">رفت</small>
+                                        <small class="">برگشت</small>
+                                </div>
+                                <div class="more__info__charteri">
+                                        <small class="">جزئیات  بیشتر > </small>
+                                </div>
+
+                                    <!-- <a  class="more__info more__info__charteri"> جزئیات بیشتر ></a> -->
+
+                                <div class="contact__blite">
+                                    <div class="blite__item">
+
+                                       <div class="items">
+                                                <div class="item">
+                                                    <div class="logo">
+                                                        <div class="logo__img">
+                                                            <img src="http://safarbooking.com/assets/images/airlines/{{ticket.flight_details.airline}}.png" alt="">
+                                                        </div>
+                                                        <h4>{{ ticket.flight_details.airline_name_fa }}</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="flight__number">
+                                                        <span>شماره پرواز:{{ ticket.flight_details.flight_number }}</span>
+                                                        <span>نوع هواپیما : {{ ticket.flight_details.airplane }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="flight__number">
+                                                        {% if ticket.flight_details.flight_class in 'L,l,X,x,Y,y,V,v,W,w,S,s,B,b,H,h,K,k,M,m,N,n,Q,q,T,t,W,w,E,e,U,u,O,o,R,r' %}
+                                                            <span class="pr-3 pl-3"> اکونومی </span>
+                                                        {% elif ticket.flight_details.flight_class in 'C,c,J,j,D,d,Z,z,I,i' %}
+                                                            <span class="pr-3 pl-3"> بیزینس </span>
+                                                        {% elif ticket.flight_details.flight_class in 'A,a,F,f,P,p' %}
+                                                            <span class="pr-3 pl-3"> فرست کلاس </span>
+                                                        {% else %}
+                                                            <span class="pr-3 pl-3">{{ ticket.flight_details.flight_class }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="remaining__chair">
+                                                            <small class="">۳۲</small>
+                                                            <div class="text">
+                                                                <div class="charteri__text">
+                                                                    {% if ticket.flight_details.operator == 'Charter' %}چارتری{% else %}سیستمی{% endif %}
+                                                                </div>
+                                                                 <span class=""> صندلی باقی مانده</span>
+                                                            </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="item ">
+                                                    <div class="origin__destination no__border">
+                                                        <div class="detail">
+                                                            <h6>
+                                                                {{ ticket.departure.city_name_fa }}
+                                                            </h6>
+                                                            <span>
+                                                                {{ ticket.departure.time|time:"H:i" }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="detail pr-2 pl-2">
+                                                            <h5>
+                                                                {{ ticket.departure.date|to_jalali_with_month_name }}
+                                                            </h5>
+                                                            <img src="{% static 'bilit360/img/airplanet.svg' %}" alt="">
+                                                        </div>
+                                                        <div class="detail">
+                                                            <h6>
+                                                                {{ ticket.arrival.city_name_fa }}
+                                                            </h6>
+                                                            <span>
+                                                                {{ ticket.arrival.time|time:"H:i" }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- <div class="item">
+                                                    <div class="price">
+                                                        <h5>
+                                                            ۴۳۴/۰۰۰ ت
+                                                        </h5>
+                                                        <a href="">
+                                                            رزرو
+
+                                                        </a>
+
+                                                    </div>
+                                                </div> -->
+
+                                       </div>
+                                       <div class="line">
+                                       </div>
+                                       <div class="items">
+                                            <div class="item">
+                                                <div class="logo">
+                                                    <div class="logo__img">
+                                                        <img src="http://safarbooking.com/assets/images/airlines/{{return.flight_details.airline}}.png" alt="">
+                                                    </div>
+                                                        <h4>{{ return.flight_details.airline_name_fa }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="flight__number">
+                                                    <span>شماره پرواز:{{ return.flight_details.flight_number }}</span>
+                                                    <span>نوع هواپیما : {{ return.flight_details.airplane }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                    <div class="flight__number">
+                                                        {% if return.flight_details.flight_class in 'L,l,X,x,Y,y,V,v,W,w,S,s,B,b,H,h,K,k,M,m,N,n,Q,q,T,t,W,w,E,e,U,u,O,o,R,r' %}
+                                                            <span class="pr-3 pl-3"> اکونومی </span>
+                                                        {% elif return.flight_details.flight_class in 'C,c,J,j,D,d,Z,z,I,i' %}
+                                                            <span class="pr-3 pl-3"> بیزینس </span>
+                                                        {% elif return.flight_details.flight_class in 'A,a,F,f,P,p' %}
+                                                            <span class="pr-3 pl-3"> فرست کلاس </span>
+                                                        {% else %}
+                                                            <span class="pr-3 pl-3">{{ return.flight_details.flight_class }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                            </div>
+                                            <div class="item">
+                                                    <div class="remaining__chair">
+                                                            <small class="">{{ ticket.capacity|to_price }}</small>
+                                                            <div class="text">
+                                                                <div class="systemi__text">
+                                                                    {% if return.flight_details.operator == 'Charter' %}چارتری{% else %}سیستمی{% endif %}
+                                                                </div>
+                                                                 <span class=""> صندلی باقی مانده</span>
+                                                            </div>
+
+                                                    </div>
+                                                </div>
+                                            <div class="item ">
+                                                <div class="origin__destination no__border">
+                                                    <div class="detail">
+                                                        <h6>
+                                                            {{ return.arrival.city_name_fa }}
+                                                        </h6>
+                                                        <span>
+                                                                {{ return.arrival.time|time:"H:i" }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="detail pr-2 pl-2">
+                                                        <h5>
+                                                            {{ return.departure.date|to_jalali_with_month_name }}
+                                                        </h5>
+                                                        <img class="barghasht" src="{% static 'bilit360/img/airplanet.svg' %}" alt="">
+                                                    </div>
+                                                    <div class="detail">
+                                                        <h6>
+                                                            {{ return.departure.city_name_fa }}
+                                                        </h6>
+                                                        <span>
+                                                                {{ return.departure.time|time:"H:i" }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <!-- <div class="item">
+                                                <div class="price">
+                                                    <h5>
+                                                        ۴۳۴/۰۰۰ ت
+                                                    </h5>
+                                                    <a href="">
+                                                        رزرو
+
+                                                    </a>
+
+                                                </div>
+                                            </div> -->
+
+                                       </div>
+
+                                    </div>
+
+
+                                    <div class="price__list">
+                                        <div class="price">
+                                            <div class="item">
+                                                <p>{{ ticket.price|to_price }}</p>
+                                                 <span>ریال</span>
+                                            </div>
+                                            <div class="item">
+                                                <div class="list">
+                                                    <span>قیمت کل</span>
+                                                    <p>{{ ticket.price|add:return.price|to_price }}</p>
+                                                </div>
+
+                                                     <span class="green">ریال</span>
+                                                </div>
+
+
+                                                <div class="item">
+                                                        <p>{{ return.price|to_price }}</p>
+                                                         <span>ریال</span>
+                                                    </div>
+                                            <form action="{% url 'tickets:book_form' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="{{ ticket.ref_number }}" name="ref_number">
+                                                    <input type="hidden" value="{{ ticket.id }}" name="ticket_id">
+                                                    <input type="hidden" value="{{ return.ref_number }}" name="return_ref_number">
+                                                    <input type="hidden" value="{{ return.id }}" name="return_ticket_id">
+                                                <input type="submit" class="rezerv" data-setting_id="500" id="bookbtn" class="btn-charter" value="رزرو">   &nbsp;
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="tab__option {% if ticket.flight_details.operator == 'Charter' %}tab__option__charteri{% else %}tab__option__systemi{% endif %}">
+                                <div class="tab__content">
+                                    <!-- <div class="row"> -->
+                                    <div class="tab__header">
+                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                                role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                                <h6>قوانین و مقرارت کنسلی</h6>
+                                            </a>
+                                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                                                role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                                <h6>قوانین و مقرارت کنسلی</h6>
+                                            </a>
+                                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                                                role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                                                <h6>قوانین و مقرارت کنسلی</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab__body">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                                aria-labelledby="v-pills-home-tab">
+                                                <div class="tab__pane__content">
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                               <h5>قوانین کنسلی این پرواز </h5>
+                                            </div>
+                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                <div class="tab__pane__content">
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                                <h5>قوانین کنسلی این پرواز </h5>
+                                            </div>
+                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                <div class="tab__pane__content">
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+                                                    <div class="item">
+                                                        <p>
+                                                            تا 4 ساعت قبل از پرواز
+                                                        </p>
+                                                        <span>
+                                                            70درصد
+                                                        </span>
+
+                                                    </div>
+
+                                                </div>
+                                                <h5>قوانین کنسلی این پرواز </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- </div> -->
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+{#                        <div class="search__result__items systemi__bilit">#}
+{##}
+{#                            <small class="systemi">سیستمی</small>#}
+{#                            <a class="more__info more__info__systemi"> جزئیات بیشتر ></a>#}
+{##}
+{##}
+{#                            <!-- <div class="contact"> -->#}
+{#                            <div class="item">#}
+{#                                <div class="logo">#}
+{#                                    <div class="logo__img">#}
+{#                                        <img src="{% static 'bilit360/img/zagroslogo@2x.png' %}" alt="">#}
+{#                                    </div>#}
+{#                                    <h4>زاگرس</h4>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="item">#}
+{#                                <div class="flight__number">#}
+{#                                    <span>شماره پرواز:۳۵۳۴</span>#}
+{#                                    <span>نوع هواپیما : بوئینگ</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="item">#}
+{#                                <div class="flight__number">#}
+{#                                    <span class="pr-3 pl-3"> اکونومی</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="item">#}
+{#                                <div class="remaining__chair">#}
+{#                                    <span class=""> <small class="">۳۲</small> صندلی باقی مانده</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="item">#}
+{#                                <div class="origin__destination">#}
+{#                                    <div class="detail">#}
+{#                                        <h6>#}
+{#                                            بندرعباس#}
+{#                                        </h6>#}
+{#                                        <span>#}
+{#                                            ۱۴:۳۰#}
+{#                                        </span>#}
+{#                                    </div>#}
+{#                                    <div class="detail pr-2 pl-2">#}
+{#                                        <h5>#}
+{#                                            پنجشنبه ۲۰ دی ماه ۱۳۹۷#}
+{##}
+{#                                        </h5>#}
+{#                                        <img src="{% static 'bilit360/img/airplanet.svg' %}" alt="">#}
+{#                                    </div>#}
+{#                                    <div class="detail">#}
+{#                                        <h6>#}
+{#                                            بندرعباس#}
+{#                                        </h6>#}
+{#                                        <span>#}
+{#                                            ۱۴:۳۰#}
+{#                                        </span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{##}
+{#                            </div>#}
+{#                            <div class="item">#}
+{#                                <div class="price">#}
+{#                                    <h5>#}
+{#                                        ۴۳۴/۰۰۰ ت#}
+{#                                    </h5>#}
+{#                                    <a href="">#}
+{#                                        رزرو#}
+{##}
+{#                                    </a>#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <!-- </div> -->#}
+{#                        </div>#}
+{#                        <div class="tab__option tab__option__systemi">#}
+{#                            <div class="tab__content">#}
+{#                                <!-- <div class="row"> -->#}
+{#                                <div class="tab__header">#}
+{#                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">#}
+{#                                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"#}
+{#                                            role="tab" aria-controls="v-pills-home" aria-selected="true">#}
+{#                                            <h6>قوانین و مقرارت کنسلی</h6>#}
+{#                                        </a>#}
+{#                                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"#}
+{#                                            role="tab" aria-controls="v-pills-profile" aria-selected="false">#}
+{#                                            <h6>قوانین و مقرارت کنسلی</h6>#}
+{#                                        </a>#}
+{#                                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"#}
+{#                                            role="tab" aria-controls="v-pills-messages" aria-selected="false">#}
+{#                                            <h6>قوانین و مقرارت کنسلی</h6>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="tab__body">#}
+{#                                    <div class="tab-content" id="v-pills-tabContent">#}
+{#                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"#}
+{#                                            aria-labelledby="v-pills-home-tab">#}
+{#                                            <div class="tab__pane__content">#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                           <h5>قوانین کنسلی این پرواز </h5>#}
+{#                                        </div>#}
+{#                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">#}
+{#                                            <div class="tab__pane__content">#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <h5>قوانین کنسلی این پرواز </h5>#}
+{#                                        </div>#}
+{#                                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">#}
+{#                                            <div class="tab__pane__content">#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="item">#}
+{#                                                    <p>#}
+{#                                                        تا 4 ساعت قبل از پرواز#}
+{#                                                    </p>#}
+{#                                                    <span>#}
+{#                                                        70درصد#}
+{#                                                    </span>#}
+{##}
+{#                                                </div>#}
+{##}
+{#                                            </div>#}
+{#                                            <h5>قوانین کنسلی این پرواز </h5>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                                <!-- </div> -->#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+                </div>
+                <div class="quick__access__item">
+                    <div class="quick__access">
+                        <div class="img">
+                            <a href="http://instagram.com/{{ settings.instagram_link }}">
+                                <img src="{% static 'bilit360/img/instagram.svg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="http://t.me/{{ settings.telegram_link }}" >
+                                <img src="{% static 'bilit360/img/telegram.svg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="mailto:{{ settings.info_email }}">
+                               <img src="{% static 'bilit360/img/gmail.svg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="tel:02188401717">
+                                <img src="{% static 'bilit360/img/telephone-symbol-button.svg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{%  static 'bilit360/lib/FlipClock-master/compiled/flipclock.min.js' %}"></script>
+    <script>
+        //           var clock = new FlipClock($('.timer'), {
+        // // ... your options here
+        // });
+
+
+        var clock;
+
+        $(document).ready(function () {
+            var clock;
+
+            clock = $('.timer').FlipClock({
+                clockFace: 'MinuteCounter',
+                autoStart: false,
+                callbacks: {
+                    stop: function () {
+                        alert("مدت زمان انتخاب بلیط به انتها رسیده است، لطفا مجددا جست و جو را انجام دهید");
+                        window.location.reload(true);
+                    }
+                }
+            });
+
+            clock.setTime(899);
+            clock.setCountdown(true);
+            clock.start();
+
+        });
+    </script>
+{% endblock %}

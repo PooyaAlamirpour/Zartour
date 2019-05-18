@@ -1,0 +1,78 @@
+@mixin narrow-border($border-size, $border-radius) {
+    border: $border-size solid rgba(0, 0, 0, 0.1);
+    border-radius: $border-radius;
+}
+
+// ساخت باکس با طول و عرض
+@mixin box($width, $height:$width) {
+    width: $width;
+    height: $height;
+}
+
+@function border($size:1, $style:solid, $color:rgba(0, 0, 0, 0.1)) {
+    @return remy($size) $style $color;
+} //شفافیت
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+} //ساخت گرادیانت 
+@mixin gradient($start-color, $end-color, $orientation) {
+    background: $start-color;
+    @if $orientation=='vertical' {
+        background: -webkit-linear-gradient(top, $start-color, $end-color);
+        background: linear-gradient(to bottom, $start-color, $end-color);
+    }
+    @else if $orientation=='horizontal' {
+        background: -webkit-linear-gradient(left, $start-color, $end-color);
+        background: linear-gradient(to right, $start-color, $end-color);
+    }
+    @else {
+        background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+        background: radial-gradient(ellipse at center, $start-color, $end-color);
+    }
+}
+
+//ساخت مثلث 
+@mixin triangle($direction, $size: 6px, $color: #222) {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    @if ($direction=='up') {
+        border-bottom: $size solid $color;
+        border-left: 1/2*$size solid transparent;
+        border-right: 1/2*$size solid transparent;
+    }
+    @else if ($direction=='down') {
+        border-top: $size solid $color;
+        border-left: 1/2*$size solid transparent;
+        border-right: 1/2*$size solid transparent;
+    }
+    @else if ($direction=='left') {
+        border-top: 1/2*$size solid transparent;
+        border-bottom: 1/2*$size solid transparent;
+        border-right: $size solid $color;
+    }
+    @else if ($direction=='right') {
+        border-top: 1/2*$size solid transparent;
+        border-bottom: 1/2*$size solid transparent;
+        border-left: $size solid $color;
+    }
+}
+
+@mixin border-radius($border) {
+    border-radius: remy($border);
+}
+
+@mixin mq($size) {
+    @media only screen and (max-width: $size+px) {
+        @content;
+    }
+}
+@mixin mqm($size) {
+    @media only screen and (min-width: $size+px) {
+        @content;
+    }
+}

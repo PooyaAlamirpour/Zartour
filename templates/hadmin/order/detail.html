@@ -1,0 +1,162 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+سفارش {{order.id}}
+{% endblock %}
+{% block list %}
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+      <form class="form" ng-app="myApp" ng-controller="myCtrl">
+        <div class="form-body" >
+          <div class="row match-height">
+            <div class="col-md-6">
+              <div class="card box-shadow-0 ">
+                <div class="card-header card-head-inverse bg-danger">
+                  <h6 class="card-title">
+
+                    <span class="breadcrumb-item active white">
+                      شماره سفارش
+                      {{order.id}} - {{order.title}}</span>
+
+                  </h6>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><i class="icon-android-cart font-medium-5"></i></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                      <table class="table table-striped mb-0 font-small-3">
+                        <tbody>
+                          <tr>
+                            <th scope="row">کاربر</th>
+                            <td>{{order.user.first_name}} {{order.user.last_name}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">تاریخ  ثبت</th>
+                            <td>{{order.date}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">ایمیل</th>
+                            <td>{{order.reciever}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">نوع</th>
+                            <td>{{order.title}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">مبلغ سفارش</th>
+                            <td>{{order.price}}
+                            ریال</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">کارمزد</th>
+                            <td>{{order.karmozd}}</td>
+                          </tr>
+                          {% if order.amount %}
+                          <tr>
+                            <th scope="row">مقدار ارز</th>
+                            <td>{{order.amount}}
+                              {% if order.currency %}
+                                {{order.currency.name}}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          {% endif %}
+                          {% if order.currency %}
+                          <tr>
+                            <th scope="row">نوع ارز</th>
+                            <td>{{order.currency.name}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">قیمت {{order.currency.name}} در زمان ثبت سفارش</th>
+                            <td>{{order.currency.price}}
+                            ریال</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">توضیحات</th>
+                            <td>{{order.description}}</td>
+                          </tr>
+                          {% endif %}
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header card-head-inverse bg-danger">
+                  <h6 class="card-title">
+
+                    <span class="breadcrumb-item active white">وضعیت</span>
+
+                  </h6>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><i class="icon-android-cart font-medium-5"></i></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-body collapse in clearfix pt-1">
+                    <form class="form clearfix">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="row clearfix">
+                            <div class="col-md-4">
+                              <label >شرح</label>
+                            </div>
+                              <div class="col-md-8">
+                                <input class="form-control" type="text" />
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="row clearfix">
+                            <div class="col-md-4">
+                              <label >وضعیت</label>
+                            </div>
+                              <div class="col-md-8">
+                                <select class="form-control">
+                                  <option value="1">تکمیل</option>
+                                  <option value="2">در حال تکمیل</option>
+                                  <option value="3">پرداخت نشده</option>
+                                  <option value="4">انصراف</option>
+                                </select>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="row clearfix">
+                            <div class="col-md-2">
+                              <label >متن</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="8" ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-actions center clearfix">
+                          <button type="button" class="btn btn-danger mr-1">
+                            <i class="icon-cross2"></i> کنسل
+                          </button>
+                          <button type="submit" class="btn btn-success">
+                            <i class="icon-check2"></i> تغییر وضعیت
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+  </div>
+</div>
+{% endblock %}

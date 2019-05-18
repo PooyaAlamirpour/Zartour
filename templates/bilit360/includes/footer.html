@@ -1,0 +1,104 @@
+{%  load staticfiles %}
+{% load navbar_tags %}
+{% load settings_tags %}
+
+<footer>
+    <div class="content">
+        <div class="right">
+            <div class="newsteller__form">
+              <img src="{% static 'bilit360/img/smartphone.svg' %}" alt="">
+              <p>جهت عضویت در خبرنامه <span class="text-danger">پیامکی</span> ما ، میتوانید از طریق زیر اقدام به ثبت نام نمائید</p>
+              <form action="{% url 'users:subscribe' %}" method="POST">
+                  {% csrf_token %}
+                <div class="form__item">
+                    <input type="text" placeholder="نام" class="first" name="first_name">
+                </div>
+                <div class="form__item">
+                    <input type="text" placeholder="نام خانوادگی" name="last_name">
+                  </div>
+                  <div class="form__item">
+                     <input type="text" placeholder="موبایل" name="mobile">
+                    </div>
+                <div class="form__item">
+                    <select name="is_domestic">
+                      <option value="0" selected>تور های داخلی</option>
+                      <option value="1">تور های خارجی</option>
+                    </select>
+                  </div>
+                  <div class="form__item">
+                        <input type="submit" class="last" value="ثبت نام" style="background-color: red;">
+                  </div>
+              </form>
+            </div>
+            <div class="leatest__news">
+              <h5>
+                  آخرین مطالب وبلاگ
+              </h5>
+              <ul>
+
+                {% get_last_n_article_list 4 as last_articles %}
+                {% for article in last_articles %}
+                      <li>
+                          <a href="{% url 'cms:blog_item' article.id %}" >
+                            <h4 style="font-size: 12px;">{{ article.title }} / نویسنده:
+                                {% if post.author.first_name or post.author.last_name %}
+                                   {{ post.author.first_name }} {{ post.author.last_name }}
+                                {% else %}
+                                    ادمین
+                                {% endif %}
+                            </h4>
+                              <span style="font-size: 10px;">
+                                  {{ article.publish_date|to_jalali_with_month_name }}
+                              </span>
+                           </a>
+
+                    </li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+        <div class="left">
+            <h4>
+                درباره ما
+            </h4>
+            <p>
+                {% get_settings  as settings %}
+
+                {{ settings.brief_description|safe }}
+            </p>
+            <a href="https://www.google.com/maps/place/%D8%B4%D8%B1%DA%A9%D8%AA+%D8%AE%D8%AF%D9%85%D8%A7%D8%AA+%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C+%D8%B2%D8%B1%D8%A7%D9%81%D8%B4%D8%A7%D9%86+%D8%B3%DB%8C%D8%B1%E2%80%AD/@35.723606,51.4328561,14.02z/data=!4m5!3m4!1s0x0:0x935bf4243212f145!8m2!3d35.7229198!4d51.4453375">
+                <img src="{% static 'bilit360/img/map-zartour.png' %}" alt="">
+            </a>
+          </div>
+    </div>
+    <div class="sign__copywrite">
+      <div class="copywrite">
+        <p>آدرس  :{{ settings.address_line_1 }}</p>
+        <p>کلیه حقوق مادی و معنوی این وب سایت متعلق است به شرکت زرافشان سیر</p>
+      </div>
+      <div class="sign">
+        <ul>
+            <li>
+                <a href="#" style="padding-top: 0;"  onclick="return false;">
+                    <img src="https://backup.ssite.info/template/backc118/images/namad1.png" alt="" style="margin: auto;" onclick="window.open('https://trustseal.enamad.ir/Verify.aspx?id=61790&p=amp','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0,  top=30,width=600,height=500')">
+                </a>
+            </li>
+          <li>
+              <a href="#" style="padding-top: 0;" onclick="return false;">
+                  <img alt="" src="https://backup.ssite.info/template/backc118/images/samandehi.png" style="margin: auto;"  onclick="window.open('https://logo.samandehi.ir/Verify.aspx?id=1001274&p=rfthobpdobpdrfthuiwkjyoeaods','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0,  top=30,width=600,height=500')">
+              </a>
+          </li>
+        <li>
+            <a href="#" style="padding-top: 0;" onclick="window.open('https://www.cao.ir/paxrights','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0,  top=30,width=600,height=500')" >
+                <img alt="" src="https://backup.ssite.info/template/backc118/images/certificate1.png" style="margin: auto;" >
+            </a>
+        </li>
+        <li>
+            <a href="#" style="padding-top: 0;" onclick="window.open('https://www.cao.ir/','Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0,  top=30,width=600,height=500')">
+                <img alt="" src="https://backup.ssite.info/template/backc118/images/certificate2.png" style="margin: auto;" >
+            </a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </footer>

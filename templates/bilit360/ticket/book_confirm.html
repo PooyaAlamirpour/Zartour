@@ -1,0 +1,320 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+    تایید رزرو
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{%  static 'bilit360/lib/FlipClock-master/compiled/flipclock.css' %}">
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+
+    <div class="search__result">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="col-11  order-1 order-xl-1  ">
+                    <div class="search__result__header">
+                        <ul>
+                            <li > <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">انتخاب پرواز </li>
+                            <li > <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">تکمیل اطلاعات مسافرین </li>
+                            <li class='active' > <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">تایید اطلاعات و پرداخت </li>
+                            <li> <img src="{% static 'bilit360/img/restart@2x.png' %}" alt="">صدور بلیط </li>
+                        </ul>
+                        <div class="line">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-11 col-xl-2 order-3  order-xl-2">
+                    <div class="countdown__timer">
+                        <span>مدت زمان شما برای انتخاب پرواز</span>
+                        <div class="timer"></div>
+                    </div>
+                    <div class="latest__articales">
+                        <h6>اخرین مطالب </h6>
+                        <!--  -->
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                        <a href="">لینک یک</a>
+                    </div>
+                </div>
+                <div class="col-11 col-xl-9 order-2  order-xl-3">
+                    <div class="level__3">
+                        <div class="item__header">
+                            <h5>تائید اطلاعات</h5>
+                            <span> <img src="{% static 'bilit360/img/warning.png' %}" alt=""> لطفا قبل از تائید اطلاعات و پرداخت ، اطلاعات را
+                                بررسی گنید.مسئولیت هرگونه مغایرت اطلاعات بعهده کاربر میباشد </span>
+                        </div>
+                        <div class="flight__info">
+                            <h5> اطلاعات پرواز رفت <img src="{% static 'bilit360/img/airplane-shape.png' %}" alt=""></h5>
+                            <div class="info">
+                                <span>از : {{ booked_ticket.ticket.departure.airport_name_fa }}</span>
+                                <span>به  :  {{ booked_ticket.ticket.arrival.airport_name_fa }}</span>
+                                <span>تاریخ پرواز : {{ booked_ticket.ticket.departure.date }}</span>
+                                <span>ساعت پرواز : {{ booked_ticket.ticket.departure.time }}</span>
+
+                                <span>ایرلاین : {{ booked_ticket.ticket.flight_details.airline_name_fa }} <img src="http://safarbooking.com/assets/images/airlines/{{booked_ticket.ticket.flight_details.airline}}.png" alt=""> </span>
+                                <span>کلاس پروازی : اکنومی</span>
+                                <span> شماره پرواز : {{ booked_ticket.ticket.flight_details.flight_number }}</span>
+                                <span>نوع پرواز  : سیستمی</span>
+                                <span>تاریخ رزرو پرواز : 1397/11/22</span>
+                                <span>ساعت ورود به مقصد : {{ booked_ticket.ticket.arrival.time }}</span>
+                            </div>
+                        </div>
+                        <div class="passenger__info">
+                            <div class="passenger__info__header">
+                                {% with booked_ticket.ticket.passenger_set.all|first as first_object %}
+
+
+                                <h5> مشخصات مسافران <img src="{% static 'bilit360/img/multiple-users-silhouette.svg' %}" alt=""></h5>
+                                <span>شماره موبایل : {{ first_object.telephone }}</span>
+                                <span> ایمیل :{{ first_object.email }}</span>
+                                {% endwith %}
+                            </div>
+                            <div class="passenger__info__content">
+                                <table class="w3-table-all w-100 info__table">
+                                    <thead>
+                                        <tr class=" w3-light-grey w3-hover-red">
+                                            <th class="title">نام و نام خانوادگی</th>
+                                            <th class="title">جنسیت</th>
+                                            <th class="title">تاریخ تولد</th>
+                                            <th class="title">کد ملی / شماره پاسپورت</th>
+                                            <th class="title">کشور صادر کننده پاسپورت</th>
+                                            <th class="title">قیمت بلیط</th>
+                                        </tr>
+                                    </thead>
+                                    {% for passenger in booked_ticket.ticket.passenger_set.all %}
+                                    <tr class="w3-hover-green sub__title">
+                                        <td> {{ passenger.persian_given_name }} {{ passenger.persian_surname }}
+                                            <br>
+                                            <span>{{ passenger.given_name }} {{ passenger.surname }}</span>
+                                        </td>
+                                        <td>مرد
+                                            <br>
+                                            <span>Man </span>
+                                        </td>
+                                        <td>{{ passenger.birthdate }}</td>
+                                        <td>{{ passenger.national_id }}</td>
+                                        <td>iran</td>
+                                        <td>{{ booked_ticket.ticket.price }} تومان</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                <div class="resppnsive__table">
+                                    <ul>
+                                        <li>نام و نام خانوادگی
+                                            <span>حسینی</span>
+                                        </li>
+                                        <li>نام و نام خانوادگی
+                                            <span>حسینی</span>
+                                        </li>
+                                        <li>نام و نام خانوادگی
+                                            <span>حسینی</span>
+                                        </li>
+                                        <li>نام و نام خانوادگی
+                                            <span>حسینی</span>
+                                        </li>
+                                        <li>نام و نام خانوادگی
+                                            <span>حسینی</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ticket__pay">
+                                <h5>جمع کل مبلغ پرداختی </h5>
+                                <span>{{ booked_ticket.ticket.price }} تومان</span>
+                            </div>
+                            <div class="accept__pay">
+                                <a href=""> <img src="{% static 'bilit360/img/chek.png' %}" alt=""> تائید اطلاعات و پرداخت
+                                </a>
+                                <small>پس از تائید به درگاه پرداخت منتقل میشوید</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quick__access__item">
+                    <div class="quick__access">
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="img">
+                            <a href="">
+                                <img src="{% static 'bilit360/img/youtube.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ {% endblock %}
+{% block scripts %}
+    <script src="{%  static 'bilit360/lib/persian-date/dist/persian-date.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/persian-datepicker/dist/js/persian-datepicker.min.js' %}"></script>
+    <script src="{% static 'bilit360/js/custom.js' %}"></script>
+    <script src="{%  static 'bilit360/lib/FlipClock-master/compiled/flipclock.min.js' %}"></script>
+    <script>
+        $('#add__adult').click(function(){
+            $('.search__result .content .passenger__info__form .passenger__list .passenger__personal__info').prepend(" <div class='person__box'> <h4> <span class='red__circle'> </span> مسافر بزرگسال </h4> <p> مسافری که سن ایشان از 18 سال بیشتر باشد </p> <div class='row'> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> جنسیت </span> <select name='' id='' dir='ltr'> <option value='0'>مرد</option> <option value='1'>زن</option> </select> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام خانوادگی </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> تاریخ تولد </span> <input type='text' dir='ltr' class='datetime'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ملیت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> LAST NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> کد ملی <br> ش پاسپورت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ایمیل </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> موبایل </span> <input type='text' dir='ltr'> </div> </div> </div> </div>");
+            birthdaydatepicker();
+        });
+        $('#add__kid').click(function(){
+            $('.search__result .content .passenger__info__form .passenger__list .passenger__personal__info').prepend(" <div class='person__box'> <h4> <span class='red__circle'> </span> مسافر کودک</h4> <p> مسافری که سن ایشان از 18 سال بیشتر باشد </p> <div class='row'> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> جنسیت </span> <select name='' id='' dir='ltr'> <option value='0'>مرد</option> <option value='1'>زن</option> </select> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام خانوادگی </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> تاریخ تولد </span> <input type='text' dir='ltr' class='datetime'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ملیت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> LAST NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> کد ملی <br> ش پاسپورت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ایمیل </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> موبایل </span> <input type='text' dir='ltr'> </div> </div> </div> </div>");
+            birthdaydatepicker();
+          });
+        $('#add_baby').click(function(){
+            $('.search__result .content .passenger__info__form .passenger__list .passenger__personal__info').prepend(" <div class='person__box'> <h4> <span class='red__circle'> </span> مسافر نوزاد</h4> <p> مسافری که سن ایشان از 18 سال بیشتر باشد </p> <div class='row'> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> جنسیت </span> <select name='' id='' dir='ltr'> <option value='0'>مرد</option> <option value='1'>زن</option> </select> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> نام خانوادگی </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> تاریخ تولد </span> <input type='text' dir='ltr' class='datetime'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ملیت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input form__input__en'> <span class='en'> LAST NAME </span> <input type='text'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> کد ملی <br> ش پاسپورت </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> ایمیل </span> <input type='text' dir='ltr'> </div> </div> <div class='col-12 col-md-6 col-xl-3'> <div class='form__input'> <span> موبایل </span> <input type='text' dir='ltr'> </div> </div> </div> </div>");
+            birthdaydatepicker();
+        });
+        function birthdaydatepicker(){
+              $(".datetime").persianDatepicker({
+    initialValueType: 'gregorian',
+      "inline": false,
+      "format": "l",
+      "viewMode": "day",
+      "initialValue": true,
+      "position": "auto",
+      "altFormat": "lll",
+      "altField": "#altfieldExample",
+      "onlyTimePicker": false,
+      "onlySelectOnDate": false,
+      "calendarType": "persian",
+      "inputDelay": 800,
+      "observer": false,
+      "calendar": {
+        "persian": {
+          "locale": "fa",
+          "showHint": true,
+          "leapYearMode": "algorithmic"
+        },
+        "gregorian": {
+          "locale": "en",
+          "showHint": false
+        }
+      },
+      "navigator": {
+        "enabled": true,
+        "scroll": {
+          "enabled": true
+        },
+        "text": {
+          "btnNextText": "<",
+          "btnPrevText": ">"
+        }
+      },
+      "toolbox": {
+        "enabled": true,
+        "calendarSwitch": {
+          "enabled": false,
+          "format": "MMMM"
+        },
+        "todayButton": {
+          "enabled": true,
+          "text": {
+            "fa": "امروز",
+            "en": "Today"
+          }
+        },
+        "submitButton": {
+          "enabled": true,
+          "text": {
+            "fa": "تایید",
+            "en": "Submit"
+          }
+        },
+        "text": {
+          "btnToday": "امروز"
+        }
+      },
+      "timePicker": {
+        "enabled": false,
+        "step": 1,
+        "hour": {
+          "enabled": false,
+          "step": null
+        },
+        "minute": {
+          "enabled": false,
+          "step": null
+        },
+        "second": {
+          "enabled": false,
+          "step": null
+        },
+        "meridian": {
+          "enabled": true
+        }
+      },
+      "dayPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY MMMM"
+      },
+      "monthPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "yearPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "responsive": true
+    });
+
+          }
+          birthdaydatepicker();
+    </script>
+    <script>
+        //           var clock = new FlipClock($('.timer'), {
+        // // ... your options here
+        // });
+
+
+        var clock;
+
+        $(document).ready(function () {
+            var clock;
+
+            clock = $('.timer').FlipClock({
+                clockFace: 'MinuteCounter',
+                autoStart: false,
+                callbacks: {
+                    stop: function () {
+                        $('.message').html('The clock has stopped!')
+                    }
+                }
+            });
+
+            clock.setTime(2208);
+            clock.setCountdown(true);
+            clock.start();
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست خانه های درج شده
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">لیست خانه های درج شده کابران</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>نام کاربری</th>
+              <th>نوع خانه</th>
+              <th>شهر</th>
+              <th>استان</th>
+              <th>نام خانه</th>
+              <th>قیمت</th>
+              <th>تاریخ ثبت</th>
+              <th>تعداد رزرو ها</th>
+              <th>تعداد تصاویر</th>
+              <th>تعداد نظرات</th>
+              <th> وضعیت </th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+            <tbody>
+                          {% for home in homes %}
+              <tr class="{% if home.status == home.CREATED_STEP_0 %}bg-red
+                             {% elif home.status == home.COMPLETE %}bg-yellow
+                             {% elif home.status == home.APPROVED %}bg-green
+                             {% endif %}
+                             bg-lighten-4">
+                  <td><a href="{% url 'adsItem' home.id %}">{{home.id}}</a></td>
+                  <td>{{home.Owner.user.first_name}} {{ home.Owner.user.last_name }} ({{ home.Owner.user.username }})</td>
+                   <td>{{home.homeType.name}}</td>
+                   <td>{{home.city.name}}</td>
+                   <td>{{home.city.province.name}}</td>
+                  <td><a href="{% url 'adsItem' home.id %}">{{home.name}}</a></td>
+                   <td>{{home.price}} ریال</td>
+                  <td>{{ home.published_date|to_jalali }}</td>
+                  <td>{{ home.reservation_set.all.count }}</td>
+                  <td>{{ home.homeimage_set.all.count }}</td>
+                  <td>{{ home.homecomment_set.all.count }}</td>
+                  <td>{% if home.status == home.CREATED_STEP_0 %}نقص اطلاعات
+                             {% elif home.status == home.COMPLETE %}منتظر تایید
+                             {% elif home.status == home.APPROVED %}تایید شده
+                             {% endif %}</td>
+                  <td class=" text-md-right">
+
+                    <a href="{% url 'home_delete' home.id %}"><i class="icon-ios-trash text-danger font-medium-5"></i></a>
+                    <a href="{% url 'edit_home' home.id %}"><i class="icon-eye text-info font-medium-5"></i></a>
+                      {% if home.status == home.COMPLETE %}
+                        <a href="{% url 'home_approve' home.id %}"><i class="icon-check2 text-danger font-medium-5"></i></a>
+                      {% endif  %}
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          <tbody>
+
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

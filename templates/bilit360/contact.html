@@ -1,0 +1,403 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+{% load settings_tags %}
+{% block title %}
+    تماس با ما
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="agance__single">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                               تماس با ما
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <h5>
+                                    شرکت خدمات مسافرت هوائی و گردشگری زرافشان سیر
+                                </h5>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include './includes/banner.html' %}
+                            {% include './includes/support.html' %}
+                        </div>
+                    </div>
+
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <h5>
+                                        تماس با ما
+                                    </h5>
+                                    <!-- <a href=""></a> -->
+
+
+                                </div>
+                            </div>
+
+                            <div class="agance__deatails ">
+                                <div class="items">
+                                    <div class="top__item">
+                                        <div class="desc__section">
+                                            {% get_settings  as settings %}
+                                            <h6>شماره های تماس با ما </h6>
+
+                                            <div class="company__name">
+                                                <span>شرکت :</span>
+                                                <h4> شرکت خدمات مسافرت هوائی و جهان‌گردی و زیارتی زرافشان سیر</h4>
+                                            </div>
+                                            <div class="address ">
+                                                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+                                                <span> آدرس :</span>
+                                                <h4> {{ settings.address_line_1 }} </h4>
+                                            </div>
+                                            <div class="more__info">
+                                                <div class="item">
+                                                    <h5>تماس</h5>
+                                                    <div class="desc">
+                                                        <?xml version="1.0" encoding="iso-8859-1"?>
+                                                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                                        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            version="1.1" id="Capa_1" x="0px" y="0px" width="512px"
+                                                            height="512px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;"
+                                                            xml:space="preserve">
+                                                            <g>
+                                                                <path d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123   C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126   h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225   C438.532,59.576,430.49,40.204,414.41,24.123z M359.159,332.874c-3.997,8.754-12.99,16.371-26.977,22.846   c-13.99,6.475-26.413,9.712-37.265,9.712c-3.046,0-6.283-0.235-9.708-0.711c-3.426-0.479-6.324-0.952-8.703-1.428   c-2.378-0.476-5.523-1.331-9.421-2.57c-3.905-1.234-6.715-2.189-8.422-2.854c-1.718-0.664-4.856-1.854-9.421-3.566   c-4.569-1.718-7.427-2.765-8.562-3.138c-31.215-11.427-61.721-32.028-91.507-61.814c-29.786-29.793-50.391-60.292-61.812-91.502   c-0.378-1.143-1.425-3.999-3.14-8.565c-1.712-4.565-2.905-7.708-3.571-9.419c-0.662-1.713-1.615-4.521-2.853-8.42   c-1.237-3.903-2.091-7.041-2.568-9.423c-0.478-2.376-0.95-5.277-1.427-8.704c-0.476-3.427-0.713-6.667-0.713-9.71   c0-10.85,3.237-23.269,9.71-37.259c6.472-13.988,14.084-22.981,22.841-26.979c10.088-4.189,19.7-6.283,28.837-6.283   c2.091,0,3.616,0.192,4.565,0.572c0.953,0.385,2.524,2.094,4.714,5.14c2.19,3.046,4.568,6.899,7.137,11.563   c2.57,4.665,5.092,9.186,7.566,13.562c2.474,4.377,4.854,8.705,7.139,12.991c2.284,4.279,3.711,6.995,4.281,8.133   c0.571,0.957,1.809,2.762,3.711,5.429c1.902,2.663,3.333,5.039,4.283,7.135c0.95,2.094,1.427,4.093,1.427,5.996   c0,2.859-1.953,6.331-5.854,10.42c-3.903,4.093-8.186,7.854-12.85,11.281s-8.945,7.092-12.847,10.994   c-3.899,3.899-5.852,7.087-5.852,9.562c0,1.333,0.333,2.902,1,4.71c0.666,1.812,1.285,3.287,1.856,4.427   c0.571,1.141,1.477,2.76,2.712,4.856c1.237,2.096,2.048,3.427,2.426,3.999c10.467,18.843,22.508,35.07,36.114,48.681   c13.612,13.613,29.836,25.648,48.682,36.117c0.567,0.384,1.902,1.191,4.004,2.43c2.091,1.232,3.713,2.136,4.853,2.707   c1.143,0.571,2.614,1.191,4.425,1.852c1.811,0.664,3.381,0.999,4.719,0.999c3.036,0,7.225-3.138,12.56-9.418   c5.328-6.286,10.756-12.518,16.276-18.705c5.516-6.181,9.985-9.274,13.418-9.274c1.902,0,3.897,0.473,5.999,1.424   c2.095,0.951,4.469,2.382,7.132,4.284c2.669,1.91,4.476,3.142,5.428,3.721l15.125,8.271c10.089,5.332,18.511,10.041,25.27,14.134   s10.424,6.899,10.996,8.419c0.379,0.951,0.564,2.478,0.564,4.572C365.449,313.199,363.354,322.812,359.159,332.874z"
+                                                                    fill="#fff" />
+                                                            </g>
+
+                                                        </svg>
+
+                                                        <span>
+                                                            {{ settings.phone_number_1 }}
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="item">
+                                                    <h5>فکس  </h5>
+                                                    <div class="desc">
+                                                        <?xml version="1.0" encoding="iso-8859-1"?>
+                                                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                                        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            version="1.1" id="Capa_1" x="0px" y="0px" width="512px"
+                                                            height="512px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;"
+                                                            xml:space="preserve">
+                                                            <g>
+                                                                <path d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123   C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126   h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225   C438.532,59.576,430.49,40.204,414.41,24.123z M359.159,332.874c-3.997,8.754-12.99,16.371-26.977,22.846   c-13.99,6.475-26.413,9.712-37.265,9.712c-3.046,0-6.283-0.235-9.708-0.711c-3.426-0.479-6.324-0.952-8.703-1.428   c-2.378-0.476-5.523-1.331-9.421-2.57c-3.905-1.234-6.715-2.189-8.422-2.854c-1.718-0.664-4.856-1.854-9.421-3.566   c-4.569-1.718-7.427-2.765-8.562-3.138c-31.215-11.427-61.721-32.028-91.507-61.814c-29.786-29.793-50.391-60.292-61.812-91.502   c-0.378-1.143-1.425-3.999-3.14-8.565c-1.712-4.565-2.905-7.708-3.571-9.419c-0.662-1.713-1.615-4.521-2.853-8.42   c-1.237-3.903-2.091-7.041-2.568-9.423c-0.478-2.376-0.95-5.277-1.427-8.704c-0.476-3.427-0.713-6.667-0.713-9.71   c0-10.85,3.237-23.269,9.71-37.259c6.472-13.988,14.084-22.981,22.841-26.979c10.088-4.189,19.7-6.283,28.837-6.283   c2.091,0,3.616,0.192,4.565,0.572c0.953,0.385,2.524,2.094,4.714,5.14c2.19,3.046,4.568,6.899,7.137,11.563   c2.57,4.665,5.092,9.186,7.566,13.562c2.474,4.377,4.854,8.705,7.139,12.991c2.284,4.279,3.711,6.995,4.281,8.133   c0.571,0.957,1.809,2.762,3.711,5.429c1.902,2.663,3.333,5.039,4.283,7.135c0.95,2.094,1.427,4.093,1.427,5.996   c0,2.859-1.953,6.331-5.854,10.42c-3.903,4.093-8.186,7.854-12.85,11.281s-8.945,7.092-12.847,10.994   c-3.899,3.899-5.852,7.087-5.852,9.562c0,1.333,0.333,2.902,1,4.71c0.666,1.812,1.285,3.287,1.856,4.427   c0.571,1.141,1.477,2.76,2.712,4.856c1.237,2.096,2.048,3.427,2.426,3.999c10.467,18.843,22.508,35.07,36.114,48.681   c13.612,13.613,29.836,25.648,48.682,36.117c0.567,0.384,1.902,1.191,4.004,2.43c2.091,1.232,3.713,2.136,4.853,2.707   c1.143,0.571,2.614,1.191,4.425,1.852c1.811,0.664,3.381,0.999,4.719,0.999c3.036,0,7.225-3.138,12.56-9.418   c5.328-6.286,10.756-12.518,16.276-18.705c5.516-6.181,9.985-9.274,13.418-9.274c1.902,0,3.897,0.473,5.999,1.424   c2.095,0.951,4.469,2.382,7.132,4.284c2.669,1.91,4.476,3.142,5.428,3.721l15.125,8.271c10.089,5.332,18.511,10.041,25.27,14.134   s10.424,6.899,10.996,8.419c0.379,0.951,0.564,2.478,0.564,4.572C365.449,313.199,363.354,322.812,359.159,332.874z"
+                                                                    fill="#fff" />
+                                                            </g>
+
+                                                        </svg>
+
+                                                        <span>
+                                                            {{ settings.fax_number }}
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="item">
+                                                    <h5> ایمیل</h5>
+                                                    <div class="desc">
+                                                        <?xml version="1.0" encoding="iso-8859-1"?>
+                                                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                                        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            version="1.1" id="Capa_1" x="0px" y="0px" width="512px"
+                                                            height="512px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;"
+                                                            xml:space="preserve">
+                                                            <g>
+                                                                <path d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123   C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126   h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225   C438.532,59.576,430.49,40.204,414.41,24.123z M359.159,332.874c-3.997,8.754-12.99,16.371-26.977,22.846   c-13.99,6.475-26.413,9.712-37.265,9.712c-3.046,0-6.283-0.235-9.708-0.711c-3.426-0.479-6.324-0.952-8.703-1.428   c-2.378-0.476-5.523-1.331-9.421-2.57c-3.905-1.234-6.715-2.189-8.422-2.854c-1.718-0.664-4.856-1.854-9.421-3.566   c-4.569-1.718-7.427-2.765-8.562-3.138c-31.215-11.427-61.721-32.028-91.507-61.814c-29.786-29.793-50.391-60.292-61.812-91.502   c-0.378-1.143-1.425-3.999-3.14-8.565c-1.712-4.565-2.905-7.708-3.571-9.419c-0.662-1.713-1.615-4.521-2.853-8.42   c-1.237-3.903-2.091-7.041-2.568-9.423c-0.478-2.376-0.95-5.277-1.427-8.704c-0.476-3.427-0.713-6.667-0.713-9.71   c0-10.85,3.237-23.269,9.71-37.259c6.472-13.988,14.084-22.981,22.841-26.979c10.088-4.189,19.7-6.283,28.837-6.283   c2.091,0,3.616,0.192,4.565,0.572c0.953,0.385,2.524,2.094,4.714,5.14c2.19,3.046,4.568,6.899,7.137,11.563   c2.57,4.665,5.092,9.186,7.566,13.562c2.474,4.377,4.854,8.705,7.139,12.991c2.284,4.279,3.711,6.995,4.281,8.133   c0.571,0.957,1.809,2.762,3.711,5.429c1.902,2.663,3.333,5.039,4.283,7.135c0.95,2.094,1.427,4.093,1.427,5.996   c0,2.859-1.953,6.331-5.854,10.42c-3.903,4.093-8.186,7.854-12.85,11.281s-8.945,7.092-12.847,10.994   c-3.899,3.899-5.852,7.087-5.852,9.562c0,1.333,0.333,2.902,1,4.71c0.666,1.812,1.285,3.287,1.856,4.427   c0.571,1.141,1.477,2.76,2.712,4.856c1.237,2.096,2.048,3.427,2.426,3.999c10.467,18.843,22.508,35.07,36.114,48.681   c13.612,13.613,29.836,25.648,48.682,36.117c0.567,0.384,1.902,1.191,4.004,2.43c2.091,1.232,3.713,2.136,4.853,2.707   c1.143,0.571,2.614,1.191,4.425,1.852c1.811,0.664,3.381,0.999,4.719,0.999c3.036,0,7.225-3.138,12.56-9.418   c5.328-6.286,10.756-12.518,16.276-18.705c5.516-6.181,9.985-9.274,13.418-9.274c1.902,0,3.897,0.473,5.999,1.424   c2.095,0.951,4.469,2.382,7.132,4.284c2.669,1.91,4.476,3.142,5.428,3.721l15.125,8.271c10.089,5.332,18.511,10.041,25.27,14.134   s10.424,6.899,10.996,8.419c0.379,0.951,0.564,2.478,0.564,4.572C365.449,313.199,363.354,322.812,359.159,332.874z"
+                                                                    fill="#fff" />
+                                                            </g>
+
+                                                        </svg>
+
+                                                        <span>
+                                                            {{ settings.info_email }}
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="img__section" >
+                                            <a href="https://www.google.com/maps/place/%D8%B4%D8%B1%DA%A9%D8%AA+%D8%AE%D8%AF%D9%85%D8%A7%D8%AA+%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C+%D8%B2%D8%B1%D8%A7%D9%81%D8%B4%D8%A7%D9%86+%D8%B3%DB%8C%D8%B1%E2%80%AD/@35.723606,51.4328561,14.02z/data=!4m5!3m4!1s0x0:0x935bf4243212f145!8m2!3d35.7229198!4d51.4453375">
+                                                <img src="{% static 'bilit360/img/map-zartour.png' %}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="agance__cantact__us ">
+                                        <div class="form__items">
+                                            {% if is_post_back %}
+                                                <div style="color:red;">پیام شما ارسال شد</div>
+                                            {% endif %}
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <div class="input__items">
+                                                    <div class="input__item">
+                                                        <span>نام</span>
+                                                        <input type="text" name="name" oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="this.setCustomValidity('')"  required>
+                                                    </div>
+                                                    <div class="input__item">
+                                                        <span> تلفن</span>
+                                                        <input type="text" name="phone" oninvalid="this.setCustomValidity('لطفا شماره تلفن خود را وارد کنید')" oninput="this.setCustomValidity('')" required>
+                                                    </div>
+                                                    <div class="input__item desc">
+                                                        <span>موضوع</span>
+                                                        <input type="text" name="subject" id="">
+                                                    </div>
+                                                </div>
+                                                <div class="input__items">
+                                                    <div class="cheakboxes">
+                                                        <input type="checkbox" id="shekayat" name="feedback_type_shekayat">
+                                                        <label for="shekayat" class="label__red">شکایت</label>
+                                                    </div>
+                                                    <div class="cheakboxes">
+                                                        <input type="checkbox" id="offer" name="feedback_type_enteghad">
+                                                        <label for="offer" class="label__green">انتقاد</label>
+                                                    </div>
+
+                                                    <div class="cheakboxes">
+                                                        <input type="checkbox" id="regular__massage" name="feedback_type_pishnahad">
+                                                        <label for="regular__massage" class="label__black">پیشنهاد</label>
+                                                    </div>
+                                                </div>
+                                                <textarea class="w-100" placeholder="ارتباط با ما" name="content" id="" cols="30"
+                                                    rows="10">
+
+                                                 </textarea>
+                                                <div class="file_upload__submit__form">
+                                                    <div class="file__upload">
+                                                        <input class="d-none" id="fileinput" type="file" name="uploadfile"
+                                                            value="Browse" placeholder="sfs">
+
+                                                    </div>
+                                                    <button type="submit">ثبت و ارسال پیام</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="agance__about__us">
+                                        <h5 class="title">
+                                            درباره ما
+                                        </h5>
+                                        <p>{{ settings.long_descriptioon|safe }}</p>
+                                        <div class="license">
+                                            <h5 class="license__title">
+                                                مجوز ها
+                                            </h5>
+
+                                            <div class="license__img">
+                                                <div class="right">
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="left">
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                    <div class="img">
+                                                        <img src="{% static 'bilit360/img/volkswagen-t1-dribbble-800-600 copy 7.png' %}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+        function birthdaydatepicker() {
+            $(".datetime").persianDatepicker({
+                initialValueType: 'gregorian',
+                "inline": false,
+                "format": "l",
+                "viewMode": "day",
+                "initialValue": false,
+                "position": "auto",
+                "altFormat": "lll",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": false,
+                "calendarType": "persian",
+                "inputDelay": 800,
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": true,
+                        "leapYearMode": "algorithmic"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": true
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+
+        }
+        birthdaydatepicker();
+    </script>
+
+    <script type="text/javascript">
+        var clock = $('.clock__time').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#falseinput').click(function () {
+                $("#fileinput").click();
+            });
+        });
+        $('#fileinput').change(function () {
+            $('#selected_filename').text($('#fileinput]')[0].files[0].name);
+        });
+    </script>
+{% endblock %}

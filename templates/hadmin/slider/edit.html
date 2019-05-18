@@ -1,0 +1,75 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+ویرایش اسلایدر
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن اسلایدر</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید اسلایدر های سایت را ویرایش کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="caption">عنوان اسلایدر
+                  </label>
+                  <input type="text" id="caption" name="caption" value="{{ slider.caption }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان" data-original-title="" title="">
+                </div>
+                  <div class="form-group">
+                  <label for="description">متن اسلایدر
+                  </label>
+                  <input type="text" id="description" name="description" value="{{ slider.description }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="متن" data-original-title="" title="">
+                </div>
+                  <div class="form-group">
+                  <label for="order_no">شماره ترتیبی اسلایدر
+                  </label>
+                  <input type="number" id="order_no" name="order_no" value="{{ slider.order_no }}" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره ترتیبی" data-original-title="" title="">
+                </div>
+
+                  <div class="form-group">
+                  <label for="image">تصویر اسلایدر
+                  </label>
+                      {% if slider.image %}
+                      <img src="{{ slider.image.url }}" width="500px">
+                      {% endif %}
+                  <input type="file" id="image" name="image" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="تصویر " data-original-title="" title="">
+                </div>
+
+              </div>
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary" value=" ذخیره">
+              <i class="icon-check2"></i>ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

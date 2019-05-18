@@ -1,0 +1,103 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست سفارشات
+{% endblock %}
+{% block list %}
+
+
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header bg-cyan bg-lighten-3">
+      <h4 class="card-title" id="basic-layout-tooltip">مدیریت سفارشات</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+        <div class="card-text">
+          <p>در این صفحه میتوانید کلیه صورتحسابهای خود را بررسی کنید.</p>
+        </div>
+          <div class="card-text topnav">
+           <input type="text" placeholder="جستجو.." style="padding: 6px;margin-top: 8px; font-size: 17px;border: none;">
+              <button type="submit" style="border: none;position: relative;margin-right: -34px;padding: 7px;top:3px;"><i class="icon-search font-medium-3"></i></button>
+              <p style="font-size: 12px">0 رکورد یافت شد, صفحه 1 از 1</p>
+        </div>
+          <div class="card-body collapse in">
+
+							<div class="table-responsive ">
+								<table class="table font-small-3 table-striped">
+									<thead class="bg-grey bg-lighten-4">
+										<tr>
+											<th>کالاها/سرویس ها </th>
+											<th>قیمت</th>
+											<th>دوره صورتحساب</th>
+											<th>زمان ثبت سفارش</th>
+                                          <th>کاربر</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="bg-light-green bg-lighten-4">
+											<td><a href="#">هیچ رکوردی پیدا نشد</a></td>
+											<td> </td>
+											<td></td>
+											<td></td>
+                                            <td></td>
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+						</div>
+          <div class="row">
+                <div class="col-lg-2">
+                    <label> تعداد در صفحه:</label>
+                </div>
+                <div class="col-lg-2">
+
+                    <div class="form-group">
+
+                        <select id="issueinput8" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="" data-original-title="" title="">
+                            <option value="low">10</option>
+                            <option value="medium">25</option>
+                            <option value="high">50</option>
+                            <option value="high">100</option>
+                            <option value="high">نامحدود</option>
+
+                        </select>
+                    </div>
+                </div>
+              <div class="col-lg-4">
+                  <div class="">
+            <button type="button" class="btn btn-warning mr-1">
+                <i class="icon-arrow-circle-right font-medium-3" style="vertical-align: middle;"></i>
+              صفحه قبل
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <i class="icon-arrow-circle-left font-medium-3" style="vertical-align: middle;"></i>
+              صفحه بعد
+
+            </button>
+          </div>
+              </div>
+
+            </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}
+

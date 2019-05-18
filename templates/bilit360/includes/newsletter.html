@@ -1,0 +1,13 @@
+{% load staticfiles %}
+<div class="newsteller">
+    <img src="{% static 'bilit360/img/eggs.png' %}" alt="">
+      <div class="content__box">
+        <h4>برای شرکت در قرعه کشی ماهانه زرافشان سیر شماره همراه خود را وارد نمایید.</h4>
+        <form action="{% url 'users:subscribe' %}" method="POST" >
+            {% csrf_token %}
+          <img src="{% static 'bilit360/img/smartphone.svg' %}" alt="">
+          <input type="text" placeholder="شماره همراه خود را وارد نمائید" name="mobile">
+          <button type="submit">ثبت نام</button>
+        </form>
+      </div>
+  </div>

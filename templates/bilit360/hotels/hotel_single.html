@@ -1,0 +1,300 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+   هتل ها | {{ hotel.HotelName }} {% if hotel.HotelEnName %} - {{ hotel.HotelEnName }} {% endif %}
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="hotel__single">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <h5>معرفی هتل </h5>
+                            <span>
+                                جستجوی هتل ها
+                            </span>
+                            <a href="">بازگشت به جستجوی هتل ها</a>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="hotel__img">
+                                {% if hotel.image %}
+                                    <img src="{{ hotel.image.url }}" alt="{{ hotel.HotelName }}">
+                                {% endif %}
+                            </div>
+                            <div class="hotel__details">
+                                <div class="hotel__name">
+                                    <h5>
+                                        هتل : {{ hotel.HotelName }}
+                                    </h5>
+                                    {% if hotel.HotelEnName %}
+                                        <h6>
+                                            NAME :
+                                            <span style="color: white;">{{ hotel.HotelEnName }}</span>
+                                        </h6>
+                                    {% endif %}
+                                </div>
+                                <div class="hotel__specific">
+                                    <div class="item">
+{#                                        <span>تعداد طبقه :</span>#}
+{#                                        <small>6</small>#}
+                                    </div>
+                                    <div class="item">
+{#                                        <img class="img__rating" src="{% static 'bilit360/img/tripadvisor-icon.png' %}" alt="">#}
+{#                                        <small> 5.5/10</small>#}
+                                    </div>
+                                    <div class="item">
+                                        <span>درجه  :</span>
+                                        <div class="rating">
+                                                    {% if hotel.HotelStar == 0 %}
+                                                        هتل آپارتمان
+                                                    {% elif hotel.HotelStar == 1 %}
+                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                                                    {% elif hotel.HotelStar == 2 %}
+                                                      <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                                                    {% elif hotel.HotelStar == 3 %}
+                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                                                    {% elif hotel.HotelStar == 4 %}
+                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                                                    {% elif hotel.HotelStar == 5 %}
+                                                        <img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}"><img src="{% static 'bilit360/img/star.svg' %}" alt="{{ hotel.HotelStar|to_price }}">
+                                                    {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="hotel__single__content">
+                            <div class="intro">
+                                <div class="slide">
+                                    {% for image in hotel.hotelimage_set.all %}
+                                        <div class="hotel__img" id="">
+                                            <img src="{{ image.image.url }}" alt="">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <span class="arrow__right">
+                                        <
+                                    </span>
+                                    <span class="arrow__left">
+                                        > 
+                                        </span>
+                                <div class="thumb__img">
+                                    <div class="thumb__item">
+                                    {% for image in hotel.hotelimage_set.all %}
+                                        <div class="thumb">
+                                            <img src="{{ image.image.url }}" alt="">
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="desc">
+                                    <p>
+                                        {{ hotel.HotelDescription|safe }}
+                                    </p>
+{#                                    <div class="video">#}
+{#                                        <video width="320" height="240" controls poster="">#}
+{#                                            <source src="video/test.mp4" type="video/mp4">#}
+{#                                            Your browser does not support the video tag.#}
+{#                                        </video>#}
+{#                                        <video src="">#}
+{#                                        </video>#}
+{#                                        <span class="name">معرفی اینه هتل</span>#}
+{#                                        <span class="video__creator">تهیه کننده : امیر مهرابی</span>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="hotel__possibilities">
+                                    <h6>امکانات موجود در هتل</h6>
+                                    <div class="possibilities__items">
+                                        {% for option in hotel.options.all %}
+                                            <span>{{ option.name }}</span>
+                                            <small>/</small>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+{#                                <div class="comment__input">#}
+{#                                    <form action="">#}
+{#                                        <div class="user__info">#}
+{#                                            <input type="text" placeholder="نام و نام خانوادگی">#}
+{#                                            <input type="text" placeholder=" ایمیل   ">#}
+{#                                            <textarea class="w-100" name="" id="" cols="30" rows="10" placeholder="تجربه شما "></textarea>#}
+{#                                        </div>#}
+{#                                        <button type="submit">ثبت نظر</button>#}
+{#                                    </form>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+{#                        <div class="comment__review">#}
+{#                            <span class="arrow__right">#}
+{#                                <#}
+{#                            </span>#}
+{#                            <span class="arrow__left">#}
+{#                                > #}
+{#                                </span>#}
+{#                            <div class="slide comment__review__slider">#}
+{#                                <div class="user__comment">#}
+{#                                    <div class="user__img">#}
+{#                                        <img src="{% static 'bilit360/img/blurred-hotel-reception_1203-1411.png' %}" alt="">#}
+{#                                    </div>#}
+{#                                    <h5>رضا صالحی </h5>#}
+{#                                    <p>از وقتی که وارد این هتلی شدیم برخورد کارکنان این هتل با ما عالی بود و ساعت رفت#}
+{#                                        آمد و#}
+{#                                        همچنان امکنات این هتل بسیار عالی بود و دوست دارم دوباره سفر کنم و این هتل رو#}
+{#                                        تجربه#}
+{#                                        کنم</p>#}
+{#                                    <h5 class="mt-3 mb-2" >من به این هتل نمره 8 از 10 میدهم</h5>#}
+{#                                    <small>تعداد <strong>8</strong> نظر برای این هتل صبت شده</small>#}
+{#                                </div>#}
+{#                                <div class="user__comment">#}
+{#                                        <div class="user__img">#}
+{#                                            <img src="{% static 'bilit360/img/blurred-hotel-reception_1203-1411.png' %}" alt="">#}
+{#                                        </div>#}
+{#                                        <h5>رضا صالحی </h5>#}
+{#                                        <p>از وقتی که وارد این هتلی شدیم برخورد کارکنان این هتل با ما عالی بود و ساعت رفت#}
+{#                                            آمد و#}
+{#                                            همچنان امکنات این هتل بسیار عالی بود و دوست دارم دوباره سفر کنم و این هتل رو#}
+{#                                            تجربه#}
+{#                                            کنم</p>#}
+{#                                        <h5 class="mt-3 mb-2" >من به این هتل نمره 8 از 10 میدهم</h5>#}
+{#                                        <small>تعداد <strong>8</strong> نظر برای این هتل صبت شده</small>#}
+{#                                    </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'bilit360/lib/jquery-3.3.1/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/slick-1.8.1/slick/slick.js' %}"></script>
+    <script src="{% static 'bilit360/lib/bootstrap-4.1.3/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/FlipClock-master/compiled/flipclock.min.js' %}"></script>
+    <script src="{% static 'bilit360/js/custom.js' %}"></script>
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+        $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            asNavFor: '.hotel__single .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item'
+        });
+
+        $('.hotel__single .content .search__list__content .hotel__single__content .intro .arrow__left').click(function () {
+    $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick('slickPrev');
+});
+
+$(' .hotel__single .content .search__list__content .hotel__single__content .intro .arrow__right').click(function () {
+    $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick('slickNext');
+});
+
+        $('.hotel__single .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item').slick({
+            slidesToShow: 10,
+            slidesToScroll: 1,
+            asNavFor: '.hotel__single .content .search__list__content .hotel__single__content .intro .slide',
+            // dots: true,
+            centerMode: true,
+            focusOnSelect: true,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 8,
+
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 6,
+
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4,
+
+                    }
+                }
+                ,
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+
+                    }
+                }
+                ,
+                {
+                    breakpoint: 425,
+                    settings: {
+                        slidesToShow: 2,
+
+                    }
+                }
+                ,
+                {
+                    breakpoint: 375,
+                    settings: {
+                        slidesToShow: 1,
+
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+        $('.hotel__single  .comment__review__slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            rtl: true
+        });
+
+
+   
+$('.hotel__single .content .search__list__content .comment__review .arrow__left').click(function () {
+    $('.hotel__single  .comment__review__slider').slick('slickPrev');
+});
+
+$(' .hotel__single .content .search__list__content .comment__review .arrow__right').click(function () {
+    $('.hotel__single  .comment__review__slider').slick('slickNext');
+});
+    </script>
+    <script>
+        function myMap() {
+        var mapProp= {
+          center:new google.maps.LatLng(51.508742,-0.120850),
+          zoom:5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        }
+        </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+{% endblock %}

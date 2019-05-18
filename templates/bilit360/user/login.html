@@ -1,0 +1,330 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% block title %}
+    ورود / عضویت
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+       <div class="page__13">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                                مشاهده مجله گردشگری
+                            </span>
+                            <div class="clock__time"></div>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <h5>
+                                    شرکت خدمات مسافرت هوائی و گردشگری زرافشان سیر
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <h5>
+                                        ورود به پنل کاربری
+                                    </h5>
+                                    <!-- <a href=""></a> -->
+                                </div>
+                            </div>
+                           <div class="login__register">
+                               <div class="login">
+                                   <div class="login__content">
+                                       <span>وارد شوید</span>
+                                       <img src="{% static 'bilit360/img/verification.svg' %}" alt="">
+                                        {% if NOT_REGISTERED_ERROR %}
+                                            <p style="color:red;">شما هنوز ثبت نام نکرده اید.</p>
+                                       {% endif %}
+                                       <p style="line-height:inherit;font-size: inherit;">    از طریق این فرم میتوانید وارد سایت شوید</p>
+                                       <form action="{% url 'users:login' %}" method="POST" >
+                                           {% csrf_token %}
+                                           <input type="text" placeholder="شماره همراه خود را وارد نمائید"  name="mobile" oninvalid="this.setCustomValidity('لطفا شماره همراه خود را وارد کنید')" oninput="this.setCustomValidity('')"  required>
+                                           <input type="submit" value="تایید"></input>
+                                       </form>
+                                   </div>
+                               </div>
+                               <div class="register">
+                                    <div class="register__content">
+                                        <span style="margin-bottom: 0;">ثبت نام به عنوان کاربر معمولی</span>
+                                        <img src="{% static 'bilit360/img/forward.png' %}" style="height: 97px;width: 100px;margin-bottom: 15px;">
+                                        <p style="line-height:inherit;font-size: inherit;">درصورتی که هنوز در سایت ثبت نام نکرده اید از اینجا ثبت نام کنید</p>
+                                        <form action="{% url 'users:register' %}" method="POST" style="border-top:1px solid #ff313d;padding-top: 1.875rem;" >
+                                            {% csrf_token %}
+                                            <input type="text" placeholder="شماره همراه خود را وارد نمائید"  name="mobile" oninvalid="this.setCustomValidity('لطفا شماره همراه خود را وارد کنید')" oninput="this.setCustomValidity('')"  required>
+                                            <input type="text" placeholder=" نام"  name="first_name" oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="this.setCustomValidity('')"  required>
+                                            <input type="text" placeholder="نام خانوادگی"  name="last_name" oninvalid="this.setCustomValidity('لطفا نام خانوادگی خود را وارد کنید')" oninput="this.setCustomValidity('')"  required>
+                                            <button type="submit">تائید</button>
+                                        </form>
+                                  </div>
+                               </div>
+                           </div>
+                           <div class="divider"></div>
+                           <div class="Register__as__a__counterworker">
+                               <h5>
+                                   ورود اطلاعات مدیرعامل آژانس
+                               </h5>
+                               <div class="Register__counterworker__content">
+                                   <img src="{% static 'bilit360/img/management.svg' %}" alt="">
+                                   <form action="">
+                                       <input type="text" placeholder="نام " >
+                                       <input type="text" placeholder="نام خانوادگی" >
+                                       <input type="text" placeholder="ایمیل " >
+                                       <input type="text" placeholder="موبایل " >
+                                       <input type="text" placeholder="تلفن  " >
+                                       <input type="text" placeholder=" فکس  " >
+                                      <div class="btn">
+                                            <button>
+                                                    تائید
+                                          </button>
+                                      </div>
+                                   </form>
+                               </div>
+                           </div>
+                           <div class="divider"></div>
+                            <div class="Register__as__a__agancy">
+                                <h5>
+                                     ورود اطلاعات آژانس
+                                </h5>
+                                <div class="Register__agancy__content">
+                                    <img src="{% static 'bilit360/img/folder.svg' %}" alt="">
+                                    <form action="">
+                                        <input type="text" class="input__text"  placeholder="نام شرکت" >
+                                        <input type="text" class="input__text"  placeholder="تلفن" >
+                                        <input type="text" class="input__text"  placeholder="موبایل" >
+                                        <input type="text" class="input__text"  placeholder="کدپستی" >
+                                        <div class="cheak__box">
+                                            <span>مجوز ها</span>
+                                            <div class="item">
+                                                    <input type="checkbox"><label for="">الف</label>
+                                            </div>
+                                            <div class="item">
+                                                    <input type="checkbox"><label for="">ب</label>
+                                            </div>
+                                            <div class="item">
+                                                    <input type="checkbox"><label for="">پ</label>
+                                            </div>
+                                            <div class="item">
+                                                    <input type="checkbox"><label for="">قطار</label>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="input__text"  placeholder="کشور" >
+                                        <input type="text" class="input__text"  placeholder="شهر" >
+                                        <input type="text" class="input__text"  placeholder="تعداد پرسنل" >
+                                        <input type="text" class="input__text"  placeholder="وبسایت" >
+                                        <input type="text" class="input__text"  placeholder="کداقتصادی" >
+                                        <input type="text" class="input__text"  placeholder="شناسه ملی" >
+                                        <input type="text" class="input__text"  placeholder=" آدرس" >
+                                            <div class="uplouder">
+                                                    <div class="file__upload">
+                                                            <input class="d-none" id="fileinput6" type="file" name="uploadfile"
+                                                                value="Browse" placeholder="sfs">
+                                                            <button id="falseinput6" type="button">
+                                                                <img src="{% static 'bilit360/img/upload copy 4.png' %}" alt="">
+                                                            </button>
+                                                            <span>آپلود مدرک </span>
+                                                     </div>
+                                                     <div class="file__upload">
+                                                            <input class="d-none" id="fileinput7" type="file" name="uploadfile"
+                                                                value="Browse" placeholder="sfs">
+                                                            <button id="falseinput7" type="button">
+                                                                <img src="{% static 'bilit360/img/upload copy 4.png' %}" alt="">
+                                                            </button>
+                                                            <span>آپلود مدرک </span>
+                                                     </div>
+                                                     <div class="cheak__box non__bg">
+                                                            <!-- <span>مجوز ها</span> -->
+                                                            <div class="item">
+                                                                    <input type="checkbox">
+                                                                    <label for="">
+                                                                        متن شرایط و قوانین این سایت را خوانده و با آن موافقت کامل دارم.
+                                                                    </label>
+                                                                    <a href="">دانلود توافقنامه <img src="{% static 'bilit360/img/download-icon.png' %}" alt=""> </a>
+                                                            </div>
+                                                     </div>
+                                                     <div class="price__bank">
+                                                     </div>
+                                            </div>
+                                           <div class="btn">
+                                                 <button>
+                                                         تائید
+                                               </button>
+                                           </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="gift__table">
+{#                                <div class="item">#}
+{#                                    <img src="{% static 'bilit360/img/banking.png' %}" alt="">#}
+{#                                    <h6>جدول جوایز</h6>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quick__access__item">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+        function birthdaydatepicker() {
+            $(".datetime").persianDatepicker({
+                initialValueType: 'gregorian',
+                "inline": false,
+                "format": "l",
+                "viewMode": "day",
+                "initialValue": false,
+                "position": "auto",
+                "altFormat": "lll",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": false,
+                "calendarType": "persian",
+                "inputDelay": 800,
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": true,
+                        "leapYearMode": "algorithmic"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": true
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+
+        }
+        birthdaydatepicker();
+    </script>
+    <script type="text/javascript">
+        var clock = $('.clock__time').FlipClock({
+            clockFace: 'TwentyFourHourClock'
+        });
+    </script>
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script>
+        $(document).ready(function () {
+            $('#falseinput6').click(function () {
+                $("#fileinput6").click();
+            });
+        });
+        $('#fileinput6').change(function () {
+            $('#selected_filename').text($('#fileinput6]')[0].files[0].name);
+        });
+        $(document).ready(function () {
+            $('#falseinput7').click(function () {
+                $("#fileinput7").click();
+            });
+        });
+        $('#fileinput7').change(function () {
+            $('#selected_filename').text($('#fileinput7]')[0].files[0].name);
+        });
+    </script>
+{% endblock %}

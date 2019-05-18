@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<div class="authentication">
+    {% if user.is_authenticated %}
+        <img src="{% static 'bilit360/img/user-silhouettered-red.svg' %}" alt="">
+       <span > <a href="{% url 'userpanel:profile' %}" style="color: #ff3744;"> پروفایل من</a> </span><span style="color: darkgrey;">&nbsp;/&nbsp; </span>  <a href="{% url 'users:logout' %}">خروج </a>
+    {% else %}
+        <img src="{% static 'bilit360/img/user-silhouette.svg' %}" alt="">
+        <a href="{% url 'users:login' %}">وارد شوید</a> <a href="#">/</a>  <a href="{% url 'users:login' %}">ثبت نام</a>
+    {% endif %}
+</div>

@@ -1,0 +1,22 @@
+.no-pad{padding:0;}
+.no-mar{margin:0;}
+.auto-mar{margin:auto;}
+.full-w{width: 100%;}
+.full-h{height: 100%;}
+.bgc-black{background-color:black;}
+.bgc-white{background-color:white;}
+.bgc-eee{background-color:#eee;}
+.col-black{color:black;}
+.col-white{color:white;}
+.circle{border-radius: 50%;}
+.tr01{transition: all ease-in 0.1s;}
+.tr02{transition: all ease-in 0.2s;}
+.tr03{transition: all ease-in 0.3s;}
+.tr04{transition: all ease-in 0.4s;}
+.tr05{transition: all ease-in 0.5s;}
+.fl{float: left;}
+.fr{float: right;}
+.bg-trans{background-color: transparent;}
+.no-border{border: none;}
+.pos-rel{position: relative;}
+.ov-h{overflow: hidden;}

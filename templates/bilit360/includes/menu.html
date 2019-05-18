@@ -1,0 +1,138 @@
+{% load staticfiles %}
+{% load navbar_tags %}
+{% load settings_tags %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    /* Style the search field */
+    form.example input[type=text] {
+      padding: 10px;
+      border: 1px solid grey;
+      float: right;
+      width: 64%;
+      background: #f1f1f1;
+        font-size: smaller;
+        height: 28px;
+
+          border-top-right-radius: .3125rem;
+  border-bottom-right-radius: .3125rem;
+    }
+
+    /* Style the submit button */
+    form.example button {
+      float: right;
+      width: 20%;
+      padding: 8px;
+      color: white;
+        background-color: #ff3744;
+          text-align: center;
+
+      border: 1px solid grey;
+      border-left: none; /* Prevent double borders */
+      cursor: pointer;
+        height: 28px;
+                font-size: smaller;
+  border-top-left-radius: .3125rem;
+  border-bottom-left-radius: .3125rem;
+
+
+    }
+
+    form.example button:hover {
+      color: black;
+    }
+
+    /* Clear floats */
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+</style>
+
+
+
+  <div class="menu">
+        <nav>
+          <button class="mobile__menu">
+              <img src="{% static 'bilit360/img/menu.svg' %}" alt="">
+            منوی سایت
+
+          </button>
+          <ul>
+                <li><a href="{% url 'home' %}"> خانه </a></li>
+                <li><a href="{% url 'tickets:show_calender' %}">بلیط داخلی </a></li>
+                <li><a href="{% url 'tickets:show_calender' %}">بلیط خارجی </a></li>
+                <li><a href="{% url 'hotels:hotels' %}">هتل</a></li>
+                <li><a href="{% url 'tours:tours' %}">تور مسافرتی</a></li>
+{#                <li><a href="{% url 'tickets:show_calender' %}">بیمه</a></li>#}
+{#                <li><a href="{% url 'tickets:show_calender' %}">قطار</a></li>#}
+                <li><a href="{% url 'cms:blog_list' %}">وبلاگ</a></li>
+                <li><a href="{% url 'cms:contact' %}">درباره ما</a></li>
+                <li><a href="{% url 'cms:contact' %}">تماس با ما</a></li>
+
+          </ul>
+          <div class="btns">
+
+              <div id="tracking_form" style="display: none;margin-left: -20px;">
+                <form method="post" action="" class="example" >
+                    <input type="text" placeholder="کد پیگیری..." name="search" onfocusout="toggleTracking();return false;" id="tracking_code">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+              </div>
+              <a href="#" id="tracking_button" class="tracking" onclick="toggleTracking();return false;"><img src="{% static 'bilit360/img/edit.svg' %}" alt="">پیگیری رزرو  </a>
+            {% get_settings  as settings %}
+              <div></div>
+            <a href="#" class="call" ><img src="{% static 'bilit360/img/call.svg' %}" alt=""> <span >{{ settings.header_phone }}</span> </a>
+          </div>
+        </nav>
+        <div class="menu__bottom">
+          <div class="notification">
+          <a href="{% url 'cms:blog_list' %}" style="color: whitesmoke">
+            <span class="title">
+                    وبلاگ
+            </span>
+          </a>
+
+            <ul>
+            <marquee direction="right" style="margin-left: 10px;margin-right: -6px;">
+                {% get_last_n_article_list 10 as articles_10 %}
+                {% for article in articles_10 %}
+                    <a href="{% url 'cms:blog_item' article.id %}" style="color: yellow;">{{ article.title }}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endfor %}
+            </marquee>
+            </ul>
+
+          </div>
+          <div class="date" id="date" style="white-space: nowrap;">
+
+          </div>
+        </div>
+
+      </div>
+
+<script>
+    function toggleTracking() {
+        var tracking_form = document.getElementById("tracking_form");
+        var tracking_button = document.getElementById('tracking_button');
+        var tracking_code = document.getElementById('tracking_code');
+
+        if (tracking_form.style.display === "none") {
+            tracking_form.style.display = "block";
+            tracking_button.style.display = "none";
+            tracking_code.focus();
+        } else {
+            tracking_form.style.display = "none";
+            tracking_button.style.display = "block";
+        }
+    }
+</script>
+
+  <script src="{% static 'bilit360/lib/persian-date/dist/persian-date.min.js' %}"></script>
+<script type="text/javascript">
+    var now =  new Date();
+    var now_shamsi = new persianDate();
+    var date_div = document.getElementById('date');
+    date_div.innerText=now_shamsi.format("dddd، DD MMMM YYYY، ساعت HH:mm");
+</script>

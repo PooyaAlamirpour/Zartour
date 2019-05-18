@@ -1,0 +1,95 @@
+.menu{}
+.menu>ul{}
+.menu>ul li{
+	height: 75px;
+	display: inline-block;
+	font-size: 15px;
+	margin: 0 15px;
+	cursor: pointer;
+	line-height: 90px;
+	position: relative;
+	transition: all 0.3s;
+}
+.header-top.fix .menu>ul li{
+	height: 50px;
+	font-size: 13px;
+	margin: 0 20px;
+	color: black;
+	line-height: 50px;
+}
+.menu>ul li:before{
+	content: "";
+	opacity: 0;
+	width: 100%;
+	height: 2px;
+	position: absolute;
+	bottom: 0;
+	border-bottom: 2px solid;
+	transition: all 0.2s;
+}
+.menu-button{
+	width: 50px;
+	display: none;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	padding: 2px 0;
+}
+.fix .menu-button{
+	width: 45px;
+	top: 7px;
+}
+.menu-button>div{
+	width: 80%;
+	height: 3px;
+	background-color: white;
+	margin: 6px auto;
+}
+.fix .menu-button>div{
+	height: 2px;
+	margin: 6px auto;
+	background-color: #099;
+}
+@media(min-width: 992px){
+	.menu>ul li:hover::before{
+		opacity: 1;
+	}
+}
+@media(max-width: 1199px){
+	.menu>ul li{
+		margin: 0 10px;
+		font-size: 14px;
+	}
+}
+@media(max-width: 991px){
+	.menu{
+		padding: 0;
+	}
+	.menu>ul{
+		width: 300px;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		right: -300px;
+		padding: 60px 0 0 0;
+		margin: 0;
+		background-color: #033;
+		transition: all 0.3s;
+		z-index: 1;
+	}
+	.menu-button{
+		display: unset;
+		z-index: 2;
+	}
+	.menu>ul li{
+		height: 50px;
+		display: block;
+		margin-top: 10px;
+		text-align: center;
+		line-height: 40px;
+		border-bottom: 1px solid #777;
+	}
+	.header-top.fix .menu>ul li{
+		color: white;
+	}
+}

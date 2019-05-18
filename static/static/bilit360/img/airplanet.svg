@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="211.242" height="25.319" viewBox="0 0 211.242 25.319">
+  <g id="airplanet" transform="translate(-391.638 -906)">
+    <path id="Shape_6" data-name="Shape 6" d="M408.708,924.8l-3.058-6.649,3.058-6.649-17.07,6.649Z" transform="translate(0 0.494)" fill="#9d9d9d"/>
+    <path id="Ellipse_1" data-name="Ellipse 1" d="M2.5,0A2.5,2.5,0,1,1,0,2.5,2.5,2.5,0,0,1,2.5,0Z" transform="translate(597.88 916)" fill="#959595"/>
+    <path id="Shape_5" data-name="Shape 5" d="M0,0H192.14V.7H0Z" transform="translate(405.74 918)" fill="#252525"/>
+    <g id="flights" transform="translate(520.079 944.069) rotate(180)">
+      <path id="Path_4" data-name="Path 4" d="M28.5,25.409a2.124,2.124,0,0,0-2.138-2H18.528L11.4,12.75H8.551l3.563,10.661H4.276L2.138,20.745H0l1.425,4.664L0,30.074H2.138l2.138-2.665h7.839L8.551,38.069H11.4l7.126-10.661h7.839A2.124,2.124,0,0,0,28.5,25.409Z"/>
+    </g>
+  </g>
+</svg>

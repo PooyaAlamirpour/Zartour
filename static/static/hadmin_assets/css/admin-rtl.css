@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Yekan';
+  src: url("../../hadmin_app_assets/fonts/BYekan/BYekan.eot");
+  src: url("../../hadmin_app_assets/fonts/BYekan/BYekan.eot?#") format("eot"), url("../../hadmin_app_assets/fonts/BYekan/BYekan.woff") format("woff"), url("../../hadmin_app_assets/fonts/BYekan/BYekan.ttf") format("truetype");
+  /* Saf3ΓÇö5, Chrome4+, FF3.5, Opera 10+ */ }
+body {
+  font-family: "Yekan", Tahoma;
+  font-size: 1rem; }
+
+.jsgrid-pager {
+  text-align: center; }
+
+.jsgrid-pager span {
+  font-size: 1rem;
+  display: inline-block; }
+
+form label {
+  font-size: 1rem; }
+
+form .skin fieldset label {
+  font-size: 0.8rem; }
+
+#ui-datepicker-div {
+  z-index: 50; }
+
+.header-navbar .navbar-container .dropdown-menu-media .list-group .list-group-item:hover{
+  background-color:#f3f3f3;
+}
+/*# sourceMappingURL=admin-rtl.css.map */

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="aefe47d9-2157-481e-8428-d0ee585264b1" name="ZartourRemoteServer" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="D:\Partition G\All New Age Proj\Ponisha\Reserve\Deployment" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

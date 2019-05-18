@@ -1,0 +1,87 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load staticfiles %}
+{% block title %}
+مشاهده تیکت شماره {{ticket.id}}
+{% endblock %}
+{% block list %}
+
+
+<section id="timeline" class="timeline-center timeline-wrapper">
+    <h3 class="page-title text-xs-center">{{ticket.subject}}</h3>
+
+    <ul class="timeline">
+      <li class="timeline-line"></li>
+      {% for message in messages %}
+      <li class="timeline-item ticket-{% if message.author.is_admin %}admin{% else %}user{% endif %}"><!--ticket-user-->
+      <div class="timeline-badge">
+        <span class="bg-{% if message.author.is_admin %}grey{% else %}red{% endif %} bg-lighten-1" ><i class="icon-user"></i></span>
+      </div>
+      <div class="timeline-card card border-grey border-lighten-2">
+        <div class="card-header ">
+        <h6 class="card-title pull-right font-medium-1"><a href="#" >{{message.author.user.first_name}} {{message.author.user.last_name}}</a></h6>
+        <p class="card-subtitle text-muted mb-0 pull-left ">
+          <span class="font-small-3 {% if message.author.is_admin %}{% else %}text-danger{% endif %} valign-text-bottom">{{message.date}}</span>
+        </p>
+        <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+
+        </div>
+        <div class="card-body collapse in">
+        <div class="card-body collapse in">
+          <div class="card-block">
+          <p class="card-text font-small-3">{{message.text}}</p>
+
+          </div>
+        </div>
+        </div>
+      </div>
+      </li>
+      {% endfor %}
+    
+      <li class="timeline-item block">
+        <div class="col-md-10 offset-md-1">
+        <div class="timeline-badge"><a title="" data-context="inverse" data-container="body" class="border-silc" href="#" data-original-title="block highlight"></a></div>
+        <div class="timeline-card card border-grey border-lighten-2">
+          <div class="card-header">
+          <div class="text-xs-center">
+            <h4 class="text-danger">ارسال پاسخ</h4>
+
+          </div>
+          </div>
+          <div class="card-body collapse in bg-gradient-directional-blue bg-accent-3">
+          <div class="card-block">
+            <form class="form clearfix ticket-form" action="" method="POST" >
+            {% csrf_token %}
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="row clearfix">
+                    <div class="col-md-2">
+                      <label >متن</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <textarea class="form-control" rows="8" name="text" ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-actions center clearfix">
+                  <button type="button" class="btn btn-danger mr-1">
+                    <i class="icon-cross2"></i> کنسل
+                  </button>
+                  <button type="submit" class="btn btn-success">
+                    <i class="icon-check2"></i> ذخیره
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+      </li>
+    </ul>
+  </section>
+
+{% endblock %}

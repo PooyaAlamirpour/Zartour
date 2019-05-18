@@ -1,0 +1,114 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+افزودن مطلب
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن پروژه</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید مطلب جدید به وب سایت اضافه کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="issueinput3">تاریخ انتشار</label>
+                  <input  id="jalali-date2"  class="form-control jalali-date" name="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="تاریخ انتشار مطلب" data-original-title="" title="">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="image">تصویر شاخص مطلب</label>
+                  <fieldset class="form-group" id="article_image">
+                    <label class="custom-file center-block block">
+                      <input type="file" id="image" name="image" class="custom-file-input">
+                      <span class="custom-file-control"></span>
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="image_alt">شرح تصویر</label>
+                  <input type="text" id="article_image_alt" class="form-control" placeholder="شرح تصویر" name="image_alt" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شرح تصویر شاخص؛ برای نمایش به عنوان جایگزین تصویر در صورت لزوم" data-original-title="" title="">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="issueinput1">عنوان مطلب</label>
+              <input type="text" id="issueinput1" class="form-control" placeholder="عنوان" name="title" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان مطلب را در این فیلد وارد کنید" data-original-title="" title="">
+            </div>
+            <!-- Basic CKEditor start -->
+            <section id="multilingual">
+              <div class="row">
+                <div class="col-xs-12">
+                  <textarea name="content" id="ckeditor" cols="30" rows="15" class="ckeditor">
+
+                  </textarea>
+                </div>
+              </div>
+            </section>
+            <!-- Basic CKEditor end -->
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label for="issueinput10">انتخاب تگ ‌های مرتبط</label>
+                  <fieldset class="form-group">
+                    <select class="form-control" name="tags" id="issueinput10" multiple="multiple">
+                     {% for tag in tags %}
+                      <option value="{{ tag.id }}">{{ tag.keyword }}</option>
+                        {% endfor %}
+                    </select>
+                  </fieldset>
+                </div>
+              </div>
+            <!--  <div class="col-md-6">
+                <label >افزودن تگ جدید</label>
+                <div class="form-group">
+                  <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" class="form-control tagsInput" />
+                </div>
+                <p>
+                  با استفاده از کاراکتر کاما تگ‌ها را از هم جدا کنید
+              </div>-->
+            </div>
+
+
+
+
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="icon-check2"></i> ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

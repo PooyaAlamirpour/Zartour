@@ -1,0 +1,439 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+    تورهای مسافرتی
+    {% if city %}
+        {{ city.name }}
+    {% endif %}
+{% endblock %}
+{% block styles %}
+    <style>
+        header{
+            padding-bottom: 0;
+        }
+    </style>
+            <link rel="stylesheet" href="{% static 'bilit360/lib/FlipClock-master/compiled/flipclock.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="tour__search__list">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <h4>
+                                جستجوی تورها
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="" style="width:100px;">
+                            </div>
+                            <div class="items">
+                                {% if city %}
+                            <h5> تورهای   {{ city.name }} </h5>
+                                {% else %}
+                                <h5>همه تورها</h5>
+                                {% endif %}
+                            </div>
+                            <form action="" method="GET">
+                                <div class="search__select">
+                                    <select name="country" id="country" >
+                                        <option value="">کشور مقصد</option>
+                                        {% for country in countries %}
+                                            <option value="{{ country.id }}" class="option__title" {% if city %}{% if city.country_id == country.id %}selected{% endif %}{% endif %}>{{ country.CountryName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <select name="city" id="city">
+                                        <option value="">شهر مقصد</option>
+                                    </select>
+                                    <button type="submit"> جستجو</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                    <a href="" class="title" >تعداد {{ tours.count|to_price }} پکیج برای {% if city %}{{ city.name }}{% else %}شما{% endif %} یافته شد</a>
+                                </div>
+                            </div>
+                            {% for tour in tours %}
+                            <div class="tour__intro noborder">
+                                    <div class="items">
+                                    <a href="{% url 'tours:details' tour.id %}" style="padding-top: 0px;">
+                                        <div class="tour__img">
+                                            {% if tour.image %}
+                                                <img src="{{ tour.image.url }}" alt="{{ tour.title }}">
+                                            {% endif %}
+                                            <a href="{% url 'tours:details' tour.id %}">معرفی تور</a>
+                                            <span style="padding:.2125rem .5375rem;"> {{ tour.title }} </span>
+                                        </div>
+                                    </a>
+                                        <div class="tour__details">
+                                            <div class="detail__header">
+                                                <h6>مبدا : {{ tour.origin.country.CountryName }} / {{ tour.origin.CityName }}</h6>
+                                                <h5>
+                                                    <a href="{% url 'tours:details' tour.id %}" style="color: white;">
+                                                        {{ tour.title }}
+                                                    </a>
+                                                </h5>
+                                                <h6>کشور مقصد : {{ tour.destinations.first.city.country.CountryName }}</h6>
+                                            </div>
+                                            <div class="desc">
+                                                <div class="tour__start__time">
+                                                    <span>
+                                                            تاریخ  حرکت
+                                                    </span>
+                                                    :
+                                                    <small>
+                                                        {% if tour.outband_date %}
+                                                            {{ tour.outband_date|to_jalali_with_month_name }}
+                                                        {% endif %}
+                                                    </small>
+                                                </div>
+
+                                                <div class="tour__start__time">
+                                                    <span style="font-size: 13px;">
+                                                            شروع قیمت
+                                                    </span>
+                                                    :
+                                                    <small style="font-size: 13px;">
+                                                            {{ tour.min_price |to_price }}تومان
+                                                    </small>
+                                                </div>
+                                                <div class="tour__option">
+                                                    {% for dest in tour.destinations.all %}
+                                                        <div class="item">
+                                                            <span class="title" >مقصد</span>
+                                                            <span>{{ dest.city.country.CountryName }} : {{ dest.city.CityName }} </span>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="tour__time__leader">
+                                                    <span>
+                                                            <img src="{{ tour.airline.logo.url }}" style="height: 40px;">
+                                                    </span>
+                                                    <div class="tour__timer">
+                                                        <h6>مدت زمان اعتبار این پکیج:
+                                                            {% if tour.expire_date %}
+                                                                {{ tour.expire_date|to_jalali }}
+                                                            {% endif %}
+                                                        </h6>
+                                                        <div style="width: fit-content;zoom: 0.4;" id="timer_{{ tour.id }}">
+                                                        </div>
+                                                        <div id="state_{{ tour.id }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{% url 'tours:details' tour.id %}" class="tour__link" >
+                                                        مشاهده پکیج
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            {% endfor %}
+                            <div class="list__tags">
+{#                                {% for tag in tags %}#}
+{#                                    <a href="" class="tag__items">#}
+{#                                        <span>X</span>#}
+{#                                        <small>#}
+{#                                            {{ tag.tag }}#}
+{#                                        </small>#}
+{#                                    </a>#}
+{#                                {% endfor %}#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'bilit360/lib/jquery-3.3.1/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/slick-1.8.1/slick/slick.js' %}"></script>
+    <script src="{% static 'bilit360/lib/bootstrap-4.1.3/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/FlipClock-master/compiled/flipclock.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/persian-date/dist/persian-date.min.js' %}"></script>
+    <script src="{% static 'bilit360/lib/persian-datepicker/dist/js/persian-datepicker.min.js' %}"></script>
+    <script src="{% static 'bilit360/js/custom.js' %}"></script>
+    <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+            function birthdaydatepicker(){
+              $(".datetime").persianDatepicker({
+    initialValueType: 'gregorian',
+      "inline": false,
+      "format": "l",
+      "viewMode": "day",
+      "initialValue": false,
+      "position": "auto",
+      "altFormat": "lll",
+      "altField": "#altfieldExample",
+      "onlyTimePicker": false,
+      "onlySelectOnDate": false,
+      "calendarType": "persian",
+      "inputDelay": 800,
+      "observer": false,
+      "calendar": {
+        "persian": {
+          "locale": "fa",
+          "showHint": true,
+          "leapYearMode": "algorithmic"
+        },
+        "gregorian": {
+          "locale": "en",
+          "showHint": false
+        }
+      },
+      "navigator": {
+        "enabled": true,
+        "scroll": {
+          "enabled": true
+        },
+        "text": {
+          "btnNextText": "<",
+          "btnPrevText": ">"
+        }
+      },
+      "toolbox": {
+        "enabled": true,
+        "calendarSwitch": {
+          "enabled": false,
+          "format": "MMMM"
+        },
+        "todayButton": {
+          "enabled": true,
+          "text": {
+            "fa": "امروز",
+            "en": "Today"
+          }
+        },
+        "submitButton": {
+          "enabled": true,
+          "text": {
+            "fa": "تایید",
+            "en": "Submit"
+          }
+        },
+        "text": {
+          "btnToday": "امروز"
+        }
+      },
+      "timePicker": {
+        "enabled": false,
+        "step": 1,
+        "hour": {
+          "enabled": false,
+          "step": null
+        },
+        "minute": {
+          "enabled": false,
+          "step": null
+        },
+        "second": {
+          "enabled": false,
+          "step": null
+        },
+        "meridian": {
+          "enabled": true
+        }
+      },
+      "dayPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY MMMM"
+      },
+      "monthPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "yearPicker": {
+        "enabled": true,
+        "titleFormat": "YYYY"
+      },
+      "responsive": true
+    });
+
+          }
+          birthdaydatepicker();
+    </script>
+        <script>
+        $('.hotels__search__list .content .search__list__content .search__list .hotel__intro').last().addClass(
+            'noborder');
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .slide').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            asNavFor: '.tour__package .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item'
+        });
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .arrow__left').click(function () {
+            $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick(
+                'slickPrev');
+        });
+
+        $(' .tour__package .content .search__list__content .hotel__single__content .intro .arrow__right').click(
+            function () {
+                $('.hotel__single .content .search__list__content .hotel__single__content .intro .slide').slick(
+                    'slickNext');
+            });
+
+        $('.tour__package .content .search__list__content .hotel__single__content .intro .thumb__img .thumb__item').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.hotel__single .content .search__list__content .hotel__single__content .intro .slide',
+            // dots: true,
+            centerMode: true,
+            focusOnSelect: true,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 6,
+
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 5,
+
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4,
+
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+
+                    }
+                },
+                {
+                    breakpoint: 425,
+                    settings: {
+                        slidesToShow: 2,
+
+                    }
+                },
+                {
+                    breakpoint: 375,
+                    settings: {
+                        slidesToShow: 1,
+
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+        $('.hotel__single  .comment__review__slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dot: false,
+            rtl: true
+        });
+        $('.hotel__single .content .search__list__content .comment__review .arrow__left').click(function () {
+            $('.hotel__single  .comment__review__slider').slick('slickPrev');
+        });
+        $(' .hotel__single .content .search__list__content .comment__review .arrow__right').click(function () {
+            $('.hotel__single  .comment__review__slider').slick('slickNext');
+        });
+    </script>
+    <script>
+    function myMap() {
+        var mapProp= {
+          center:new google.maps.LatLng(51.508742,-0.120850),
+          zoom:5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script>
+   $("select[name='country']").change(function(){
+         $('#city').empty().append('<option value="" class="option__title" selected>..................</option>');
+        $.ajax({
+            url: "/master/cities/"+$('#country').val(),
+            type: "get",
+            data: '',
+            success: function(data){
+                $('#city').empty().append('<option value="0" class="option__title" selected>همه شهرها</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    $('#city').append( $('<option class="option__title"></option>').val(item.id).html(item.CityName) );
+                });
+                //$("#city").html(data);
+            }
+        });
+    });
+   </script>
+    <script>
+   {% if city %}
+       fillCities();
+   {% endif %}
+    function fillCities() {
+        $('#city').empty().append('<option value="" class="option__title" selected>..................</option>');
+        $.ajax({
+            url: "/master/cities/"+$('#country').val(),
+            type: "get",
+            data: '',
+            success: function(data){
+                $('#city').empty().append('<option value="0" class="option__title">همه شهرها</option>');
+                $.each(JSON.parse(data), function(i, item) {
+                    if(item.id == {{ city.id }}){
+                        $('#city').append($('<option class="option__title" selected></option>').val(item.id).html(item.CityName));
+
+                    }else {
+                        $('#city').append($('<option class="option__title" ></option>').val(item.id).html(item.CityName));
+                    }
+                });
+                //$("#city").html(data);
+            }
+        });
+    }
+    </script>
+        {% for tour in tours %}
+            <script type="text/javascript">
+                var date = new Date({{ tour.expire_date.year }}, {{ tour.expire_date.month|add:-1 }}, {{ tour.expire_date.day }});
+                var now = new Date();
+                var diff = (date - now)/1000;
+                if (diff>0) {
+                    /*
+                    var clock = $('#timer_{{ tour.id }}').FlipClock(diff,{
+                        clockFace: 'DailyCounter',
+                        countdown: true
+                    });
+                    */
+                }else{
+                    var clock = document.getElementById('timer_{{ tour.id }}');
+                    var state = document.getElementById('state_{{ tour.id }}');
+                    state.style.backgroundColor="red";
+                    state.innerText="منقضی شده"
+                    clock.style.display='none';
+                }
+            </script>
+        {% endfor %}
+{% endblock %}

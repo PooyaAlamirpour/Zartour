@@ -1,0 +1,82 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست اعضا
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">اعضا</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+                <th>شماره </th>
+                <th>نام کاربری</th>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>ایمیل</th>
+                <th>موبایل</th>
+                <th>کد ملی</th>
+                <th>کد پستی</th>
+                <th>تلفن</th>
+                <th>سطح دسترسی</th>
+                <th>وضعیت فعال بودن</th>
+                <th>تاریخ عضویت</th>
+                <th>تاریخ آخرین ورود</th>
+                <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for user in users %}
+                  <tr class="bg-yellow bg-lighten-4">
+                      <td><a href="#">{{user.id}}</a></td>
+                      <td>{{user.username}}</td>
+                      <td>{{user.first_name}}</td>
+                      <td>{{user.last_name}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{% if user.mobile  %}{{user.mobile}}{% endif %}</td>
+                      <td>{{ user.code_meli }}</td>
+                      <td>{{ user.postal_code }}</td>
+                      <td>{{ user.phone }}</td>
+                      <td>{% if user.is_admin %}ادمین{% elif user.is_operator %}اپراتور{% elif user.is_blogger %}محتوانویس{% else %}کاربر عادی{% endif %}</td>
+                      <td>{% if user.user.is_active %}<i class="fa fa-check"></i>{% endif %}</td>
+                      <td class="text-danger text-bold-800">{{user.user.date_joined}}</td>
+                      <td class="text-danger text-bold-800">{{user.user.last_login}}</td>
+                      <td class=" text-md-right">
+                        <a href=""><i class="icon-ios-trash text-danger font-medium-5"></i></a>
+                        <a href=""><i class="icon-eye text-info font-medium-5"></i></a>
+                      </td>
+                  </tr>
+              {% endfor %}
+              <tr>
+                  <td><a class="btn btn-success" href="{% url 'hadmin:users_excel' %}">خروجی اکسل</a> </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

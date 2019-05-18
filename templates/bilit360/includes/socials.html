@@ -1,0 +1,23 @@
+{% load staticfiles %}
+{% load settings_tags %}
+{% get_settings  as settings %}
+<div class="social__network">
+    <div class="content" style="justify-content: center;">
+      <a href="http://instagram.com/{{ settings.instagram_link }}" class="item">
+          صفحه اینستاگرام
+        <img src="{% static 'bilit360/img/instagram.svg' %}" alt="">
+      </a>
+      <a href="http://t.me/{{ settings.telegram_link }}" class="item">
+           کانال تلگرام
+        <img src="{% static 'bilit360/img/telegram.svg' %}" alt="">
+      </a>
+      <a href="mailto:{{ settings.info_email }}" class="item">
+          پست الکترونیکی
+        <img src="{% static 'bilit360/img/gmail.svg' %}" alt="">
+      </a>
+      <a href="tel:02188401717" class="item">
+           تماس تلفنی
+        <img src="{% static 'bilit360/img/telephone-symbol-button.svg' %}" alt="">
+      </a>
+    </div>
+  </div>

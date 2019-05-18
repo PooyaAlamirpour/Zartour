@@ -1,0 +1,27 @@
+@font-face{
+	font-family: 'iransans';
+	src:url('../fonts/iran-sans/iran-sans.eot');
+	src:url('../fonts/iran-sans/iran-sans.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/iran-sans/iran-sans.woff2') format('woff2'),
+		url('../fonts/iran-sans/iran-sans.woff') format('woff'),
+		url('../fonts/iran-sans/iran-sans.ttf') format('truetype'),
+		url('../fonts/iran-sans/iran-sans.svg#svgFontName') format('svg');
+}
+@font-face{
+	font-family: 'dirooz';
+	src:url('../fonts/dirooz.eot');
+	src:url('../fonts/dirooz.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/dirooz.woff2') format('woff2'),
+		url('../fonts/dirooz.woff') format('woff'),
+		url('../fonts/dirooz.ttf') format('truetype'),
+		url('../fonts/dirooz.svg#svgFontName') format('svg');
+}
+@font-face{
+	font-family: 'SignPainter';
+	src:url('../fonts/SignPainter.eot');
+	src:url('../fonts/SignPainter.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/SignPainter.woff2') format('woff2'),
+		url('../fonts/SignPainter.woff') format('woff'),
+		url('../fonts/SignPainter.ttf') format('truetype'),
+		url('../fonts/SignPainter.svg#svgFontName') format('svg');
+}

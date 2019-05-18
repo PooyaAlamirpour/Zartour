@@ -1,0 +1,207 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+ارتباط با ما
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header card-head-inverse bg-danger">
+      <h6 class="card-title">
+        <span class="breadcrumb-item active white">
+    ارتباط با ما</span>
+      </h6>
+      <div class="heading-elements">
+        <ul class="list-inline mb-0">
+          <li><i class="icon-support font-medium-5"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> با ویرایش این قسمت کلیه راه‌های ارتباطی در سایت تغییر پیدا خواهد کرد</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row match-height">
+              <div class="col-md-6">
+                <div class="card box-shadow-0 ">
+                  <div class="card-header card-head-inverse bg-danger bg-lighten-3">
+                    <h6 class="card-title">
+                      <span class="breadcrumb-item active white">
+                  شماره تلفن‌ها</span>
+                    </h6>
+
+                    <div class="heading-elements">
+                      <ul class="list-inline mb-0">
+                        <li><i class="icon-phone font-medium-5"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body collapse in">
+
+                    <div class="table-responsive ">
+                      <table class="table font-small-3 table-striped">
+                        <thead class="bg-grey bg-lighten-1">
+                          <tr>
+                            <th>عنوان</th>
+                            <th>شماره تلفن</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره تلفن ۱ </td>
+                            <td><input type="text" id="phone_number_1" class="form-control"  name="phone_number_1" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره تلفن را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.phone_number_1}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره تلفن ۲ </td>
+                            <td><input type="text" id="phone_number_2" class="form-control" name="phone_number_2" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره تلفن را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.phone_number_2}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره تلفن ۳ </td>
+                            <td><input type="text" id="phone_number_3" class="form-control" name="phone_number_3" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره تلفن را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.phone_number_3}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره تلفن ۴ </td>
+                            <td><input type="text" id="phone_number_4" class="form-control"  name="phone_number_4" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره تلفن را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.phone_number_3}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره فکس  </td>
+                            <td><input type="text" id="fax_number" class="form-control"  name="fax_number" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره فکس را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.fax_number}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>شماره تلفن هدر</td>
+                            <td><input type="text" id="header_phone" class="form-control"  name="header_phone" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="شماره تلفن را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.header_phone}}"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card box-shadow-0 ">
+                  <div class="card-header card-head-inverse bg-danger bg-lighten-3">
+                    <h6 class="card-title">
+                      <span class="breadcrumb-item active white">
+            سایر اطلاعات</span>
+                    </h6>
+
+                    <div class="heading-elements">
+                      <ul class="list-inline mb-0">
+                        <li><i class="icon-cogs font-medium-5"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body collapse in">
+
+                    <div class="table-responsive ">
+                      <table class="table font-small-3 table-striped">
+                        <thead class="bg-grey bg-lighten-1">
+                          <tr>
+                            <th>عنوان</th>
+                            <th>مقدار</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td >آدرس</td>
+                            <td><input type="text" id="address_line_1" class="form-control"  name="address_line_1" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="آدرس را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.address_line_1}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td >ایمیل</td>
+                            <td><input type="text" id="info_email" class="form-control" name="info_email" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="ایمیل را در این فیلد وارد کنید" data-original-title="" title="" value="{{settings.info_email}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>صفحه فیسبوک </td>
+                            <td><input type="text" id="facebook_link" class="form-control" name="facebook_link" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="لینک پیج فیسبوک" data-original-title="" title="" value="{{settings.facebook_link}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>صفحه اینستاگرام</td>
+                            <td><input type="text" id="instagram_link" class="form-control"  name="instagram_link" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="لینک پیج اینستاگرام" data-original-title="" title="" value="{{settings.instagram_link}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>صفحه گوگل پلاس</td>
+                            <td><input type="text" id="gplus_link" class="form-control"  name="gplus_link" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="لینک صفحه گوگل پلاس" data-original-title="" title="" value="{{settings.gplus_link}}"></td>
+                          </tr>
+                          <tr class="bg-gry bg-lighten-3">
+                            <td>کانال تلگرام</td>
+                            <td><input type="text" id="telegram_link" class="form-control"  name="telegram_link" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="لینک کانال تلگرام" data-original-title="" title="" value="{{settings.telegram_link}}"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row match-height">
+              <div class="col-md-12">
+                <div class="card box-shadow-0 ">
+                  <div class="card-header card-head-inverse bg-danger bg-lighten-3">
+                    <h6 class="card-title">
+                      <span class="breadcrumb-item active white">
+                  متن کوتاه معرفی در فوتر</span>
+                    </h6>
+
+                    <div class="heading-elements">
+                      <ul class="list-inline mb-0">
+                        <li><i class="icon-note font-medium-5"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body collapse in">
+                    <section id="multilingual">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <textarea name="brief" id="ckeditor" cols="15" rows="15" class="ckeditor">
+                                    {{settings.brief_description}}
+                          </textarea>
+                        </div>
+                      </div>
+                    </section>
+
+
+
+                  </div>
+                </div>
+              </div>
+            <!-- Basic CKEditor start -->
+
+            <!-- Basic CKEditor end -->
+          </div>
+
+
+
+
+
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-danger mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-success">
+              <i class="icon-check2"></i> ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

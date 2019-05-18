@@ -1,0 +1,164 @@
+{% extends '../base.html' %}
+{% load staticfiles %}
+{% load navbar_tags %}
+{% block title %}
+   وبلاگ
+    {% if cat %}
+         | {{ cat.name }}
+    {% endif %}
+    {% if 'q' in request.GET %}
+      |   نتایج جست و جو برای «{{ request.GET.q }}»
+    {% endif %}
+{% endblock %}
+{% block styles %}
+    <style>
+    header{
+        padding-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="tourist__magazin__list">
+        <div class="container-fluid">
+            <div class="content ">
+                <div class="search__list__header">
+                    <div class="col-11 col-lg-2">
+                        <div class="title">
+                            <span>
+                                مشاهده  مجله گردشگری
+                            </span>
+                            <div class="clock__time"></div>
+                            <small>بیشتر بدانید </small>
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="header__content">
+                            <div class="img">
+                                <img src="{% static 'bilit360/img/logo.png' %}" alt="">
+                            </div>
+                            <div class="items">
+                                <div class="title2">
+                                    <h5>
+                                        مجله گردشگری زرافشان سیر
+                                    </h5>
+                                    <span>
+                                        تعداد {{ news.count|to_price }} مطلب در {% if cat %}دسته {{ cat.name }}{% else %}مجله{% endif %} موجود است
+                                    </span>
+                                </div>
+                                <div class="search">
+                                        <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+
+                                    <form action="{% url 'cms:blog_search' %}">
+                                        <input type="text" placeholder="متن مورد نظر خود را جستجو کنید" name="q" style="background-color: white;">
+                                        <button type="submit" > جستجو
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search__list__content">
+                    <div class="col-11 col-lg-2">
+                        <div class="adv">
+                            <div class="adv__title">
+                                <span  class="mb-2">
+                                        دسته بندی موضوعات
+                                </span>
+                                {% get_article_catagories_list as cats %}
+                                {% for cat in cats %}
+                                <a href="{% url 'cms:cat' cat.id %}">
+                                        <span> {{ cat.name }}</span>
+                                        <span>{{ cat.article_set.all.count|to_price }}</span>
+                                </a>
+                                {% endfor %}
+                                <a href="{% url 'cms:blog_list'  %}">
+                                        <span> همه </span>
+                                    {% get_article_count as count %}
+                                        <span>{{ count|to_price }}</span>
+                                </a>
+                            </div>
+                            {% include '../includes/banner.html' %}
+                            {% include '../includes/support.html' %}
+                        </div>
+                    </div>
+                    <div class="col-11 col-lg-9">
+                        <div class="search__list">
+                            <div class="list__header">
+                                <div class="filtering">
+                                <a>
+                                    {% if 'q' in request.GET %}
+                                         نتایج جست و جو برای «{{ request.GET.q }}»
+                                    {% else %}
+                                        {% if cat %}
+                                            دسته {{ cat.name }}
+                                        {% else %}
+                                            همه مطالب
+                                        {% endif %}
+                                    {% endif %}
+                                </a>
+                                    {#                                    <a href="">ترتیب بر اساس تاریخ انتشار</a>#}
+{#                                    <a href="">ترتیب بر اساس مجبوبیت</a>#}
+{#                                    <a href="">ترتیب بر اساس بازدید</a>#}
+{#                                    <a href="">ترتیب بر اساس نام</a>#}
+
+                                </div>
+                            </div>
+                            <div class="magazine__list ">
+                                {% for post in news %}
+                                    <div class="items">
+                                   <div class="img">
+                                       <span class="city">
+                                            {{ post.title }}
+                                       </span>
+                                       {% if post.author.first_name or post.author.last_name %}
+                                            <span class="name">
+                                               {{ post.author.first_name }} {{ post.author.last_name }}
+                                            </span>
+                                      {% else %}
+                                            <span class="name">
+                                                ادمین
+                                            </span>
+                                      {% endif %}
+                                       <div class="like__comment">
+                                           {{ post.publish_date|to_jalali }}
+                                       </div>
+                                      <a href="{% url 'cms:blog_item' post.id %}" style="background-color: inherit;color:inherit;padding: 0;">
+                                        <img src="{{ post.image.url }}" alt="{{ post.image_alt }}">
+                                      </a>
+                                   </div>
+                                   <h3>
+{#                                      <a href="{% url 'cms:blog_item' post.id %}">#}
+{#                                        {{ post.title }}#}
+{#                                      </a>#}
+                                   </h3>
+                                   <p>
+                                    {{ post.content|safe|striptags|truncatewords:10}}
+                                   </p>
+                                   <a href="{% url 'cms:blog_item' post.id %}">
+                                    شرح کامل مطلب 
+                                   </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- <div class="list__tags">
+                                <a href="" class="tag__items">
+                                    <span>X</span>
+                                    <small>
+                                        برچسب
+                                    </small>
+                                </a>
+                                <a href="" class="tag__items">
+                                    <span>X</span>
+                                    <small>
+                                        برچسب
+                                    </small>
+                                </a>
+                                -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست سفارشات
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">سفارشات</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>نوع سفارش</th>
+              <th>تاریخ ثبت</th>
+              <th>تاریخ آخرین تغییر</th>
+              <th>مبلغ</th>
+              <th>انجام دهنده</th>
+              <th>وضعیت</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for order in orders %}
+            <tr class="bg-pink bg-lighten-4">
+              <td><a href="{% url 'get_order' order.id %}">{{order.id}}</a></td>
+              <td>خرید بلیط</td>
+              <td>{{order.date}}</td>
+              <td>{{order.date}}</td>
+              <td>{{order.price}}</td>
+              <td>{{order.user}}</td>
+              <td >ثبت شده</td>
+              <td class="text-danger text-bold-800">{{order.status}}</td>
+              <td class=" text-md-right">
+                <a href="#"><i class="icon-ios-trash text-danger font-medium-5"></i></a>
+                <a href="{% url 'get_order' order.id %}"><i class="icon-eye text-info font-medium-5"></i></a>
+              </td>
+
+            </tr>
+            {% endfor %}
+          
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

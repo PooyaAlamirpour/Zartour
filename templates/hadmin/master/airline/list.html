@@ -1,0 +1,129 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست ایرلاین ها
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">ایرلاین ها</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>نام</th>
+              <th>نام انگلیسی</th>
+              <th>IATA</th>
+              <th>لوگو</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for airline in airlines %}
+              <tr class="bg-yellow bg-lighten-4">
+                  <td>{{airline.id}}</td>
+                  <td>{{airline.name_fa}}</td>
+                  <td>{{airline.name_en}}</td>
+                  <td>{{ airline.iata }}</td>
+                  <td>
+                      {% if airline.logo %}
+                        <img src="{{ airline.logo.url }}" style="height: 60px;">
+                      {% endif %}
+                  </td>
+                  <td class=" text-md-right">
+                    <a href="{% url 'hadmin:delete_airline' airline.id %}">
+                        <i class="icon-ios-trash text-danger font-medium-5"></i>
+                    </a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن ایرلاین</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+        <div class="card-text">
+          <p> در این قسمت می‌توانید ایرلاین جدید اضافه کنید؛</p>
+        </div>
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text"> نام فارسی
+                  </label>
+                  <input type="text" id="text" name="name_fa" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام فارسی" data-original-title="" title="">
+                </div>
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text"> نام انگلیسی
+                  </label>
+                  <input type="text" id="text" name="name_en" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="نام انگلیسی" data-original-title="" title="">
+                </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">ّIATA
+                  </label>
+                  <input type="text" id="text" name="iata" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="کد IATA " data-original-title="" title="">
+                </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                  <label for="text">لوگو
+                  </label>
+                  <input type="file" id="text" name="logo" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="کد IATA " data-original-title="" title="">
+                </div>
+              </div>
+              </div>
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary" value=" ذخیره">
+              <i class="icon-check2"></i>ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</form>
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

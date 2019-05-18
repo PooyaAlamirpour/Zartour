@@ -1,0 +1,71 @@
+{% extends 'hadmin/list-simple.html' %}
+{% load navbar_tags %}
+{% block title %}
+لیست صفحات
+{% endblock %}
+{% block list %}
+<div class="row" id="header-styling">
+<div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title" id="heading-buttons1">صفحات</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+
+      <div class="table-responsive ">
+        <table class="table font-small-3 table-striped">
+          <thead class="bg-grey bg-lighten-4">
+            <tr>
+              <th>شماره </th>
+              <th>عنوان</th>
+              <th>نویسنده</th>
+              <th>تاریخ انتشار</th>
+              <th>دارای لینک</th>
+              <th>عنوان لینک</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              {% for post in pages %}
+              <tr class="bg-yellow bg-lighten-4">
+              <td><a href="{% url 'edit_page' post.id %}">{{post.id}}</a></td>
+              <td>{{post.title}}</td>
+              <td>{{post.author.first_name}} {{ post.author.last_name }} ({{ post.author.username }})</td>
+              <td>{{post.publish_date|to_jalali}}</td>
+              <td>{{post.is_in_navbar}}</td>
+              <td>{{post.navbar_name}}</td>
+              <td class=" text-md-right">
+                <a href="{% url 'edit_page' post.id %}"><i class="icon-eye text-info font-medium-5"></i></a>
+                <a href="{% url 'delete_page' post.id %}"><i class="icon-trash text-info font-medium-5"></i></a>
+              </td>
+
+                          </tr>
+              {% endfor %}
+                    <tr>
+              <td><a class="btn btn-danger" href="{% url 'set_page' %}">افزودن صفحه</a> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

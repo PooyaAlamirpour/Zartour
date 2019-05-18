@@ -1,0 +1,72 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+لیست تیکت ها
+{% endblock %}
+{% block list %}
+   <div class="row" id="header-styling">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="heading-buttons1">تیکت ها</h4>
+         <!-- <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+          <div class="heading-elements">
+            <span class="btn btn-sm btn-icon btn-red bg-accent-4">
+              <i class="icon-ticket2 white"></i>
+            </span>
+
+          </div>
+          -->
+        </div>
+        <div class="card-body collapse in">
+
+          <div class="table-responsive ">
+            <table class="table font-small-3">
+              <thead class="bg-grey bg-accent-1 white">
+                <tr>
+                  <th>شماره تیکت</th>
+                  <th>عنوان</th>
+                  <th>تاریخ</th>
+                  <th>اولویت</th>
+                  <th>وضعیت</th>
+                  <th>سفارش مرتبط</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                <tr >
+                  <td><a href="#">#321589</a></td>
+                  <td><a href="#">تلگرام</a></td>
+                  <td>12-05-96</td>
+                  <td>متوسط</td>
+                  <td>
+                      ثبت شده
+                  </td>
+
+                  <td><a class="heading-elements-toggle" ><i class="icon-ellipsis font-medium-3"></i></a>
+                     <div class="heading-elements">
+                      <span class="btn btn-sm btn-icon btn-red bg-accent-4">
+                        <a href="{% url 'ticketitem' %}"><i class="icon-ticket2 white"></i></a>
+                      </span>
+                     </div>
+                  </td>
+
+                </tr>
+
+                <tr>
+                  <td colspan="7">
+                    شما هیچ تیکتی ایجاد نکرده‌اید.
+                    <a href=" "> ایجاد تیکت جدید </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

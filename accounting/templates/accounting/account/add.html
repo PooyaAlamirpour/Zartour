@@ -1,0 +1,100 @@
+{% extends "hadmin/form.html" %}
+{% block title %}
+افزودن حساب جدید
+{% endblock %}
+{% block form %}
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header">
+      <h4 class="card-title" id="basic-layout-tooltip">افزودن حساب</h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+        <div class="card-text">
+          <p> در این قسمت می‌توانید حساب جدید به سیستم اضافه کنید؛</p>
+        </div>
+
+
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="code">کد</label>
+                  <input  id="code"  class="form-control jalali-date" name="code" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="کد" data-original-title="" title="">
+                </div>
+              </div>
+             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                  <label for="parent">حساب پدر</label>
+                  <fieldset class="form-group">
+                    <select class="form-control" name="parent" id="parent">
+                     {% for account in accounts %}
+                      <option value="{{ account.id }}">{{ account.code }}::{{ account.name }}</option>
+                        {% endfor %}
+                    </select>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                  <label for="profile">کاربر مرتبط</label>
+                  <fieldset class="form-group">
+                    <select class="form-control" name="profile" id="profile">
+                     {% for profile in profiles %}
+                      <option value="{{ profile.id }}">{{ profile.id}}::{{ profile.user.username}}</option>
+                        {% endfor %}
+                    </select>
+                  </fieldset>
+                </div>
+              </div>
+             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                     <div class="form-group">
+              <label for="issueinput1">عنوان حساب</label>
+              <input type="text" id="issueinput1" class="form-control" placeholder="عنوان" name="name" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="عنوان حساب را در این فیلد وارد کنید" data-original-title="" title="">
+            </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+            <div class="form-actions">
+            <button type="button" class="btn btn-warning mr-1">
+              <i class="icon-cross2"></i> انصراف
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="icon-check2"></i> ذخیره
+            </button>
+          </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}

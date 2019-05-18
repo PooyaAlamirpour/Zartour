@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Yekan';
+  src: url("../../app-assets/fonts/BYekan/BYekan.eot");
+  src: url("../../app-assets/fonts/BYekan/BYekan.eot?#") format("eot"), url("../../app-assets/fonts/BYekan/BYekan.woff") format("woff"), url("../../app-assets/fonts/BYekan/BYekan.ttf") format("truetype");
+  /* Saf3ΓÇö5, Chrome4+, FF3.5, Opera 10+ */ }
+body{
+	font-family:$font-family-sans-serif;
+	font-size:$font-size-base;
+}
+.jsgrid-pager {
+	text-align:center;
+}
+.jsgrid-pager span{
+	font-size:$font-size-base;
+	display:inline-block;
+}
+form label{
+	font-size:$font-size-base;
+}
+form .skin fieldset label{
+	font-size:0.8*$font-size-base;
+}
+#ui-datepicker-div{
+	z-index: 50;
+}

@@ -1,0 +1,179 @@
+{% load staticfiles %}
+    <!-- main menu-->
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow">
+      <!-- main menu content-->
+      <div class="main-menu-content">
+        <!-- main menu header-->
+        <!-- / main menu header-->
+        <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+          <!--<li class=" nav-item"><a href=""><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">خانه</span></a>
+          </li>-->
+            <li class=" nav-item">
+                <a href="#">
+                    <i class="icon-map"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">اطلاعات پایه</span>
+                </a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{% url 'hadmin:get_countries' %}" data-i18n="nav.templates.vert.compact_menu" class="menu-item"> شهرها و کشورها</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hadmin:get_airlines'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item"> ایرلاین ها</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a href="{% url 'get_articles'%}">
+                    <i class="icon-keyboard"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">بلاگ</span>
+                </a>
+                <ul class="menu-content">
+                      <li><a href="{% url 'set_article'%}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن پست جدید</a>
+                      </li>
+                      <li><a href="{% url 'get_articles'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست پست‌ها</a>
+                      </li>
+                    <li><a href="{% url 'get_tags'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست تگ‌ها</a>
+                      </li>
+                    <li><a href="{% url 'get_cats'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست دسته ها</a>
+                      </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a href="{% url 'hadmin:get_flights'%}">
+                    <i class="icon-airplane"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">هواپیما</span>
+                </a>
+                <ul class="menu-content">
+                        <li>
+                            <a href="{% url 'hadmin:get_flights' %}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">لیست بلیط های فروخته شده</a>
+                        </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a>
+                    <i class="icon-suitcase"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">تور</span>
+                </a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{% url 'hadmin:set_tour'%}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن پکیج تور جدید</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hadmin:get_tours'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست تورها</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hadmin:get_services'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست خدمات تور ها</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a>
+                    <i class="icon-hotel"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">هتل</span>
+                </a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{% url 'hadmin:set_hotel'%}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن هتل جدید</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hadmin:get_hotels'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست هتل ها</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hadmin:get_options'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست امکانات هتل ها</a>
+                    </li>
+                </ul>
+            </li>
+           <!-- <li class=" nav-item"><a href="{% url 'get_pages'%}"><i class="icon-note"></i><span data-i18n="nav.templates.main" class="menu-title">صفحات</span></a>
+            <ul class="menu-content">
+                  <li><a href="{% url 'set_page'%}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن صفحه جدید</a>
+                  </li>
+                  <li><a href="{% url 'get_pages'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست صفحات</a>
+                  </li>
+            </ul>
+          </li>-->
+          </li>
+            <li class=" nav-item">
+                <a href="{% url 'get_sliders'%}">
+                    <i class="icon-image4"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title">اسلایدرها</span>
+                </a>
+                <ul class="menu-content">
+                      <li>
+                          <a href="{% url 'set_slider'%}" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن اسلایدر جدید</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'get_sliders'%}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست اسلایدرها</a>
+                      </li>
+                </ul>
+          </li>
+          <li class=" nav-item">
+              <a href="{% url 'get_articles'%}">
+                  <i class="icon-note"></i>
+                  <span data-i18n="nav.templates.main" class="menu-title">مطالب</span>
+              </a>
+                <ul class="menu-content">
+                      <li>
+                          <a href="{% url 'edit_about' %}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">درباره ما</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'edit_contact' %}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">ارتباط با ما</a>
+                      </li>
+                </ul>
+          </li>
+         <!-- <li class=" nav-item"><a href="#"><i class="icon-gift2"></i><span data-i18n="nav.layouts.temp" class="menu-title">سرویس‌ها</span></a>
+            <ul class="menu-content">
+                  <li><a href="../vertical-menu-template" data-i18n="nav.templates.vert.classic_menu" class="menu-item">افزودن مطلب جدید</a>
+                  </li>
+                  <li><a href="../vertical-compact-menu-template" data-i18n="nav.templates.vert.compact_menu" class="menu-item">لیست مطالب</a>
+                  </li>
+            </ul>
+          </li>-->
+
+          <li class=" nav-item"><a href="{% url 'hadmin:user_list' %}"><i class="icon-users2"></i>
+          	<span data-i18n="nav.category.general" class="menu-title">اعضاء</span></a>
+          </li>
+            <li class=" nav-item"><a href="{% url 'hadmin:subscriber_list' %}"><i class="icon-users3"></i>
+          	<span data-i18n="nav.category.general" class="menu-title">مشترکین خبرنامه</span></a>
+          </li>
+          <li class=" nav-item"><a href=""><i class="icon-rocket"></i>
+          	<span data-i18n="nav.category.general" class="menu-title">سفارشات</span></a>
+          </li>
+        <li class=" nav-item"><a href="{% url 'get_comments' %}"><i class="icon-comments-o"></i>
+          	<span data-i18n="nav.category.general" class="menu-title">تیکت ها</span></a>
+          </li>
+           <!-- <li class=" nav-item"><a href="{% url 'settings'%}"><i class="icon-cog2"></i><span data-i18n="nav.templates.main" class="menu-title"> تنظیمات</span></a>
+
+          </li>
+
+-->
+{#          <li class=" nav-item">#}
+{#          	<a href="">#}
+{#          		<i class="icon-bubble2"></i>#}
+{#          		<span data-i18n="nav.category.general" class="menu-title">تیکت‌ها</span>#}
+{#          	</a>#}
+{#          </li>#}
+            <li class=" nav-item">
+                <a href="">
+                    <i class="icon-drawer"></i>
+                    <span data-i18n="nav.templates.main" class="menu-title"> انتفاد/پیشنهاد</span>
+                </a>
+                <ul class="menu-content">
+                  <li>
+                      <a href="{% url 'hadmin:feedback_list' %}" data-i18n="nav.templates.vert.compact_menu" class="menu-item">  دریافت شده</a>
+                  </li>
+                </ul>
+            </li>
+<!--
+          <li class=" nav-item"><a href="#">
+          	<i class="icon-image4"></i><span data-i18n="nav.category.general" class="menu-title">حسابداری</span></a>
+          </li>
+
+          <li class=" nav-item">
+          <a href=""><i class="icon-cog3"></i><span data-i18n="nav.category.general" class="menu-title">تنظیمات</span></a>
+          </li>
+          -->
+        </ul>
+      </div>
+      <!-- /main menu content-->
+    </div>
+    <!-- / main menu-->

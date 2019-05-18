@@ -1,0 +1,90 @@
+{% extends 'hadmin/list-simple.html' %}
+{% block title %}
+صورتحساب های پرداخت نشده
+{% endblock %}
+{% block list %}
+<!-- form -->
+<form action="" method="POST" class="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="row match-height">
+<div class="col-md-12">
+  <div class="card" >
+    <div class="card-header bg-cyan bg-lighten-3">
+      <h4 class="card-title" id="basic-layout-tooltip">صورتحساب های پرداخت نشده </h4>
+      <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+      <div class="heading-elements">
+
+      </div>
+    </div>
+    <div class="card-body collapse in">
+      <div class="card-block">
+
+          <div class="card-body collapse in">
+
+							<div class="table-responsive ">
+								<table class="table font-small-3 table-striped">
+									<thead class="bg-grey bg-lighten-4">
+										<tr>
+											<th>صورتحساب </th>
+											<th>تاریخ ایجاد</th>
+											<th>تاریخ سررسید</th>
+											<th>مبلغ</th>
+											<th>وضعیت</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="bg-light-green bg-lighten-4">
+											<td><a href="#">هیچ رکوردی پیدا نشد</a></td>
+											<td> </td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+						</div>
+          <div class="row">
+                <div class="col-lg-2">
+                    <label> تعداد در صفحه:</label>
+                </div>
+                <div class="col-lg-2">
+
+                    <div class="form-group">
+
+                        <select id="issueinput8" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="" data-original-title="" title="">
+                            <option value="low">10</option>
+                            <option value="medium">25</option>
+                            <option value="high">50</option>
+                            <option value="high">100</option>
+                            <option value="high">نامحدود</option>
+
+                        </select>
+                    </div>
+                </div>
+              <div class="col-lg-4">
+                  <div class="">
+            <button type="button" class="btn btn-warning mr-1">
+              صفحه قبل
+            </button>
+            <button type="submit" class="btn btn-primary">
+              صفحه بعد
+            </button>
+          </div>
+              </div>
+
+            </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<!--/form -->
+{% endblock %}
