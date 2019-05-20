@@ -364,6 +364,8 @@ const calanderConfig_return={
     "responsive": true
   };
 $("#arrived__time").persianDatepicker(calanderConfig);
+$("#arrived_foreign_time").persianDatepicker(calanderConfig);
 $("#return__time").persianDatepicker(calanderConfig_return);
+$("#return_foreign_time").persianDatepicker(calanderConfig_return);
 
 

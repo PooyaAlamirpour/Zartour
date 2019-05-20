@@ -1,0 +1,6 @@
+You have to add writing rights to the directory in which your sqlite database is stored. So running chmod 664 /srv/mysite should help.
+
+This is a security risk, so better solution is to change the owner of your database to www-data:
+
+chown www-data:www-data /srv/mysite
+chown www-data:www-data /srv/mysite/DATABASE.sqlite

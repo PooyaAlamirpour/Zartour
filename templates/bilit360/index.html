@@ -8,13 +8,13 @@
     <div class="tab__search">
       <ul class="nav nav-pills" id="pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+          <a class="nav-link active" id="pills-airline-internal-tab" data-toggle="pill" href="#pills-airline-internal" role="tab" aria-controls="pills-airline-internal"
             aria-selected="true">
             <img src="{% static 'bilit360/img/azadi.svg' %}" alt="">
             پرواز داخلی</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-profile"
+          <a class="nav-link" id="pills-airline-foreign-tab" data-toggle="pill" href="#pills-airline-foreign" role="tab" aria-controls="pills-airline-foreign"
             aria-selected="false">
             <img src="{% static 'bilit360/img/eiffel-tower.svg' %}" alt="">
             پرواز خارجی</a>
@@ -45,8 +45,7 @@
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
+        <div class="tab-pane fade show active" id="pills-airline-internal" role="tabpanel" aria-labelledby="pills-airline-internal-tab">
           <form action="{% url 'tickets:req' %}" method="GET">
             <div class="form__input">
               <span class="title">
@@ -107,13 +106,13 @@
             </div>
             <div class="checklist order__1">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1" onclick="twoWay(this);" checked="checked">
+                <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1" onclick="twoWayInternal(this);" checked="checked">
                 <label class="form-check-label" for="defaultCheck1">
                   یکطرفه
                 </label>
               </div>
               <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWay(this);">
+                <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayInternal(this);">
                 <label class="form-check-label" for="back">
                   رفت و برگشت
                 </label>
@@ -121,8 +120,81 @@
             </div>
           </form>
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">مطلب پرواز
-          خارجی</div>
+        <div class="tab-pane fade" id="pills-airline-foreign" role="tabpanel" aria-labelledby="pills-airline-foreign-tab">
+            <form action="{% url 'tickets:req' %}" method="GET">
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+              </span>
+              <select class="first__input" name="origin">
+                <option>مبدا</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+              </span>
+              <select name="destination">
+                <option >مقصد</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/calendar.svg' %}"  alt="">
+              </span>
+              <input type="text" id="arrived_foreign_time" value="تاریخ رفت" name="">
+              <input type="hidden" id="arrival_date" value="" name="departure">
+            </div>
+            <div class="form__input">
+              <span class="title">
+                <img src="{% static 'bilit360/img/calendar.svg' %}" alt="">
+              </span>
+              <input type="text" id="return_foreign_time" value="تاریخ برگشت" name="">
+              <input type="hidden" id="return_date" value="" name="return">
+            </div>
+            <div class="form__input" id="passenger_count_select_div"  >
+              <select id="passenger_count_select" name="madult">
+                <option value="1">۱ مسافر</option>
+                <option value="2">۲ مسافر</option>
+                <option value="3">۳ مسافر</option>
+                <option value="4">۴ مسافر</option>
+                <option value="5">۵ مسافر</option>
+                <option value="6">۶ مسافر</option>
+                <option value="7">بیشتر از ۶ مسافر</option>
+              </select>
+            </div>
+          <input type="hidden" name="mchildren" value="0">
+          <input type="hidden" name="minfant" value="0">
+{#              <div class="form__input" id="passenger_count_number_div"  >#}
+{#                   <input id="passenger_count_number" type="number">#}
+{#              </div>#}
+            <div class="form__input order__2">
+              <button type="submit">جستجو
+                <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+              </button>
+            </div>
+            <div class="checklist order__1">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1_foreign" onclick="twoWayForeign(this);" checked="checked">
+                <label class="form-check-label" for="defaultCheck1__foreign">
+                  یکطرفه
+                </label>
+              </div>
+              <div class="form-check mr-5">
+                <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayForeigna(this);">
+                <label class="form-check-label" for="back">
+                  رفت و برگشت
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
         <div class="tab-pane fade" id="pills-hotel" role="tabpanel" aria-labelledby="pills-hotel-tab">
           <form action="{% url 'hotels:hotels' %}" method="GET">
             <div class="form__input">
@@ -575,7 +647,7 @@
     </script>
     <script>
         var currentValue = 0;
-        function twoWay(myRadio) {
+        function twoWayInternal(myRadio) {
             currentValue = myRadio.value;
             return_time = document.getElementById('return__time');
             if (currentValue == 0){
@@ -588,11 +660,30 @@
                 return_time.style.filter  = 'alpha(opacity=100)'; // IE fallbac
             }
         }
+
+        function twoWayForeign(myRadio) {
+            currentValue = myRadio.value;
+            return_foreign_time = document.getElementById('return_foreign_time');
+            if (currentValue == 0){
+                return_foreign_time.disabled = true;
+                return_foreign_time.style.opacity = "0.6";
+                return_foreign_time.style.filter  = 'alpha(opacity=60)'; // IE fallbac
+            } else {
+                return_foreign_time.disabled = false;
+                return_foreign_time.style.opacity = "1";
+                return_foreign_time.style.filter  = 'alpha(opacity=100)'; // IE fallbac
+            }
+        }
+
         if (currentValue == 0){
             return_time = document.getElementById('return__time');
+            return_foreign_time = document.getElementById('return_foreign_time');
             return_time.disabled = true;
+            return_foreign_time.disabled = true;
             return_time.style.opacity = "0.6";
+            return_foreign_time.style.opacity = "0.6";
             return_time.style.filter  = 'alpha(opacity=60)'; // IE fallbac
+            return_foreign_time.style.filter  = 'alpha(opacity=60)'; // IE fallbac
         }
 
         var passengerCount = 0;

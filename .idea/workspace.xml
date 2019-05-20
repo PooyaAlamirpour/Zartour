@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0acf1ed1-eb4c-4b4a-bd6b-35812864dc49" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/static/bilit360/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/static/bilit360/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bilit360/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,26 +34,78 @@
     <session id="-1843976960">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.49" value="1" />
+          <entry key="project.open.time.59" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="html" value="2" />
+          <entry key="js" value="2" />
           <entry key="py" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="HTML" value="2" />
+          <entry key="JavaScript" value="2" />
           <entry key="Python" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="255" />
+          <entry key="js" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="255" />
+          <entry key="JavaScript" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="189" column="117" selection-start-line="189" selection-start-column="117" selection-end-line="189" selection-end-column="117" />
+              <folding>
+                <element signature="e#240#539#0#HTML" />
+                <element signature="e#272#525#0#HTML" />
+                <element signature="e#860#1150#0#HTML" />
+                <element signature="e#1159#1456#0#HTML" />
+                <element signature="e#1465#1764#0#HTML" />
+                <element signature="e#1773#2074#0#HTML" />
+                <element signature="e#2265#5740#0#HTML" />
+                <element signature="e#5903#7224#0#HTML" />
+                <element signature="e#6008#7209#0#HTML" />
+                <element signature="e#7233#8753#0#HTML" />
+                <element signature="e#7339#8738#0#HTML" />
+                <element signature="e#8918#8934#0#DjangoTemplate" />
+                <element signature="e#19885#19909#0#DjangoTemplate" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/static/bilit360/js/custom.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="701">
+              <caret line="368" column="23" selection-start-line="368" selection-start-column="4" selection-end-line="368" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -65,17 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tour_</find>
-      <find>|</find>
-      <find>|to</find>
-      <find>exc</find>
-      <find>capac</find>
-      <find>SubF</find>
-      <find>تومان</find>
-      <find>599</find>
-      <find>flight_cl</find>
-      <find>flight_numb</find>
-      <find>title</find>
       <find>tour.title</find>
       <find>{% url</find>
       <find>advis</find>
@@ -95,6 +136,17 @@
       <find>FlightDetails</find>
       <find>requests</find>
       <find>airline.airline</find>
+      <find>پرواز خارجی</find>
+      <find>pills-home-tab</find>
+      <find>pills-home</find>
+      <find>pills-profile-tab</find>
+      <find>arrival_date1</find>
+      <find>arrival_date</find>
+      <find>arrived__time</find>
+      <find>defaultCheck1</find>
+      <find>return__time</find>
+      <find>'return__time'</find>
+      <find>calanderConfig</find>
     </findStrings>
     <replaceStrings>
       <replace>'img/</replace>
@@ -140,9 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/hadmin/hotels/edit.html" />
-        <option value="$PROJECT_DIR$/templates/hadmin/post/edit.html" />
-        <option value="$PROJECT_DIR$/static/static/bilit360/js/custom.js" />
         <option value="$PROJECT_DIR$/templates/bilit360/includes/quick_links.html" />
         <option value="$PROJECT_DIR$/tours/admin.py" />
         <option value="$PROJECT_DIR$/templates/hadmin/tours/tourservices/list.html" />
@@ -182,7 +231,6 @@
         <option value="$PROJECT_DIR$/templates/bilit360/user/login.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/user/verify.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/userpanel/userpanel.html" />
-        <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
         <option value="$PROJECT_DIR$/tickets/signals.py" />
         <option value="$PROJECT_DIR$/templates/bilit360/includes/app_download.html" />
         <option value="$PROJECT_DIR$/tickets/models.py" />
@@ -191,6 +239,10 @@
         <option value="$PROJECT_DIR$/tickets/views.py" />
         <option value="$PROJECT_DIR$/templates/bilit360/includes/footer.html" />
         <option value="$PROJECT_DIR$/service/services.py" />
+        <option value="$PROJECT_DIR$/templates/bilit360/ticket/BILIT_360_2.html" />
+        <option value="$PROJECT_DIR$/static/static-only/bilit360/js/custom.js" />
+        <option value="$PROJECT_DIR$/static/static/bilit360/js/custom.js" />
+        <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
       </list>
     </option>
   </component>
@@ -241,7 +293,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,33 +305,11 @@
               <item name="reservation" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="bilit360" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="bilit360" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="tickets" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,14 +445,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17697228" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="File Transfer" visible="true" weight="0.3290461" />
       <window_info anchor="bottom" id="TypeScript" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info active="true" anchor="bottom" id="Find" order="2" visible="true" weight="0.22293676" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32368702" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -436,36 +465,13 @@
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49928468" weight="0.21592148" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32824427" />
       <window_info anchor="bottom" id="manage.py@reservation" order="14" weight="0.3293348" />
+      <window_info anchor="bottom" id="File Transfer" order="15" visible="true" weight="0.3290461" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" weight="0.3297568" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35407725" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" order="0" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.16093536" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49928468" weight="0.28885832" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.3287483" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.3297568" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -495,27 +501,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/userprofile/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="64" column="17" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/hadmin/subscriber/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reservation/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/hadmin/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
@@ -746,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/bilit360/includes/app_download.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -795,9 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,9 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,6 +818,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="1027" column="41" selection-start-line="1027" selection-start-column="41" selection-end-line="1027" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/BILIT_360_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="97" column="24" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/static-only/bilit360/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="180" column="21" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
+          <folding>
+            <element signature="e#3342#5148#0" />
+            <element signature="e#5179#6980#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/static/bilit360/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="368" column="23" selection-start-line="368" selection-start-column="4" selection-end-line="368" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="189" column="117" selection-start-line="189" selection-start-column="117" selection-end-line="189" selection-end-column="117" />
+          <folding>
+            <element signature="e#240#539#0#HTML" />
+            <element signature="e#272#525#0#HTML" />
+            <element signature="e#860#1150#0#HTML" />
+            <element signature="e#1159#1456#0#HTML" />
+            <element signature="e#1465#1764#0#HTML" />
+            <element signature="e#1773#2074#0#HTML" />
+            <element signature="e#2265#5740#0#HTML" />
+            <element signature="e#5903#7224#0#HTML" />
+            <element signature="e#6008#7209#0#HTML" />
+            <element signature="e#7233#8753#0#HTML" />
+            <element signature="e#7339#8738#0#HTML" />
+            <element signature="e#8918#8934#0#DjangoTemplate" />
+            <element signature="e#19885#19909#0#DjangoTemplate" />
+          </folding>
         </state>
       </provider>
     </entry>
