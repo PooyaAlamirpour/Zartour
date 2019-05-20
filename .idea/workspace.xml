@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0acf1ed1-eb4c-4b4a-bd6b-35812864dc49" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Issues/Initialing django on server.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/static/bilit360/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/static/bilit360/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bilit360/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,24 +45,26 @@
           <entry key="html" value="2" />
           <entry key="js" value="2" />
           <entry key="py" value="3" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="255" />
+          <entry key="html" value="256" />
           <entry key="js" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="255" />
+          <entry key="HTML" value="256" />
           <entry key="JavaScript" value="6" />
         </counts>
       </usages-collector>
@@ -72,11 +72,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="189" column="117" selection-start-line="189" selection-start-column="117" selection-end-line="189" selection-end-column="117" />
+            <state relative-caret-position="351">
+              <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
               <folding>
                 <element signature="e#240#539#0#HTML" />
                 <element signature="e#272#525#0#HTML" />
@@ -92,6 +92,15 @@
                 <element signature="e#8918#8934#0#DjangoTemplate" />
                 <element signature="e#19885#19909#0#DjangoTemplate" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Issues/Initialing django on server.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
@@ -117,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tour.title</find>
       <find>{% url</find>
       <find>advis</find>
       <find>مدارک</find>
@@ -147,6 +155,7 @@
       <find>return__time</find>
       <find>'return__time'</find>
       <find>calanderConfig</find>
+      <find>return_time</find>
     </findStrings>
     <replaceStrings>
       <replace>'img/</replace>
@@ -192,7 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/bilit360/includes/quick_links.html" />
         <option value="$PROJECT_DIR$/tours/admin.py" />
         <option value="$PROJECT_DIR$/templates/hadmin/tours/tourservices/list.html" />
         <option value="$PROJECT_DIR$/tours/models.py" />
@@ -243,6 +251,7 @@
         <option value="$PROJECT_DIR$/static/static-only/bilit360/js/custom.js" />
         <option value="$PROJECT_DIR$/static/static/bilit360/js/custom.js" />
         <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
+        <option value="$PROJECT_DIR$/Issues/Initialing django on server.txt" />
       </list>
     </option>
   </component>
@@ -299,6 +308,11 @@
             <path>
               <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="reservation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="Issues" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
@@ -447,12 +461,12 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info active="true" anchor="bottom" id="Find" order="2" visible="true" weight="0.22293676" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.22293676" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32368702" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -462,7 +476,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.16093536" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49928468" weight="0.21592148" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49928468" visible="true" weight="0.21543409" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32824427" />
       <window_info anchor="bottom" id="manage.py@reservation" order="14" weight="0.3293348" />
       <window_info anchor="bottom" id="File Transfer" order="15" visible="true" weight="0.3290461" />
@@ -501,13 +515,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/hadmin/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userprofile/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -848,8 +855,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="189" column="117" selection-start-line="189" selection-start-column="117" selection-end-line="189" selection-end-column="117" />
+        <state relative-caret-position="351">
+          <caret line="191" column="26" selection-start-line="191" selection-start-column="26" selection-end-line="191" selection-end-column="26" />
           <folding>
             <element signature="e#240#539#0#HTML" />
             <element signature="e#272#525#0#HTML" />
@@ -865,6 +872,13 @@
             <element signature="e#8918#8934#0#DjangoTemplate" />
             <element signature="e#19885#19909#0#DjangoTemplate" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Issues/Initialing django on server.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
