@@ -7,6 +7,20 @@ class APIService(object):
     TOKEN = 'Bearer 31d14bd6687528582ebef6ee14c2962a94588feb'
 
     @staticmethod
+    def getForeignList(function, data):
+        URL = APIService.API_URL + function
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Client-Token': APIService.TOKEN
+        }
+        response = requests.post(URL, json=data, verify=False, headers=headers)
+        if response.status_code == 200:
+            request_obj = json.loads(response.content)
+            return request_obj
+        else:
+            print 'There is an error(Error:4317)'
+
+    @staticmethod
     def get_new_token():
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',

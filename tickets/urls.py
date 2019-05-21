@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^fill/nationality', fill_nationality),
     url(r'^step1', show_calender, name="show_calender"),
     url(r'^req', req, name="req"),
+    url(r'^search_foreign_airline', search_foreign_airline, name="search_foreign_airline"),
     url(r'^step2', show_tickets, name="show_tickets"),
     url(r'^step3', book_form, name="book_form"),
     url(r'^cancel', cancel, name="cancel"),

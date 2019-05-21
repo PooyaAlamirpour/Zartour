@@ -121,79 +121,82 @@
           </form>
         </div>
         <div class="tab-pane fade" id="pills-airline-foreign" role="tabpanel" aria-labelledby="pills-airline-foreign-tab">
-            <form action="{% url 'tickets:req' %}" method="GET">
-            <div class="form__input">
-              <span class="title">
-                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
-              </span>
-              <select class="first__input" name="origin">
-                <option>مبدا</option>
-                {% for airport in airports %}
-                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
-                {% endfor %}
-              </select>
+            <form action="{% url 'tickets:search_foreign_airline' %}" method="GET">
+                <div class="form__input">
+                    <span class="title">
+                        <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+                    </span>
+                    <select class="first__input" name="origin">
+                        <option>مبدا</option>
+                        <option value="IKA">فرودگاه امام خمینی</option>
+                        <option value="DXB">فرودگاه دبی</option>
+                        <option value="IST">فرودگاه استانبول</option>
+                        {% for item in nationalities %}
+                            <option value="{{ item.iso3 }}">{{ item.name }} - {{ item.iso3 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form__input">
+                <span class="title">
+                    <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
+                </span>
+                <select name="destination">
+                    <option >مقصد</option>
+                    <option value="IKA">فرودگاه امام خمینی</option>
+                    <option value="DXB">فرودگاه دبی</option>
+                    <option value="IST">فرودگاه استانبول</option>
+                    {% for item in nationalities %}
+                        <option value="{{ item.iso3 }}">{{ item.name }} - {{ item.iso3 }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form__input">
-              <span class="title">
-                <img src="{% static 'bilit360/img/maps-and-flags.svg' %}" alt="">
-              </span>
-              <select name="destination">
-                <option >مقصد</option>
-                {% for airport in airports %}
-                    <option value="{{ airport.iata }}">{{ airport.name }} - {{ airport.iata }}</option>
-                {% endfor %}
-              </select>
+                <span class="title">
+                    <img src="{% static 'bilit360/img/calendar.svg' %}"  alt="">
+                </span>
+                <input type="text" id="arrived_foreign_time" value="تاریخ رفت" name="">
+                <input type="hidden" id="arrival_foreign_date" value="" name="departure">
             </div>
             <div class="form__input">
-              <span class="title">
-                <img src="{% static 'bilit360/img/calendar.svg' %}"  alt="">
-              </span>
-              <input type="text" id="arrived_foreign_time" value="تاریخ رفت" name="">
-              <input type="hidden" id="arrival_date" value="" name="departure">
-            </div>
-            <div class="form__input">
-              <span class="title">
-                <img src="{% static 'bilit360/img/calendar.svg' %}" alt="">
-              </span>
-              <input type="text" id="return_foreign_time" value="تاریخ برگشت" name="">
-              <input type="hidden" id="return_date" value="" name="return">
+                <span class="title">
+                    <img src="{% static 'bilit360/img/calendar.svg' %}" alt="">
+                </span>
+                <input type="text" id="return_foreign_time" value="تاریخ برگشت" name="">
+                <input type="hidden" id="return_foreign_date" value="" name="return">
             </div>
             <div class="form__input" id="passenger_count_select_div"  >
-              <select id="passenger_count_select" name="madult">
-                <option value="1">۱ مسافر</option>
-                <option value="2">۲ مسافر</option>
-                <option value="3">۳ مسافر</option>
-                <option value="4">۴ مسافر</option>
-                <option value="5">۵ مسافر</option>
-                <option value="6">۶ مسافر</option>
-                <option value="7">بیشتر از ۶ مسافر</option>
-              </select>
+                <select id="passenger_count_select" name="madult">
+                    <option value="1">۱ مسافر</option>
+                    <option value="2">۲ مسافر</option>
+                    <option value="3">۳ مسافر</option>
+                    <option value="4">۴ مسافر</option>
+                    <option value="5">۵ مسافر</option>
+                    <option value="6">۶ مسافر</option>
+                    <option value="7">بیشتر از ۶ مسافر</option>
+                </select>
             </div>
-          <input type="hidden" name="mchildren" value="0">
-          <input type="hidden" name="minfant" value="0">
-{#              <div class="form__input" id="passenger_count_number_div"  >#}
-{#                   <input id="passenger_count_number" type="number">#}
-{#              </div>#}
+            <input type="hidden" name="mchildren" value="0">
+            <input type="hidden" name="minfant" value="0">
             <div class="form__input order__2">
-              <button type="submit">جستجو
-                <img src="{% static 'bilit360/img/search.svg' %}" alt="">
-              </button>
+                <button type="submit">جستجو
+                    <img src="{% static 'bilit360/img/search.svg' %}" alt="">
+                </button>
             </div>
             <div class="checklist order__1">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1_foreign" onclick="twoWayForeign(this);" checked="checked">
-                <label class="form-check-label" for="defaultCheck1__foreign">
-                  یکطرفه
-                </label>
-              </div>
-              <div class="form-check mr-5">
-                <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayForeigna(this);">
-                <label class="form-check-label" for="back">
-                  رفت و برگشت
-                </label>
-              </div>
-            </div>
-          </form>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="twoway" value="0" id="defaultCheck1_foreign" onclick="twoWayForeign(this);" checked="checked">
+                    <label class="form-check-label" for="defaultCheck1__foreign">
+                        یکطرفه
+                    </label>
+                </div>
+                <div class="form-check mr-5">
+                    <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayForeigna(this);">
+                        <label class="form-check-label" for="back">
+                            رفت و برگشت
+                        </label>
+                     </div>
+                </div>
+            </form>
         </div>
         <div class="tab-pane fade" id="pills-hotel" role="tabpanel" aria-labelledby="pills-hotel-tab">
           <form action="{% url 'hotels:hotels' %}" method="GET">

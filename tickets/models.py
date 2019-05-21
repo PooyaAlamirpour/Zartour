@@ -46,7 +46,6 @@ class Course(models.Model):
     def __str__(self):
         return "("+str(self.date)+")"+"FROM: "+str(self.departure)+" TO: "+str(self.arrival)
 
-
 class TicketRequest(models.Model):
     outband_course = models.ForeignKey(Course, related_name="outband",null=True, blank=True)
     return_course = models.ForeignKey(Course, related_name="return+", null=True, blank=True)
@@ -77,7 +76,6 @@ class TicketRequest(models.Model):
 
     def __str__(self):
         return str(self.request_code)
-
 
 class FlightDetails(models.Model):
     flight_number = models.CharField(max_length=5, null=True, blank=True)

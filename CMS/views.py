@@ -12,6 +12,7 @@ import datetime
 
 from hotels.models import Hotel
 from master.models import Country
+from service.services import APIService
 from tickets.models import Airport
 from tours.models import Tour, TourType
 
@@ -25,6 +26,18 @@ def home(request):
     brands = Brand.objects.all().reverse()[0:3]
     airports = Airport.objects.all().order_by('-order')
     countries = Country.objects.all()
+    data = {
+        "data": "nationality"
+    }
+    APIService.get_new_token()
+    nationalities = APIService.getForeignList('Information', data)
+    # for nationality in nationalities:
+    #     Nationality.objects.get_or_create(
+    #         name=nationality['c'],
+    #         en_name=nationality['en_name'],
+    #         iso=nationality['iso'],
+    #         iso3=nationality['iso3']
+    #     )
     try:
         domestic_type = TourType.objects.get(id=1)
         domestic_tours = domestic_type.tour_set.all()[:9]

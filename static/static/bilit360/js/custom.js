@@ -271,6 +271,99 @@ const calanderConfig={
     "responsive": true
   };
 
+const calanderForeignConfig={
+  initialValueType: 'gregorian',
+    "inline": false,
+    "format": "l",
+    "viewMode": "day",
+    "initialValue": false,
+    "position": "auto",
+    "altFormat": "unix",
+    "altField": "#arrival_foreign_date",
+    "onlyTimePicker": false,
+    "onlySelectOnDate": false,
+    "calendarType": "persian",
+    "inputDelay": 800,
+    "observer": true,
+    "calendar": {
+      "persian": {
+        "locale": "fa",
+        "showHint": true,
+        "leapYearMode": "algorithmic"
+      },
+      "gregorian": {
+        "locale": "en",
+        "showHint": false
+      }
+    },
+    "navigator": {
+      "enabled": true,
+      "scroll": {
+        "enabled": true
+      },
+      "text": {
+        "btnNextText": "<",
+        "btnPrevText": ">"
+      }
+    },
+    "toolbox": {
+      "enabled": true,
+      "calendarSwitch": {
+        "enabled": false,
+        "format": "MMMM"
+      },
+      "todayButton": {
+        "enabled": true,
+        "text": {
+          "fa": "امروز",
+          "en": "Today"
+        }
+      },
+      "submitButton": {
+        "enabled": true,
+        "text": {
+          "fa": "تایید",
+          "en": "Submit"
+        }
+      },
+      "text": {
+        "btnToday": "امروز"
+      }
+    },
+    "timePicker": {
+      "enabled": false,
+      "step": 1,
+      "hour": {
+        "enabled": false,
+        "step": null
+      },
+      "minute": {
+        "enabled": false,
+        "step": null
+      },
+      "second": {
+        "enabled": false,
+        "step": null
+      },
+      "meridian": {
+        "enabled": true
+      }
+    },
+    "dayPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY MMMM"
+    },
+    "monthPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "yearPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "responsive": true
+  };
+
 const calanderConfig_return={
   initialValueType: 'gregorian',
     "inline": false,
@@ -363,9 +456,103 @@ const calanderConfig_return={
     },
     "responsive": true
   };
+
+const calanderForeignConfig_return={
+  initialValueType: 'gregorian',
+    "inline": false,
+    "format": "l",
+    "viewMode": "day",
+    "initialValue": false,
+    "position": "auto",
+    "altFormat": "unix",
+    "altField": "#return_foreign_date",
+    "onlyTimePicker": false,
+    "onlySelectOnDate": false,
+    "calendarType": "persian",
+    "inputDelay": 800,
+    "observer": true,
+    "calendar": {
+      "persian": {
+        "locale": "fa",
+        "showHint": true,
+        "leapYearMode": "algorithmic"
+      },
+      "gregorian": {
+        "locale": "en",
+        "showHint": false
+      }
+    },
+    "navigator": {
+      "enabled": true,
+      "scroll": {
+        "enabled": true
+      },
+      "text": {
+        "btnNextText": "<",
+        "btnPrevText": ">"
+      }
+    },
+    "toolbox": {
+      "enabled": true,
+      "calendarSwitch": {
+        "enabled": false,
+        "format": "MMMM"
+      },
+      "todayButton": {
+        "enabled": true,
+        "text": {
+          "fa": "امروز",
+          "en": "Today"
+        }
+      },
+      "submitButton": {
+        "enabled": true,
+        "text": {
+          "fa": "تایید",
+          "en": "Submit"
+        }
+      },
+      "text": {
+        "btnToday": "امروز"
+      }
+    },
+    "timePicker": {
+      "enabled": false,
+      "step": 1,
+      "hour": {
+        "enabled": false,
+        "step": null
+      },
+      "minute": {
+        "enabled": false,
+        "step": null
+      },
+      "second": {
+        "enabled": false,
+        "step": null
+      },
+      "meridian": {
+        "enabled": true
+      }
+    },
+    "dayPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY MMMM"
+    },
+    "monthPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "yearPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "responsive": true
+  };
+
 $("#arrived__time").persianDatepicker(calanderConfig);
-$("#arrived_foreign_time").persianDatepicker(calanderConfig);
+$("#arrived_foreign_time").persianDatepicker(calanderForeignConfig);
 $("#return__time").persianDatepicker(calanderConfig_return);
-$("#return_foreign_time").persianDatepicker(calanderConfig_return);
+$("#return_foreign_time").persianDatepicker(calanderForeignConfig_return);
 
 
