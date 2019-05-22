@@ -413,29 +413,29 @@ def search_foreign_airline(request):
     date_str = datetime.fromtimestamp(float(date_str)/1000).date().strftime('%d-%m-%Y')
     datetime_obj = datetime.strptime(date_str, format_str)
     # //////////////////////////////////////////////////////////////
-    data = {
-        "data": "nationality"
-    }
-    services.APIService.get_new_token()
-    nationalities = APIService.getForeignList('Information', data)
-    index = 0
-    for airport_obj in nationalities:
-        index = index + 1
-        tmp_index = index
-        if tmp_index >= 114:
-            hello_man = 5
-
-        if airport_obj['en_name'] == 'Sri Lanka':
-            hello_man = 6
-        else:
-            Airport.objects.get_or_create(
-                name=airport_obj['name'],
-                en_name=airport_obj['en_name'],
-                iata=airport_obj['iso3'])
-
-    # Airport.objects.get_or_create(name='Iran airport', en_name='Iran airport', iata='IKA')
-    Airport.objects.get_or_create(name='Dubai airport', en_name='Dsubai', iata='DXB')
-    Airport.objects.get_or_create(name='Instanbul airport', en_name='Instanbul', iata='IST')
+    # data = {
+    #     "data": "nationality"
+    # }
+    # # services.APIService.get_new_token()
+    # nationalities = APIService.getForeignList('Information', data)
+    # index = 0
+    # for airport_obj in nationalities:
+    #     index = index + 1
+    #     tmp_index = index
+    #     if tmp_index >= 114:
+    #         hello_man = 5
+    #
+    #     if airport_obj['en_name'] == 'Sri Lanka':
+    #         hello_man = 6
+    #     else:
+    #         Airport.objects.get_or_create(
+    #             name=airport_obj['name'],
+    #             en_name=airport_obj['en_name'],
+    #             iata=airport_obj['iso3'])
+    #
+    # # Airport.objects.get_or_create(name='Iran airport', en_name='Iran airport', iata='IKA')
+    # Airport.objects.get_or_create(name='Dubai airport', en_name='Dsubai', iata='DXB')
+    # Airport.objects.get_or_create(name='Instanbul airport', en_name='Instanbul', iata='IST')
     # //////////////////////////////////////////////////////////////
     if request.GET.get('return'):
         date_str_return = request.GET['return']  # The date - 29 Dec 2017
@@ -476,7 +476,7 @@ def search_foreign_airline(request):
     data = ticketRequest.as_json()
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Client-Token': APIService.TOKEN #services.APIService.get_new_token()
+        'Client-Token': services.APIService.get_new_token()
     }
     response = requests.post(services.APIService.API_URL + 'LowFareSearch', json=data, verify=False, headers=headers)
     request_obj = json.loads(response.content)
@@ -485,12 +485,10 @@ def search_foreign_airline(request):
     ticketRequest.save()
     print "search request sent and updated"
 
-    time.sleep(2)
-
     data = {"request_id": ticketRequest.request_code}
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Client-Token': APIService.TOKEN #services.APIService.get_new_token()
+        'Client-Token': services.APIService.get_new_token()
     }
     response = requests.post(services.APIService.API_URL + 'FareSearchResult', json=data, verify=False, headers=headers)
     request_obj = json.loads(response.content)
@@ -808,7 +806,9 @@ def book_ticket(request):
                 nationality = "IRN",
                 national_id = request.POST['national_id_a' + str(i+1)],
                 passport = Passport.objects.create(
+                    passport_id=request.POST['national_id_a' + str(i+1)],
                     doc_issue_country="IRN",
+                    expire_date=jalali.Persian(unidecode(request.POST['expire_passport_d_a' + str(i + 1)])).gregorian_string()
                 )
             )
         TOKEN = services.APIService.get_new_token()
@@ -823,8 +823,8 @@ def book_ticket(request):
         print request_obj
         booked_ticket = BookedTicket.objects.create(
             refrence_id = request_obj['refrence_id'],
-            #refrence_id = 1122,
-            #payment_total= 1000,
+            # refrence_id = 1122,
+            # payment_total= 1000,
             payment_total= request_obj['payment']['total'],
             ticket = ticket
         )

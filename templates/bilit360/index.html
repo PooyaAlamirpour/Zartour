@@ -128,9 +128,9 @@
                     </span>
                     <select class="first__input" name="origin">
                         <option>مبدا</option>
-                        <option value="IKA">فرودگاه امام خمینی</option>
-                        <option value="DXB">فرودگاه دبی</option>
-                        <option value="IST">فرودگاه استانبول</option>
+                        <option value="IKA">فرودگاه امام خمینی - IKA</option>
+                        <option value="DXB">فرودگاه دبی - DXB</option>
+                        <option value="IST">فرودگاه استانبول - IST</option>
                         {% for item in nationalities %}
                             <option value="{{ item.iso3 }}">{{ item.name }} - {{ item.iso3 }}</option>
                         {% endfor %}
@@ -142,9 +142,9 @@
                 </span>
                 <select name="destination">
                     <option >مقصد</option>
-                    <option value="IKA">فرودگاه امام خمینی</option>
-                    <option value="DXB">فرودگاه دبی</option>
-                    <option value="IST">فرودگاه استانبول</option>
+                    <option value="IKA">فرودگاه امام خمینی - IKA</option>
+                        <option value="DXB">فرودگاه دبی - DXB</option>
+                        <option value="IST">فرودگاه استانبول - IST</option>
                     {% for item in nationalities %}
                         <option value="{{ item.iso3 }}">{{ item.name }} - {{ item.iso3 }}</option>
                     {% endfor %}
@@ -190,7 +190,7 @@
                     </label>
                 </div>
                 <div class="form-check mr-5">
-                    <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayForeigna(this);">
+                    <input class="form-check-input" type="radio" name="twoway" value="1" id="back" onclick="twoWayForeign(this);">
                         <label class="form-check-label" for="back">
                             رفت و برگشت
                         </label>

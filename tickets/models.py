@@ -192,7 +192,7 @@ class Passenger(models.Model):
             "national_id": self.national_id,
             "passport": {
                 "id": self.passport.passport_id,
-                "expire_date": self.passport.expire_date,
+                "expire_date": str(self.passport.expire_date),
                 "doc_issue_country":self.passport.doc_issue_country
             }
         }
