@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0acf1ed1-eb4c-4b4a-bd6b-35812864dc49" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Issues/Adding fields to an already existing database for Django" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bilit360/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bilit360/ticket/book_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/ticket/book_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tickets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tickets/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tickets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tickets/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,18 +52,18 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Adding fields to an already existing database for Django" value="1" />
-          <entry key="html" value="4" />
+          <entry key="html" value="7" />
           <entry key="js" value="3" />
-          <entry key="py" value="95" />
+          <entry key="py" value="98" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="4" />
+          <entry key="HTML" value="7" />
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="95" />
+          <entry key="Python" value="98" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -74,7 +72,7 @@
           <entry key="Django Console" value="13" />
           <entry key="html" value="799" />
           <entry key="js" value="36" />
-          <entry key="py" value="1319" />
+          <entry key="py" value="1556" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -82,53 +80,21 @@
           <entry key="HTML" value="799" />
           <entry key="JavaScript" value="36" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="1332" />
+          <entry key="Python" value="1569" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/book_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="219" column="100" selection-start-line="219" selection-start-column="100" selection-end-line="219" selection-end-column="115" />
-              <folding>
-                <element signature="e#3402#4232#0#HTML" />
-                <element signature="e#4257#4572#0#HTML" />
-                <element signature="e#4597#7139#0#HTML" />
-                <element signature="e#13120#13631#0#HTML" />
-                <element signature="e#13672#14185#0#HTML" />
-                <element signature="e#14226#14842#0#HTML" />
-                <element signature="e#14883#15373#0#HTML" />
-                <element signature="e#15414#15906#0#HTML" />
-                <element signature="e#16514#17111#0#HTML" />
-                <element signature="e#17350#18429#0#HTML" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tickets/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="770" column="43" lean-forward="true" selection-start-line="770" selection-start-column="43" selection-end-line="770" selection-end-column="43" />
+            <state relative-caret-position="408">
+              <caret line="472" column="37" selection-start-line="472" selection-start-column="37" selection-end-line="472" selection-end-column="37" />
               <folding>
-                <marker date="1558529528822" expanded="true" signature="17929:33433" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tickets/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="174" column="15" selection-start-line="174" selection-start-column="4" selection-end-line="174" selection-end-column="15" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
+                <element signature="e#28386#32322#0" />
+                <marker date="1558532517072" expanded="true" signature="17929:32972" ph="..." />
               </folding>
             </state>
           </provider>
@@ -155,12 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FlightDetails</find>
-      <find>LowFareSearch</find>
-      <find>airport</find>
-      <find>nationality</find>
-      <find>airports</find>
-      <find>visibility-button.svg</find>
       <find>airlines</find>
       <find>function</find>
       <find>departure = Airport.objects.get(iata=request.GET['origin']),</find>
@@ -181,10 +141,16 @@
       <find>expire_passport</find>
       <find>expire</find>
       <find>ticket</find>
-      <find>birthdate_d_c</find>
       <find>jso1n</find>
-      <find>expire_date</find>
       <find>birth</find>
+      <find>expire_date</find>
+      <find>birthdate_d_c</find>
+      <find>طلاعات و پرداخت ، اطلاعات را بررسی گنید.مسئولیت هرگونه مغایرت اطلاعات بعهده کاربر</find>
+      <find>کشور صادر کننده پاسپورت</find>
+      <find>امرزو از تهران</find>
+      <find>پروازهای موجود برای</find>
+      <find>search</find>
+      <find>search_</find>
     </findStrings>
     <replaceStrings>
       <replace>'img/</replace>
@@ -222,6 +188,7 @@
       <dir>$PROJECT_DIR$/templates/hadmin</dir>
       <dir>$PROJECT_DIR$/static/static/bilit360</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>D:\Partition G\All New Age Proj\Ponisha\Reserve\Souece\reservation\reservation\tickets</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -267,7 +234,6 @@
         <option value="$PROJECT_DIR$/tickets/signals.py" />
         <option value="$PROJECT_DIR$/templates/bilit360/includes/app_download.html" />
         <option value="$PROJECT_DIR$/tickets/admin.py" />
-        <option value="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/includes/footer.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/ticket/BILIT_360_2.html" />
         <option value="$PROJECT_DIR$/static/static-only/bilit360/js/custom.js" />
@@ -276,10 +242,11 @@
         <option value="$PROJECT_DIR$/CMS/views.py" />
         <option value="$PROJECT_DIR$/service/services.py" />
         <option value="$PROJECT_DIR$/tickets/urls.py" />
-        <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/ticket/book_form.html" />
         <option value="$PROJECT_DIR$/Issues/Adding fields to an already existing database for Django" />
         <option value="$PROJECT_DIR$/tickets/models.py" />
+        <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
+        <option value="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" />
         <option value="$PROJECT_DIR$/tickets/views.py" />
       </list>
     </option>
@@ -342,7 +309,7 @@
             <path>
               <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="reservation" type="462c0819:PsiDirectoryNode" />
-              <item name="Issues" type="462c0819:PsiDirectoryNode" />
+              <item name="tickets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -516,7 +483,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="0" />
@@ -568,7 +535,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tickets/views.py</url>
-          <line>681</line>
+          <line>673</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -623,25 +590,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tickets/views.py</url>
-          <line>821</line>
+          <line>813</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tickets/views.py</url>
-          <line>820</line>
+          <line>812</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/bilit360/hotels/hotel_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/static/bilit360/css/style.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -740,13 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10421">
           <caret line="613" selection-start-line="613" selection-end-line="613" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="1027" column="41" selection-start-line="1027" selection-start-column="41" selection-end-line="1027" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -916,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="123" column="46" selection-start-line="123" selection-start-column="46" selection-end-line="123" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -956,20 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/reservation/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tickets/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tickets/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -980,12 +912,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/reservation/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="178" column="24" lean-forward="true" selection-start-line="178" selection-start-column="24" selection-end-line="178" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="147" column="26" lean-forward="true" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+          <folding>
+            <element signature="e#6795#7808#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tickets/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tickets/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="770" column="43" lean-forward="true" selection-start-line="770" selection-start-column="43" selection-end-line="770" selection-end-column="43" />
+        <state relative-caret-position="408">
+          <caret line="472" column="37" selection-start-line="472" selection-start-column="37" selection-end-line="472" selection-end-column="37" />
           <folding>
-            <marker date="1558529528822" expanded="true" signature="17929:33433" ph="..." />
+            <element signature="e#28386#32322#0" />
+            <marker date="1558532517072" expanded="true" signature="17929:32972" ph="..." />
           </folding>
         </state>
       </provider>

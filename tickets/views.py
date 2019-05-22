@@ -412,31 +412,6 @@ def search_foreign_airline(request):
     format_str = '%d-%m-%Y'  # The format
     date_str = datetime.fromtimestamp(float(date_str)/1000).date().strftime('%d-%m-%Y')
     datetime_obj = datetime.strptime(date_str, format_str)
-    # //////////////////////////////////////////////////////////////
-    # data = {
-    #     "data": "nationality"
-    # }
-    # # services.APIService.get_new_token()
-    # nationalities = APIService.getForeignList('Information', data)
-    # index = 0
-    # for airport_obj in nationalities:
-    #     index = index + 1
-    #     tmp_index = index
-    #     if tmp_index >= 114:
-    #         hello_man = 5
-    #
-    #     if airport_obj['en_name'] == 'Sri Lanka':
-    #         hello_man = 6
-    #     else:
-    #         Airport.objects.get_or_create(
-    #             name=airport_obj['name'],
-    #             en_name=airport_obj['en_name'],
-    #             iata=airport_obj['iso3'])
-    #
-    # # Airport.objects.get_or_create(name='Iran airport', en_name='Iran airport', iata='IKA')
-    # Airport.objects.get_or_create(name='Dubai airport', en_name='Dsubai', iata='DXB')
-    # Airport.objects.get_or_create(name='Instanbul airport', en_name='Instanbul', iata='IST')
-    # //////////////////////////////////////////////////////////////
     if request.GET.get('return'):
         date_str_return = request.GET['return']  # The date - 29 Dec 2017
         format_str = '%d-%m-%Y'  # The format
@@ -473,25 +448,42 @@ def search_foreign_airline(request):
         )
         tickets = ticketRequest.outbands.all()
 
-    data = ticketRequest.as_json()
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Client-Token': services.APIService.get_new_token()
-    }
-    response = requests.post(services.APIService.API_URL + 'LowFareSearch', json=data, verify=False, headers=headers)
-    request_obj = json.loads(response.content)
-    print request_obj
-    ticketRequest.request_code = request_obj['request_code']
-    ticketRequest.save()
-    print "search request sent and updated"
+    request_index = 0
+    f_breack_request = True
+    while f_breack_request:
+        data = ticketRequest.as_json()
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Client-Token': services.APIService.get_new_token()
+        }
+        response = requests.post(services.APIService.API_URL + 'LowFareSearch', json=data, verify=False, headers=headers)
+        request_obj = json.loads(response.content)
+        print request_obj
+        ticketRequest.request_code = request_obj['request_code']
+        ticketRequest.save()
+        print "search request sent and updated"
 
-    data = {"request_id": ticketRequest.request_code}
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Client-Token': services.APIService.get_new_token()
-    }
-    response = requests.post(services.APIService.API_URL + 'FareSearchResult', json=data, verify=False, headers=headers)
-    request_obj = json.loads(response.content)
+        data = {"request_id": ticketRequest.request_code}
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Client-Token': services.APIService.get_new_token()
+        }
+        response = requests.post(services.APIService.API_URL + 'FareSearchResult', json=data, verify=False, headers=headers)
+        request_obj = json.loads(response.content)
+        if 'outbound' in request_obj:
+            request_index += 1
+            if request_index > 5:
+                f_breack_request = False
+            else:
+                request_index += 1
+            for tmpticket in request_obj['outbound']:
+                f_breack_request = False
+        else:
+            if request_index > 5:
+                f_breack_request = False
+            else:
+                request_index += 1
+
     if 'outbound' in request_obj:
         for ticket in request_obj['outbound']:
             ticketRequest.outbands.create(
