@@ -4,8 +4,7 @@
     <list default="true" id="0acf1ed1-eb4c-4b4a-bd6b-35812864dc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bilit360/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tickets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tickets/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,49 +37,50 @@
     <session id="-1843976960">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.126" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.59" value="2" />
+          <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.73" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Adding fields to an already existing database for Django" value="1" />
-          <entry key="html" value="7" />
+          <entry key="html" value="8" />
           <entry key="js" value="3" />
-          <entry key="py" value="98" />
+          <entry key="py" value="100" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="7" />
+          <entry key="HTML" value="8" />
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="98" />
+          <entry key="Python" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Adding fields to an already existing database for Django" value="4" />
           <entry key="Django Console" value="13" />
-          <entry key="html" value="799" />
+          <entry key="html" value="856" />
           <entry key="js" value="36" />
-          <entry key="py" value="1556" />
+          <entry key="py" value="1557" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="799" />
+          <entry key="HTML" value="856" />
           <entry key="JavaScript" value="36" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="1569" />
+          <entry key="Python" value="1570" />
         </counts>
       </usages-collector>
     </session>
@@ -90,21 +90,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tickets/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="472" column="37" selection-start-line="472" selection-start-column="37" selection-end-line="472" selection-end-column="37" />
+            <state relative-caret-position="22">
+              <caret line="818" column="34" lean-forward="true" selection-start-line="818" selection-start-column="34" selection-end-line="818" selection-end-column="34" />
               <folding>
-                <element signature="e#28386#32322#0" />
-                <marker date="1558532517072" expanded="true" signature="17929:32972" ph="..." />
+                <marker date="1558567757298" expanded="true" signature="17929:32972" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tickets/urls.py">
+        <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="133">
+              <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMS/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="131" column="18" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -121,12 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>airlines</find>
-      <find>function</find>
-      <find>departure = Airport.objects.get(iata=request.GET['origin']),</find>
-      <find>Airport</find>
-      <find>iso3</find>
-      <find>Nationality</find>
       <find>maps-and-flags.svg</find>
       <find>خم</find>
       <find>لیط در این سایت را خوانده ام و با اطلاع از آن ها ادامه میدهم</find>
@@ -146,11 +148,17 @@
       <find>expire_date</find>
       <find>birthdate_d_c</find>
       <find>طلاعات و پرداخت ، اطلاعات را بررسی گنید.مسئولیت هرگونه مغایرت اطلاعات بعهده کاربر</find>
-      <find>کشور صادر کننده پاسپورت</find>
       <find>امرزو از تهران</find>
       <find>پروازهای موجود برای</find>
       <find>search</find>
       <find>search_</find>
+      <find>bilit360/img/chek.png</find>
+      <find>کشور صادر کننده پاسپورت</find>
+      <find>text</find>
+      <find>BookedTicket.objects.create</find>
+      <find>booked_ticket</find>
+      <find>Payment.objects.create(amount=booked_ticket.payment_total)</find>
+      <find>APPEND_SLASH = True</find>
     </findStrings>
     <replaceStrings>
       <replace>'img/</replace>
@@ -197,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tours/models.py" />
         <option value="$PROJECT_DIR$/templates/hadmin/tours/edit.html" />
         <option value="$PROJECT_DIR$/userprofile/models.py" />
         <option value="$PROJECT_DIR$/userpanel/views.py" />
@@ -247,6 +254,7 @@
         <option value="$PROJECT_DIR$/tickets/models.py" />
         <option value="$PROJECT_DIR$/templates/bilit360/index.html" />
         <option value="$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html" />
+        <option value="$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html" />
         <option value="$PROJECT_DIR$/tickets/views.py" />
       </list>
     </option>
@@ -298,7 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -309,12 +316,18 @@
             <path>
               <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="CMS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
               <item name="tickets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -483,14 +496,14 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18976545" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.22293676" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.15969989" />
-      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.1318328" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.1318328" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -498,7 +511,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="10" weight="0.3290461" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.16093536" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3279743" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3279743" />
       <window_info anchor="bottom" id="manage.py@reservation" order="13" weight="0.3293348" />
       <window_info anchor="bottom" id="File Transfer" order="14" visible="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Terminal" order="15" sideWeight="0.49928468" weight="0.21543409" />
@@ -587,16 +600,6 @@
           <url>file://$PROJECT_DIR$/tickets/views.py</url>
           <line>73</line>
           <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tickets/views.py</url>
-          <line>813</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tickets/views.py</url>
-          <line>812</line>
-          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -862,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMS/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -919,16 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="147" column="26" lean-forward="true" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
-          <folding>
-            <element signature="e#6795#7808#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/show_tickets.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -950,13 +936,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMS/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="131" column="18" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/bilit360/ticket/book_confirm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tickets/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="472" column="37" selection-start-line="472" selection-start-column="37" selection-end-line="472" selection-end-column="37" />
+        <state relative-caret-position="22">
+          <caret line="818" column="34" lean-forward="true" selection-start-line="818" selection-start-column="34" selection-end-line="818" selection-end-column="34" />
           <folding>
-            <element signature="e#28386#32322#0" />
-            <marker date="1558532517072" expanded="true" signature="17929:32972" ph="..." />
+            <marker date="1558567757298" expanded="true" signature="17929:32972" ph="..." />
           </folding>
         </state>
       </provider>

@@ -829,7 +829,10 @@ def book_ticket(request):
         #     template_name= 'reservation/booked_ticket.html',
         #     context=locals()
         # )
-        payment = Payment.objects.create(amount=booked_ticket.payment_total )
+        payment = Payment.objects.create(amount=booked_ticket.payment_total)
+        booked_ticket.payment = payment
+        booked_ticket.userprofile = request.user
+        booked_ticket.save()
         return redirect(booked_ticket.get_detail_url())
         # return render(
         #     request = request,

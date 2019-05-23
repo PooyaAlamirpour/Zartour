@@ -139,11 +139,27 @@
                                 <h5>جمع کل مبلغ پرداختی </h5>
                                 <span>{{ booked_ticket.ticket.price }} تومان</span>
                             </div>
+                            <br>
                             <div class="accept__pay">
-                                <a href=""> <img src="{% static 'bilit360/img/chek.png' %}" alt=""> تائید اطلاعات و پرداخت
-                                </a>
                                 <small>پس از تائید به درگاه پرداخت منتقل میشوید</small>
+                                <form method="post" action=" https://mabna.shaparak.ir:8080/Pay ">
+                                    <div>
+                                        <input type="text" name="TerminalID" value="69003362"/>
+                                        <input type="text" name="Amount" value="{{ booked_ticket.payment.amount }}"/>
+                                        <input type="text" name="callbackURL" value="{{ booked_ticket.payment.get_call_back_url }}?ref_id={{ booked_ticket.refrence_id }}"/>
+                                        <input type="text" name="InvoiceID" value="{{ booked_ticket.payment.id }}"/>
+                                        <input type="submit" value="تائید
+                                            اطلاعات و
+                                            پرداخت" class="btn btn-info"/>
+                                        </a>
+                                    </div>
+                                </form>
                             </div>
+{#                            <div class="accept__pay">#}
+{#                                <a href=""> <img src="{% static 'bilit360/img/chek.png' %}" alt=""> تائید اطلاعات و پرداخت#}
+{#                                </a>#}
+{#                                <small>پس از تائید به درگاه پرداخت منتقل میشوید</small>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
